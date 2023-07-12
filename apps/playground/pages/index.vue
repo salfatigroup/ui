@@ -22,7 +22,7 @@
         :key="component.title"
         class="flex flex-col bg-brand-gray-50 col-span-1 rounded-lg shadow"
       >
-        <div class="bg-white space-y-6 p-6 flex-1">
+        <div class="bg-white space-y-6 p-6 flex-1 flex flex-col">
           <div class="space-y-1">
             <div class="flex w-full items-center justify-between">
               <h2 class="truncate text-sm font-medium text-brand-gray-900">
@@ -45,7 +45,7 @@
             ></p>
           </div>
 
-          <div align="center">
+          <div class="flex justify-center items-center flex-1">
             <keep-alive>
               <component :is="component.element" v-bind="component.props">
                 <template v-for="slt in component.slots" :slot="slt.name">
@@ -76,6 +76,7 @@ import KSelect from '../../../packages/ui/src/runtime/components/select.vue'
 import KInput from '../../../packages/ui/src/runtime/components/input/default-input.vue'
 import KTextArea from '../../../packages/ui/src/runtime/components/text-area.vue'
 import IStar from '../../../packages/ui/src/runtime/components/icon/star.vue'
+import CommentInput from '../../../packages/ui/src/runtime/components/comment-input.vue'
 
 const components = ref([
   {
@@ -202,6 +203,17 @@ const components = ref([
     },
     slots: [],
     codeExample: `<KIconStar variant="duotone" class="w-5 h-5" />`,
+  },
+  {
+    title: 'Comment',
+    to: '/comment-input',
+    element: shallowRef(CommentInput),
+    props: {
+      class: 'w-fit h-fit',
+      avatar: 'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+    },
+    slots: [],
+    codeExample: `<k-comment-input class="w-fit h-fit" />`,
   },
 ])
 </script>
