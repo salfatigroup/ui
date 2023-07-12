@@ -77,6 +77,7 @@ import KInput from '../../../packages/ui/src/runtime/components/input/default-in
 import KTextArea from '../../../packages/ui/src/runtime/components/text-area.vue'
 import IStar from '../../../packages/ui/src/runtime/components/icon/star.vue'
 import CommentInput from '../../../packages/ui/src/runtime/components/comment-input.vue'
+import TitleDescInput from '../../../packages/ui/src/runtime/components/title-desc-input.vue'
 
 const components = ref([
   {
@@ -214,6 +215,16 @@ const components = ref([
     },
     slots: [],
     codeExample: `<k-comment-input class="w-fit h-fit" />`,
+  },
+  {
+    title: 'Title Description',
+    to: '/title-desc-input',
+    element: shallowRef(TitleDescInput),
+    props: {
+      class: 'w-fit h-fit',
+    },
+    slots: [],
+    codeExample: `<k-title-desc-input class="w-fit h-fit" />`,
   },
 ])
 </script>
