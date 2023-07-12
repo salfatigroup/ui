@@ -23,7 +23,7 @@
             <slot name="customAddons"></slot>
           </div>
           <div class="flex-shrink-0">
-            <button type="submit" class="inline-flex items-center rounded-md bg-brand-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600">{{ actionText }}</button>
+            <KButton type="submit">{{ actionText }}</KButton>
           </div>
         </div>
       </form>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-
+import KButton from './button.vue'
 type Props = {
   placeholder: string
   avatar: string
