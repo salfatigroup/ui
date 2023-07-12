@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col space-y-2 mt-10">
     <k-button variant="primary">Primary</k-button>
-    <k-button variant="secondary">Seondary</k-button>
+    <k-button variant="secondary">Secondary</k-button>
     <k-button variant="info">Info</k-button>
     <k-button variant="success">Success</k-button>
     <k-button variant="warn">Warn</k-button>

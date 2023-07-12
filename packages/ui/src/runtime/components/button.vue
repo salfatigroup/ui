@@ -47,10 +47,9 @@ const primaryClasses = computed(() => ({
 }))
 
 const secondaryClasses = computed(() => ({
-  'ring-1 ring-inset ring-brand-gray-300': true,
-  'text-brand-gray-900 hover:bg-brand-gray-50 dark:bg-white/10 dark:hover:bg-white/20':
+  'ring-1 ring-inset ring-brand-gray-300 text-brand-gray-900 hover:bg-brand-gray-50 dark:bg-white/10 dark:hover:bg-white/20':
     !props.soft,
-  'bg-brand-50 text-brand-600 hover:bg-brand-100': props.soft,
+  'bg-brand-gray-50 text-brand-gray-500 hover:bg-brand-gray-100': props.soft,
 }))
 
 const infoClasses = computed(() => ({
