@@ -87,7 +87,7 @@ import Option, { OptionType } from './select/option.vue'
 
 type Props = {
   options: OptionType[]
-  modelValue: OptionType[]
+  modelValue: OptionType | OptionType[]
   multiple: boolean
   placeholder: string
   label: string

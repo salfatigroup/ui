@@ -81,5 +81,4 @@ const { option } = defineProps({
     default: false,
   },
 })
-console.log('option.icon', option.icon)
 </script>
