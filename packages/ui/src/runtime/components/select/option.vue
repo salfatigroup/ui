@@ -46,7 +46,7 @@
       'absolute inset-y-0 right-0 flex items-center pr-4',
     ]"
   >
-    <ICheck :height="20" :width="20" aria-hidden="true" />
+    <ICheck :height="20" :width="20" aria-hidden="true" variant="line"/>
   </span>
 </template>
 <script setup lang="ts">
