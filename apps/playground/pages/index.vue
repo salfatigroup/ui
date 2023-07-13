@@ -78,6 +78,7 @@ import KTextArea from '../../../packages/ui/src/runtime/components/text-area.vue
 import IStar from '../../../packages/ui/src/runtime/components/icon/star.vue'
 import CommentInput from '../../../packages/ui/src/runtime/components/comment-input.vue'
 import TitleDescInput from '../../../packages/ui/src/runtime/components/title-desc-input.vue'
+import Avatar from '../../../packages/ui/src/runtime/components/avatar.vue'
 
 const components = ref([
   {
@@ -211,7 +212,8 @@ const components = ref([
     element: shallowRef(CommentInput),
     props: {
       class: 'w-fit h-fit',
-      avatar: 'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+      avatar:
+        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
     slots: [],
     codeExample: `<k-comment-input class="w-fit h-fit" />`,
@@ -225,6 +227,16 @@ const components = ref([
     },
     slots: [],
     codeExample: `<k-title-desc-input class="w-fit h-fit" />`,
+  },
+  {
+    title: 'Avatar',
+    to: '/avatar',
+    element: shallowRef(Avatar),
+    props: {
+      src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    slots: [],
+    codeExample: `<k-avatar src="https://..." />`,
   },
 ])
 </script>
