@@ -2,7 +2,9 @@
   <Listbox
     as="div"
     :model-value="modelValue"
-    @update:model-value="emit('update:modelValue', $event)"
+    @update:model-value="
+      emit('update:modelValue', $event?.CLEAR_SELECTION ? undefined : $event)
+    "
     :multiple="multiple"
   >
     <ListboxLabel
@@ -10,9 +12,8 @@
       >{{ label }}</ListboxLabel
     >
     <div class="relative mt-2">
-      <ListboxButton
-        class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-600 sm:text-sm sm:leading-6"
-      >
+      <ListboxButton :class="listBoxButtonClasses">
+        <slot name="prefixIcon"></slot>
         <Option :option="modelValue" v-if="!Array.isArray(modelValue)" />
         <Option :option="modelValue[0]" v-else-if="modelValue.length > 0"
           ><template v-if="modelValue.length > 1">
@@ -21,10 +22,17 @@
             >
           </template>
         </Option>
-        <span class="block truncate text-brand-gray-500/50" v-else>
-          {{ placeholder }}
-        </span>
+        <div
+          class="flex items-center space-x-2 truncate text-brand-gray-500/50"
+          v-else
+        >
+          <slot name="placeholderIcon"></slot>
+          <div>
+            {{ placeholder }}
+          </div>
+        </div>
         <span
+          v-if="!pill"
           class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
         >
           <IChevronDown
@@ -66,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
+import { PropType, computed, watch } from 'vue'
 import {
   Listbox,
   ListboxButton,
@@ -79,13 +87,14 @@ import Option, { OptionType } from './select/option.vue'
 
 type Props = {
   options: OptionType[]
-  modelValue: OptionType | OptionType[]
+  modelValue: OptionType[]
   multiple: boolean
   placeholder: string
   label: string
+  pill: boolean
 }
 
-defineProps({
+const props = defineProps({
   options: {
     type: Array as PropType<Props['options']>,
     default: () => [],
@@ -106,9 +115,31 @@ defineProps({
     type: String as PropType<Props['label']>,
     default: '',
   },
+  pill: {
+    type: Boolean as PropType<Props['pill']>,
+    default: false,
+  },
 })
 
 const emit = defineEmits<{
   'update:modelValue': [value: OptionType | OptionType[]]
 }>()
+
+const hasValue = computed(() => {
+  console.log('calculating', props.modelValue)
+  if (Array.isArray(props.modelValue)) {
+    return props.modelValue.length > 0
+  }
+  return !!props.modelValue
+})
+
+const listBoxButtonClasses = computed(() => ({
+  'relative space-x-2': true,
+  'text-brand-gray-900': hasValue.value,
+  'text-brand-gray-500/50': !hasValue.value,
+  'w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left shadow-sm ring-1 ring-inset ring-brand-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-600 sm:text-sm sm:leading-6':
+    !props.pill,
+  'inline-flex items-center whitespace-nowrap rounded-full bg-brand-gray-50 px-2 py-2 text-sm font-medium hover:bg-brand-gray-100 sm:px-3':
+    props.pill,
+}))
 </script>

@@ -18,7 +18,7 @@ import { computed } from 'vue'
 export type Props = {
   variant?: 'primary' | 'secondary' | 'info' | 'warn' | 'danger' | 'success'
   size?: 'sm' | 'md'
-  soft?: boolean
+  dot?: boolean
   button?: boolean
   flat?: boolean
   pill?: boolean
@@ -43,7 +43,7 @@ const props = defineProps({
   },
   dot: {
     type: Boolean,
-    default: false as Props['soft'],
+    default: false as Props['dot'],
   },
   pill: {
     type: Boolean,
