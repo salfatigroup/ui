@@ -1,8 +1,14 @@
 <template>
   <div
     class="flex items-center text-left"
-    v-if="option.online !== undefined || option.avatar"
+    v-if="option.online !== undefined || option.avatar || option?.icon"
   >
+    <component
+      v-if="option?.icon"
+      :is="option.icon"
+      :class="'w-4 h-4'"
+      variant="filled"
+    ></component>
     <img
       :src="option.avatar"
       alt=""
@@ -46,21 +52,22 @@
       'absolute inset-y-0 right-0 flex items-center pr-4',
     ]"
   >
-    <ICheck :height="20" :width="20" aria-hidden="true" variant="line"/>
+    <ICheck :height="20" :width="20" aria-hidden="true" variant="line" />
   </span>
 </template>
 <script setup lang="ts">
 import { PropType } from 'vue'
-import { ICheck } from '../icon'
+import { ICheck, IUserCircle } from '../icon'
 
 export type OptionType = {
   id: number
   text: string
   online?: boolean
   avatar?: string
+  icon?: Object
 }
 
-defineProps({
+const { option } = defineProps({
   option: {
     type: Object as PropType<OptionType>,
     required: true,
