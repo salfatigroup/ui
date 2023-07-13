@@ -80,6 +80,7 @@ import CommentInput from '../../../packages/ui/src/runtime/components/comment-in
 import TitleDescInput from '../../../packages/ui/src/runtime/components/title-desc-input.vue'
 import Avatar from '../../../packages/ui/src/runtime/components/avatar.vue'
 import Combobox from '../../../packages/ui/src/runtime/components/combobox.vue'
+import Checkbox from '../../../packages/ui/src/runtime/components/checkbox.vue'
 
 const components = ref([
   {
@@ -245,7 +246,15 @@ const components = ref([
     element: shallowRef(Combobox),
     props: {},
     slots: [],
-    codeExample: `<k-combobox  />`,
+    codeExample: `<k-combobox />`,
+  },
+  {
+    title: 'Checkbox',
+    to: '/checkbox',
+    element: shallowRef(Checkbox),
+    props: {},
+    slots: [],
+    codeExample: `<k-checkbox />`,
   },
 ])
 </script>
