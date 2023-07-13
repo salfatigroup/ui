@@ -3,7 +3,7 @@
     as="div"
     :model-value="modelValue"
     @update:model-value="
-      emit('update:modelValue', $event?.CLEAR_SELECTION ? undefined : $event)
+      emit('update:modelValue', $event?.value === null ? undefined : $event)
     "
     :multiple="multiple"
   >
@@ -17,7 +17,7 @@
         <Option :option="modelValue" v-if="!Array.isArray(modelValue)" />
         <Option :option="modelValue[0]" v-else-if="modelValue.length > 0"
           ><template v-if="modelValue.length > 1">
-            <span class="text-brand-gray-500 text-ellipsis"
+            <span class="text-brand-gray-500 text-ellipsis ml-1"
               >+{{ modelValue.length - 1 }} more</span
             >
           </template>
@@ -54,7 +54,7 @@
           <ListboxOption
             as="template"
             v-for="option in options"
-            :key="option.id"
+            :key="option.value"
             :value="option"
             v-slot="{ active, selected }"
           >
@@ -126,7 +126,6 @@ const emit = defineEmits<{
 }>()
 
 const hasValue = computed(() => {
-  console.log('calculating', props.modelValue)
   if (Array.isArray(props.modelValue)) {
     return props.modelValue.length > 0
   }

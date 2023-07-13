@@ -79,6 +79,7 @@ import IStar from '../../../packages/ui/src/runtime/components/icon/star.vue'
 import CommentInput from '../../../packages/ui/src/runtime/components/comment-input.vue'
 import TitleDescInput from '../../../packages/ui/src/runtime/components/title-desc-input.vue'
 import Avatar from '../../../packages/ui/src/runtime/components/avatar.vue'
+import Combobox from '../../../packages/ui/src/runtime/components/combobox.vue'
 
 const components = ref([
   {
@@ -237,6 +238,14 @@ const components = ref([
     },
     slots: [],
     codeExample: `<k-avatar src="https://..." />`,
+  },
+  {
+    title: 'Combobox',
+    to: '/combobox',
+    element: shallowRef(Combobox),
+    props: {},
+    slots: [],
+    codeExample: `<k-combobox  />`,
   },
 ])
 </script>
