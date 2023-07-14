@@ -39,8 +39,8 @@
           <div
             :class="[
               active
-                ? 'border-indigo-600 ring-2 ring-indigo-600'
-                : 'border-gray-300',
+                ? 'border-brand-600 ring-2 ring-brand-600'
+                : 'border-brand-gray-300',
               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none',
             ]"
           >
