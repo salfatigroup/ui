@@ -83,6 +83,7 @@ import Combobox from '../../../packages/ui/src/runtime/components/combobox.vue'
 import Checkbox from '../../../packages/ui/src/runtime/components/checkbox.vue'
 import RadioGroup from '../../../packages/ui/src/runtime/components/radio-group.vue'
 import Pagination from '../../../packages/ui/src/runtime/components/pagination.vue'
+import Toggle from '../../../packages/ui/src/runtime/components/toggle.vue'
 
 import { items } from '../mocks/radio_mocks'
 
@@ -150,12 +151,12 @@ const components = ref([
       class: 'w-full',
       options: [
         {
-          id: '1',
-          text: 'Wade Cooper',
+          value: '1',
+          label: 'Wade Cooper',
         },
         {
-          id: '2',
-          text: 'Arlene Mccoy',
+          value: '2',
+          label: 'Arlene Mccoy',
           avatar:
             'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         },
@@ -275,6 +276,14 @@ const components = ref([
     props: { total: 452, pageSize: 50, maxPages: 3, modelValue: 10 },
     slots: [],
     codeExample: `<k-pagination :total="452" :page-size="50"/>`,
+  },
+  {
+    title: 'Toggle',
+    to: '/toggle',
+    element: shallowRef(Toggle),
+    props: {},
+    slots: [],
+    codeExample: `<k-toggle />`,
   },
 ])
 </script>
