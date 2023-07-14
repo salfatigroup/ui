@@ -81,6 +81,9 @@ import TitleDescInput from '../../../packages/ui/src/runtime/components/title-de
 import Avatar from '../../../packages/ui/src/runtime/components/avatar.vue'
 import Combobox from '../../../packages/ui/src/runtime/components/combobox.vue'
 import Checkbox from '../../../packages/ui/src/runtime/components/checkbox.vue'
+import RadioGroup from '../../../packages/ui/src/runtime/components/radio-group.vue'
+
+import { items } from '../mocks/radio_mocks'
 
 const components = ref([
   {
@@ -255,6 +258,14 @@ const components = ref([
     props: {},
     slots: [],
     codeExample: `<k-checkbox />`,
+  },
+  {
+    title: 'Radio Group',
+    to: '/radio-group',
+    element: shallowRef(RadioGroup),
+    props: { items: [items[1], items[2]] },
+    slots: [],
+    codeExample: `<k-radio-group items="[...]" />`,
   },
 ])
 </script>
