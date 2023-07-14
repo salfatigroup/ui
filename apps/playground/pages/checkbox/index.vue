@@ -16,6 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 const checked = ref(true)
 </script>
