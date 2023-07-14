@@ -82,6 +82,7 @@ import Avatar from '../../../packages/ui/src/runtime/components/avatar.vue'
 import Combobox from '../../../packages/ui/src/runtime/components/combobox.vue'
 import Checkbox from '../../../packages/ui/src/runtime/components/checkbox.vue'
 import RadioGroup from '../../../packages/ui/src/runtime/components/radio-group.vue'
+import Pagination from '../../../packages/ui/src/runtime/components/pagination.vue'
 
 import { items } from '../mocks/radio_mocks'
 
@@ -263,9 +264,17 @@ const components = ref([
     title: 'Radio Group',
     to: '/radio-group',
     element: shallowRef(RadioGroup),
-    props: { items: [items[1], items[2]] },
+    props: { items: [items[1], items[2]], modelValue: items[1].value },
     slots: [],
     codeExample: `<k-radio-group items="[...]" />`,
+  },
+  {
+    title: 'Pagination',
+    to: '/pagination',
+    element: shallowRef(Pagination),
+    props: { total: 452, pageSize: 50, maxPages: 3, modelValue: 10 },
+    slots: [],
+    codeExample: `<k-pagination :total="452" :page-size="50"/>`,
   },
 ])
 </script>
