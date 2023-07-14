@@ -28,9 +28,8 @@ const props = defineProps({
 
 const pageClasses = computed(() => {
   return {
-    'inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium':
-      true,
-    'text-brand-gray-500 hover:border-brand-gray-300 hover:text-brand-gray-700':
+    'inline-flex items-center border-t-2 px-4 pt-4 text-sm font-medium': true,
+    'text-brand-gray-500 border-transparent hover:border-brand-gray-300 hover:text-brand-gray-700':
       !props.modelValue,
     'border-brand-500 text-brand-600': props.modelValue,
   }

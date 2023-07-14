@@ -1,43 +1,46 @@
 <template>
-  <div :key="item.value" :class="itemClasses">
+  <label :key="item.value" :class="itemClasses" :for="current?.id">
     <div class="flex h-6 items-center">
       <input
-        :id="item.value"
+        v-uid
+        ref="current"
         :name="name"
         type="radio"
         :checked="modelValue"
         @input="emit('update:modelValue', $event?.target?.value)"
-        class="h-4 w-4 border-brand-gray-300 text-brand-600 focus:ring-brand-600"
+        class="h-4 w-4 border-brand-gray-300 text-brand-600 focus:ring-brand-600 cursor-pointer"
       />
     </div>
 
     <div class="ml-3 text-sm leading-6">
-      <label :for="item.value" class="font-medium text-brand-gray-900">{{
-        item.label
-      }}</label>
+      <span class="font-medium text-brand-gray-900">{{ item.label }}</span>
       <template v-if="inlineDescription">
         {{ ' ' }}
         <span :id="`${item.value}-description`" class="text-brand-gray-500">
           {{ item.description }}
         </span>
       </template>
-      <p
+      <span
         v-else-if="!hideDescription"
+        as="p"
         :id="`${item.value}-description`"
-        class="text-brand-gray-500"
+        class="text-brand-gray-500 block"
       >
         {{ item.description }}
-      </p>
+      </span>
     </div>
-  </div>
+  </label>
 </template>
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
+import { PropType, computed, ref } from 'vue'
 export type Item = {
   label: string
   value: string
   description?: string
 }
+
+const current = ref()
+
 const props = defineProps({
   item: {
     type: Object as PropType<Item>,
@@ -71,7 +74,7 @@ const emit = defineEmits<{
 
 const itemClasses = computed(() => {
   return {
-    'relative flex': true,
+    'relative flex cursor-pointer': true,
     'flex-row-reverse justify-between py-4': props.reverse,
   }
 })
