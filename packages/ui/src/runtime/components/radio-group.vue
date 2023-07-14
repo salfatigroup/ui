@@ -1,6 +1,6 @@
 <template>
   <CardsRadioGroup
-    v-if="cardsVariant.includes(variant)"
+    v-if="cardsVariants.includes(variant)"
     :variant="variant"
     v-bind="$attrs"
     ><template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
@@ -15,16 +15,17 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue'
-import DefaultRadioGroup, { Props } from './radio-group/default-radio-group.vue'
+import { Variant } from './radio-group/types'
+import DefaultRadioGroup from './radio-group/default-radio-group.vue'
 import CardsRadioGroup from './radio-group/cards-radio-group.vue'
 
 defineProps({
   variant: {
-    type: String as PropType<Props['variant']>,
-    default: 'vertical' as Props['variant'],
+    type: String as PropType<Variant>,
+    default: 'vertical' as Variant,
   },
 })
 
-const cardsVariant = ['cards']
+const cardsVariants = ['cards', 'small-cards', 'stacked-cards']
 defineSlots()
 </script>

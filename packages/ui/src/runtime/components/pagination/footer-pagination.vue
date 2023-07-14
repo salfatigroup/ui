@@ -135,16 +135,13 @@ type PaginationProps = {
 const props = defineProps({
   total: {
     type: Number as PropType<PaginationProps['total']>,
-    required: true,
   },
   modelValue: {
     type: Number as PropType<PaginationProps['modelValue']>,
-    required: true,
     default: 2,
   },
   pageSize: {
     type: Number,
-    required: true,
   },
   previousLabel: {
     type: String,

@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { PropType, computed } from 'vue'
+import { Variant } from './types'
 import RadioItem, { Item } from './radio-item.vue'
 
 export type Props = {
@@ -34,7 +35,7 @@ export type Props = {
   description?: string
   items: Item[]
   name: string
-  variant: 'horizontal' | 'vertical' | 'vertical-right' | 'cards'
+  variant: Variant
   inlineItemDescription?: boolean
 }
 const props = defineProps({
@@ -53,7 +54,6 @@ const props = defineProps({
   },
   modelValue: {
     type: String,
-    required: true,
   },
   name: {
     type: String,

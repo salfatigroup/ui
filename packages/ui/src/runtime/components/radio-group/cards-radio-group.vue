@@ -1,65 +1,164 @@
 <template>
-  <RadioGroup
-    :model-value="modelValue"
-    @update:model-value="emit('update:modelValue', $event)"
-  >
-    <RadioGroupLabel
-      class="text-base font-semibold leading-6 text-brand-gray-900"
-      >{{ title }}</RadioGroupLabel
+  <div>
+    <div
+      class="flex items-center justify-between"
+      v-if="variant === 'small-cards'"
     >
-
-    <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
-      <RadioGroupOption
-        as="template"
-        v-for="item in items"
-        :key="item.value"
-        :value="item.value"
-        v-slot="{ active, checked }"
+      <h2 class="text-sm font-medium leading-6 text-brand-gray-900">
+        {{ title }}
+      </h2>
+      <a
+        v-if="learnMoreText"
+        :href="learnMoreLink ?? '#'"
+        class="text-sm font-medium leading-6 text-brand-600 hover:text-brand-500"
+        >{{ learnMoreText }}</a
       >
-        <div
-          :class="[
-            active
-              ? 'border-indigo-600 ring-2 ring-indigo-600'
-              : 'border-gray-300',
-            'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none',
-          ]"
-        >
-          <span class="flex flex-1">
-            <span class="flex flex-col">
-              <RadioGroupLabel
-                as="span"
-                class="block text-sm font-medium text-brand-gray-900"
-                >{{ item.label }}</RadioGroupLabel
-              >
-              <RadioGroupDescription
-                as="span"
-                class="mt-1 flex items-center text-sm text-brand-gray-500"
-                >{{ item.description }}</RadioGroupDescription
-              >
-              <RadioGroupDescription
-                as="span"
-                class="mt-6 text-sm font-medium text-brand-gray-900"
-                >{{ item.bottomText }}</RadioGroupDescription
-              >
-            </span>
-          </span>
-          <ICheckCircle
-            :class="[!checked ? 'invisible' : '', 'h-5 w-5 text-brand-600']"
-            aria-hidden="true"
-            variant="filled"
-          />
-          <span
-            :class="[
-              active ? 'border' : 'border-2',
-              checked ? 'border-brand-600' : 'border-transparent',
-              'pointer-events-none absolute -inset-px rounded-lg',
-            ]"
-            aria-hidden="true"
-          />
-        </div>
-      </RadioGroupOption>
     </div>
-  </RadioGroup>
+    <RadioGroup
+      :model-value="modelValue"
+      @update:model-value="emit('update:modelValue', $event)"
+      class="mt-4"
+    >
+      <RadioGroupLabel
+        v-if="variant !== 'small-cards'"
+        class="text-base font-semibold leading-6 text-brand-gray-900"
+        >{{ title }}</RadioGroupLabel
+      >
+
+      <div
+        v-if="variant === 'cards'"
+        class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4"
+      >
+        <RadioGroupOption
+          as="template"
+          v-for="item in items"
+          :key="item.value"
+          :value="item.value"
+          v-slot="{ active, checked }"
+        >
+          <div
+            :class="[
+              active
+                ? 'border-indigo-600 ring-2 ring-indigo-600'
+                : 'border-gray-300',
+              'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none',
+            ]"
+          >
+            <span class="flex flex-1">
+              <span class="flex flex-col">
+                <RadioGroupLabel
+                  as="span"
+                  class="block text-sm font-medium text-brand-gray-900"
+                  >{{ item.label }}</RadioGroupLabel
+                >
+                <RadioGroupDescription
+                  as="span"
+                  class="mt-1 flex items-center text-sm text-brand-gray-500"
+                  >{{ item.description }}</RadioGroupDescription
+                >
+                <RadioGroupDescription
+                  as="span"
+                  class="mt-6 text-sm font-medium text-brand-gray-900"
+                  >{{ item.bottomText }}</RadioGroupDescription
+                >
+              </span>
+            </span>
+            <ICheckCircle
+              :class="[!checked ? 'invisible' : '', 'h-5 w-5 text-brand-600']"
+              aria-hidden="true"
+              variant="filled"
+            />
+            <span
+              :class="[
+                active ? 'border' : 'border-2',
+                checked ? 'border-brand-600' : 'border-transparent',
+                'pointer-events-none absolute -inset-px rounded-lg',
+              ]"
+              aria-hidden="true"
+            />
+          </div>
+        </RadioGroupOption>
+      </div>
+      <div
+        v-else-if="variant === 'small-cards'"
+        class="grid grid-cols-3 gap-3 sm:grid-cols-6"
+      >
+        <RadioGroupOption
+          as="template"
+          v-for="item in items"
+          :key="item.value"
+          :value="item.value"
+          :disabled="item.disabled"
+          v-slot="{ active, checked }"
+        >
+          <div
+            :class="[
+              !item.disabled
+                ? 'cursor-pointer focus:outline-none'
+                : 'cursor-not-allowed opacity-25',
+              active ? 'ring-2 ring-brand-600 ring-offset-2' : '',
+              checked
+                ? 'bg-brand-600 text-white hover:bg-brand-500'
+                : 'ring-1 ring-inset ring-brand-gray-300 bg-white text-brand-gray-900 hover:bg-brand-gray-50',
+              'flex items-center justify-center rounded-md py-3 px-3 text-sm font-semibold uppercase sm:flex-1',
+            ]"
+          >
+            <RadioGroupLabel as="span">{{ item.label }}</RadioGroupLabel>
+          </div>
+        </RadioGroupOption>
+      </div>
+      <div v-else-if="variant === 'stacked-cards'" class="space-y-4">
+        <RadioGroupOption
+          as="template"
+          v-for="item in items"
+          :key="item.value"
+          :value="item.value"
+          v-slot="{ active, checked }"
+        >
+          <div
+            :class="[
+              active
+                ? 'border-brand-600 ring-2 ring-brand-600'
+                : 'border-brand-gray-300',
+              'relative block cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none sm:flex sm:justify-between',
+            ]"
+          >
+            <span class="flex items-center">
+              <span class="flex flex-col text-sm">
+                <RadioGroupLabel
+                  as="span"
+                  class="font-medium text-brand-gray-900"
+                  >{{ item.label }}</RadioGroupLabel
+                >
+                <RadioGroupDescription as="span" class="text-brand-gray-500">
+                  <span class="block sm:inline">{{ item.description }}</span>
+                </RadioGroupDescription>
+              </span>
+            </span>
+            <RadioGroupDescription
+              as="span"
+              class="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right"
+            >
+              <span class="font-medium text-brand-gray-900">{{
+                item.sideLabel
+              }}</span>
+              <span class="ml-1 text-brand-gray-500 sm:ml-0">{{
+                item.bottomText
+              }}</span>
+            </RadioGroupDescription>
+            <span
+              :class="[
+                active ? 'border' : 'border-2',
+                checked ? 'border-brand-600' : 'border-transparent',
+                'pointer-events-none absolute -inset-px rounded-lg',
+              ]"
+              aria-hidden="true"
+            />
+          </div>
+        </RadioGroupOption>
+      </div>
+    </RadioGroup>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -71,20 +170,25 @@ import {
   RadioGroupOption,
 } from '@headlessui/vue'
 import { ICheckCircle } from '../icon'
+import { Variant } from './types'
 
 export type CardItem = {
   value: string
   label: string
   description?: string
   bottomText?: string
+  sideLabel?: string
+  disabled?: boolean
 }
 export type Props = {
   title?: string
   description?: string
   items: CardItem[]
   name: string
-  variant: 'horizontal' | 'vertical' | 'vertical-right' | 'cards'
+  variant: Variant
   inlineItemDescription?: boolean
+  learnMoreText?: string
+  learnMoreLink?: string
 }
 const props = defineProps({
   title: {
@@ -102,7 +206,6 @@ const props = defineProps({
   },
   modelValue: {
     type: String,
-    required: true,
   },
   name: {
     type: String,
@@ -115,6 +218,14 @@ const props = defineProps({
   inlineItemDescription: {
     type: Boolean,
     default: false as Props['inlineItemDescription'],
+  },
+  learnMoreText: {
+    type: String,
+    default: '' as Props['learnMoreText'],
+  },
+  learnMoreLink: {
+    type: String,
+    default: '' as Props['learnMoreLink'],
   },
 })
 
