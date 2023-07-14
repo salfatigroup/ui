@@ -9,7 +9,7 @@
         class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-brand-gray-500 hover:border-brand-gray-300 hover:text-brand-gray-700"
       >
         <IArrowLeft
-          class="mr-3 h-5 w-5 text-brand-gray-400"
+          class="mr-3 h-4 w-4 text-brand-gray-400"
           aria-hidden="true"
           variant="line"
         />
@@ -61,7 +61,7 @@
       >
         {{ nextLabel }}
         <IArrowRight
-          class="ml-3 h-5 w-5 text-brand-gray-400"
+          class="ml-3 h-4 w-4 text-brand-gray-400"
           aria-hidden="true"
           variant="line"
         />
@@ -88,16 +88,13 @@ type PaginationProps = {
 const props = defineProps({
   total: {
     type: Number as PropType<PaginationProps['total']>,
-    required: true,
   },
   modelValue: {
     type: Number as PropType<PaginationProps['modelValue']>,
-    required: true,
     default: 2,
   },
   pageSize: {
     type: Number,
-    required: true,
   },
   previousLabel: {
     type: String,

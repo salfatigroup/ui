@@ -29,11 +29,26 @@
       :items="items"
       v-model="checked"
     />
+    <k-radio-group
+      title="Select a small card"
+      name="notifications5"
+      variant="small-cards"
+      learnMoreText="Learn more"
+      :items="smallItems"
+      v-model="checked"
+    />
+    <k-radio-group
+      title="Select a stacked card"
+      name="notifications6"
+      variant="stacked-cards"
+      :items="items"
+      v-model="checked"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { items } from '../../mocks/radio_mocks'
+import { items, smallItems } from '../../mocks/radio_mocks'
 const checked = ref(items[1].value)
 </script>
