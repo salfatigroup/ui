@@ -87,7 +87,7 @@ import IStar from '../../../packages/ui/src/runtime/components/icon/star.vue'
 import CommentInput from '../../../packages/ui/src/runtime/components/comment-input.vue'
 import TitleDescInput from '../../../packages/ui/src/runtime/components/title-desc-input.vue'
 import Avatar from '../../../packages/ui/src/runtime/components/avatar.vue'
-import Combobox from '../../../packages/ui/src/runtime/components/combobox.vue'
+import KCombobox from '../../../packages/ui/src/runtime/components/combobox.vue'
 import Checkbox from '../../../packages/ui/src/runtime/components/checkbox.vue'
 import RadioGroup from '../../../packages/ui/src/runtime/components/radio-group.vue'
 import Pagination from '../../../packages/ui/src/runtime/components/pagination.vue'
@@ -258,8 +258,8 @@ const components = ref([
   {
     title: 'Combobox',
     to: '/combobox',
-    element: shallowRef(Combobox),
-    props: {},
+    element: shallowRef(KCombobox),
+    props: { items: [items[1], items[2]] },
     slots: [],
     codeExample: `<k-combobox />`,
   },
