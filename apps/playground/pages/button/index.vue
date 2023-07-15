@@ -16,11 +16,17 @@
     <k-button soft>Soft</k-button>
 
     <k-button soft>
-      <template #prefixIcon>prefixIcon</template>
-      Some text
-      <template #suffixIcons>suffixIcon</template>
+      <template #prefixIcon><IEdit /></template>
+      <span>Icons</span>
+      <template #suffixIcon><IScan /></template>
     </k-button>
 
     <k-button pill>Pill</k-button>
   </div>
 </template>
+<script setup lang="ts">
+import {
+  IEdit,
+  IScan,
+} from '../../../../packages/ui/src/runtime/components/icon'
+</script>
