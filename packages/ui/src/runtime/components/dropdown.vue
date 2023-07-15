@@ -2,10 +2,15 @@
   <Menu as="div" class="relative inline-block text-left">
     <div>
       <MenuButton
-        class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 hover:bg-brand-gray-50"
       >
-        {{ title }}
-        <IChevronDown class="-mr-1 w-5 h-5 text-gray-400" aria-hidden="true" />
+        <slot>
+          {{ title }}
+        </slot>
+        <IChevronDown
+          class="-mr-1 w-5 h-5 text-brand-gray-400"
+          aria-hidden="true"
+        />
       </MenuButton>
     </div>
 
@@ -22,19 +27,23 @@
       >
         <div class="py-1">
           <MenuItem
-            v-slot="{ active }"
+            v-slot="menuItemSlot"
             v-for="item in items"
             :key="item.value ?? item.label"
             @click="item.onClick?.()"
           >
-            <a
-              href="#"
-              :class="[
-                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                'block px-4 py-2 text-sm',
-              ]"
-              >{{ item.label }}</a
-            >
+            <slot v-bind="menuItemSlot" :item="item">
+              <div
+                :class="[
+                  menuItemSlot.active
+                    ? 'bg-brand-gray-100 text-brand-gray-900'
+                    : 'text-brand-gray-700',
+                  'block px-4 py-2 text-sm',
+                ]"
+              >
+                {{ item.label }}
+              </div>
+            </slot>
           </MenuItem>
         </div>
       </MenuItems>

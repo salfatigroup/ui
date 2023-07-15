@@ -68,7 +68,7 @@ import { PropType } from 'vue'
 import { ICheck, IUserCircle } from '../icon'
 
 export type OptionType = {
-  value: string
+  value: string | number | null
   label: string
   online?: boolean
   avatar?: string

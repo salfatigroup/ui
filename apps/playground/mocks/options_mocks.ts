@@ -1,11 +1,12 @@
 import { IUserCircle } from '../../../packages/ui/src/runtime/components/icon'
+import type { OptionType } from '../../../packages/ui/src/runtime/components/select/option.vue'
 
 export const dates = [
   { value: null, label: 'No due date' },
   { value: 1, label: 'Today' },
   { value: 2, label: 'Tomorrow' },
 ]
-export const people = [
+export const people: OptionType[] = [
   { value: null, label: 'Unassign', icon: IUserCircle },
   { value: 1, label: 'Wade Cooper', online: true },
   {
