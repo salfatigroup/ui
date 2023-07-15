@@ -1,6 +1,6 @@
 {
   "name": "@salfatigroup/ui",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
@@ -26,8 +26,7 @@
     "typecheck": "nuxi typecheck",
     "prepare": "nuxi prepare docs",
     "release": "pnpm lint && standard-version && git push --follow-tags",
-    "clean": "rimraf dist node_modules .turbo .nuxt .output docs",
-    "postinstall": "pnpm build"
+    "clean": "rimraf dist node_modules .turbo .nuxt .output docs"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.14",
