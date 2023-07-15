@@ -7,7 +7,7 @@
       @click="onClose?.()"
     >
       <span class="sr-only">Close</span>
-      <ICrossCircle class="h-6 w-6" aria-hidden="true" variant="filled" />
+      <ICrossCircle class="h-6 w-6" aria-hidden="true" variant="duotone" />
     </button>
   </div>
 </template>
