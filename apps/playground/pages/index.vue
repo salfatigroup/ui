@@ -96,6 +96,7 @@ import Alert from '../../../packages/ui/src/runtime/components/alert.vue'
 import KModal from '../../../packages/ui/src/runtime/components/modal.vue'
 
 import { items } from '../mocks/radio_mocks'
+import { people } from '../mocks/options_mocks'
 
 const components = ref([
   {
@@ -259,7 +260,7 @@ const components = ref([
     title: 'Combobox',
     to: '/combobox',
     element: shallowRef(KCombobox),
-    props: { items: [items[1], items[2]] },
+    props: { options: people, modelValue: people[1] },
     slots: [],
     codeExample: `<k-combobox />`,
   },
