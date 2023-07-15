@@ -95,6 +95,7 @@ const successClasses = computed(() => ({
     props.soft,
 }))
 
+const slots = defineSlots()
 // generate the button classes based on the props
 const buttonClasses = computed(() => {
   const baseClasses: Record<string, Record<string, boolean>> = {
@@ -108,7 +109,7 @@ const buttonClasses = computed(() => {
 
   return {
     ...baseClasses[props.variant ?? 'primary'],
-    'flex font-semibold space-x-2': true,
+    'flex justify-center items-center font-semibold': true,
     'px-2 py-1': ['xs', 'sm'].includes(props.size),
     'px-2.5 py-1.5': ['md'].includes(props.size),
     'px-3 py-2': ['lg'].includes(props.size),
@@ -124,6 +125,8 @@ const buttonClasses = computed(() => {
 
     // Disabled
     'opacity-50 pointer-events-none': props.disabled,
+
+    'space-x-2': slots.prefixIcon || slots.suffixIcon,
   }
 })
 </script>

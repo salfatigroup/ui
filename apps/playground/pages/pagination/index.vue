@@ -15,7 +15,7 @@
     />
     <k-pagination :total="20" v-model="currentPage" :pageSize="50" />
     <k-pagination
-      :total="20"
+      :total="70"
       v-model="currentPage"
       :pageSize="50"
       variant="footer"

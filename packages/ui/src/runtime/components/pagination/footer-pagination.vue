@@ -56,7 +56,7 @@
             :disabled="!hasPrevious"
             variant="secondary"
             size="sm"
-            class="space-x-0 rounded-r-none"
+            class="rounded-r-none"
             @click="
               () => {
                 emit('update:modelValue', Math.max(1, modelValue - 1))
