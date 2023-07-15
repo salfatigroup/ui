@@ -12,6 +12,12 @@
       label="Assign to many"
     />
     <k-select
+      :options="people"
+      disabled
+      v-model="selectedSingle"
+      label="Disabled"
+    />
+    <k-select
       :options="dates"
       v-model="pillSelected1"
       placeholder="Due Date"
@@ -22,7 +28,6 @@
         ><ICalendar variant="line" class="w-4 h-4"
       /></template>
     </k-select>
-
     <k-select
       :options="people"
       v-model="pillSelected2"

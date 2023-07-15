@@ -6,6 +6,7 @@
       emit('update:modelValue', $event?.value === null ? undefined : $event)
     "
     :multiple="multiple"
+    :disabled="disabled"
   >
     <ListboxLabel
       class="block text-sm font-medium leading-6 text-brand-gray-900"
@@ -84,6 +85,7 @@ import {
 } from '@headlessui/vue'
 import { IChevronDown } from './icon'
 import Option, { OptionType } from './select/option.vue'
+import { DISABLED_INPUT_CLASSES } from './common/classes'
 
 type Props = {
   options: OptionType[]
@@ -92,6 +94,7 @@ type Props = {
   placeholder: string
   label: string
   pill: boolean
+  disabled: boolean
 }
 
 const props = defineProps({
@@ -119,6 +122,10 @@ const props = defineProps({
     type: Boolean as PropType<Props['pill']>,
     default: false,
   },
+  disabled: {
+    type: Boolean as PropType<Props['disabled']>,
+    default: false,
+  },
 })
 
 const emit = defineEmits<{
@@ -140,5 +147,6 @@ const listBoxButtonClasses = computed(() => ({
     !props.pill,
   'inline-flex items-center whitespace-nowrap rounded-full bg-brand-gray-50 px-2 py-2 text-sm font-medium hover:bg-brand-gray-100 sm:px-3':
     props.pill,
+  [DISABLED_INPUT_CLASSES]: true,
 }))
 </script>

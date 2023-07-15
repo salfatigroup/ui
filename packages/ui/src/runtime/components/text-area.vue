@@ -14,12 +14,9 @@
         v-uid
         ref="current"
         v-bind="$attrs"
-        class="block w-full rounded-md border-0 py-1.5 text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 placeholder:text-brand-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6"
+        :class="textAreaClasses"
         :required="required"
         :disabled="disabled"
-        :class="{
-          'cursor-not-allowed bg-brand-gray-500/50': disabled,
-        }"
         :value="modelValue"
         @input="
           emit('update:modelValue', ($event.target as HTMLInputElement).value)
@@ -30,7 +27,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, PropType } from 'vue'
+import { ref, PropType, computed } from 'vue'
+import { DISABLED_INPUT_CLASSES } from './common/classes'
 
 const current = ref<HTMLTextAreaElement>()
 
@@ -67,4 +65,10 @@ const props = defineProps({
 defineOptions({
   inheritAttrs: false,
 })
+
+const textAreaClasses = computed(() => ({
+  'block w-full rounded-md border-0 py-1.5 text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 placeholder:text-brand-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6':
+    true,
+  [DISABLED_INPUT_CLASSES]: true,
+}))
 </script>

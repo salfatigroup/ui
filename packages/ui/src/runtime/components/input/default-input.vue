@@ -53,6 +53,7 @@
 <script setup lang="ts">
 import { ref, PropType, computed, onMounted } from 'vue'
 import { IAlertCircle } from '../icon'
+import { DISABLED_INPUT_CLASSES } from '../common/classes'
 
 const current = ref<HTMLInputElement>()
 const leadingIconRef = ref<HTMLInputElement>()
@@ -154,8 +155,7 @@ const bottomTextClasses = computed(() => ({
 const inputClasses = computed(() => ({
   'block w-full border-0 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6':
     true,
-  'disabled:cursor-not-allowed disabled:bg-brand-gray-50 disabled:text-brand-gray-500 disabled:ring-brand-gray-200':
-    true,
+  [DISABLED_INPUT_CLASSES]: true,
   'text-brand-gray-900 ring-brand-gray-300 placeholder:text-brand-gray-400 focus:ring-brand-600':
     !errorText,
   'text-brand-danger-900 ring-brand-danger-300 placeholder:text-brand-danger-400 focus:ring-brand-danger-500':
