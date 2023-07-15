@@ -2,10 +2,14 @@
   <div :class="wrapperClasses">
     <div class="flex">
       <div class="flex-shrink-0">
-        <component :is="iconComponent?.value" v-bind="iconProps"></component>
+        <slot name="icon">
+          <component :is="iconComponent?.value" v-bind="iconProps"></component>
+        </slot>
       </div>
       <div class="ml-3">
-        <h3 :class="titleClasses">{{ title }}</h3>
+        <h3 :class="titleClasses">
+          <slot name="title">{{ title }}</slot>
+        </h3>
         <div :class="descriptionClasses">
           <slot name="description">
             <p>
@@ -13,19 +17,21 @@
             </p>
           </slot>
         </div>
-        <div class="mt-4" v-if="buttons?.length">
-          <div class="-mx-2 -my-1.5 flex space-x-3">
-            <button
-              v-for="button in buttons"
-              :key="button.label"
-              type="button"
-              :class="buttonClasses"
-              @click="button.onClick"
-            >
-              {{ button.label }}
-            </button>
+        <slot name="buttons">
+          <div class="mt-4" v-if="buttons?.length">
+            <div class="-mx-2 -my-1.5 flex space-x-3">
+              <button
+                v-for="button in buttons"
+                :key="button.label"
+                type="button"
+                :class="buttonClasses"
+                @click="button.onClick"
+              >
+                {{ button.label }}
+              </button>
+            </div>
           </div>
-        </div>
+        </slot>
       </div>
       <div class="ml-auto pl-3" v-if="onClose">
         <div class="-mx-1.5 -my-1.5">
@@ -35,12 +41,14 @@
           </button>
         </div>
       </div>
-      <p class="mt-3 text-sm md:ml-6 md:mt-0" v-if="onLearnMore">
-        <a href="#" :class="learnMoreClasses">
-          {{ learnMoreText }}
-          <span aria-hidden="true"> &rarr;</span>
-        </a>
-      </p>
+      <slot name="learnMore">
+        <p class="mt-3 text-sm md:ml-6 md:mt-0" v-if="onLearnMore">
+          <a href="#" :class="learnMoreClasses">
+            {{ learnMoreText }}
+            <span aria-hidden="true"> &rarr;</span>
+          </a>
+        </p>
+      </slot>
     </div>
   </div>
 </template>
