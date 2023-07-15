@@ -34,7 +34,7 @@
               <CloseButton v-if="!hideCloseButton" :onClose="onClose" />
               <div class="sm:flex sm:items-start">
                 <div :class="iconWrapperClasses">
-                  <slot :class="iconClasses">
+                  <slot name="icon" :class="iconClasses">
                     <IAlertTriangle
                       :class="iconClasses"
                       aria-hidden="true"
@@ -46,19 +46,23 @@
                   <DialogTitle
                     as="h3"
                     class="text-base font-semibold leading-6 text-brand-gray-900"
-                    >{{ title }}</DialogTitle
+                    ><slot name="title">{{ title }}</slot></DialogTitle
                   >
                   <div class="mt-2">
-                    <p class="text-sm text-brand-gray-500">
-                      {{ description }}
-                    </p>
+                    <slot name="description">
+                      <p class="text-sm text-brand-gray-500">
+                        {{ description }}
+                      </p>
+                    </slot>
                   </div>
                 </div>
               </div>
               <div
                 class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse space-x-3 sm:space-x-reverse"
               >
-                <ModalButtons :buttons="buttons" :onClose="onClose" />
+                <slot name="buttons">
+                  <ModalButtons :buttons="buttons" :onClose="onClose" />
+                </slot>
               </div>
             </DialogPanel>
           </TransitionChild>
