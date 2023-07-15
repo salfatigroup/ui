@@ -87,7 +87,7 @@ import IStar from '../../../packages/ui/src/runtime/components/icon/star.vue'
 import CommentInput from '../../../packages/ui/src/runtime/components/comment-input.vue'
 import TitleDescInput from '../../../packages/ui/src/runtime/components/title-desc-input.vue'
 import Avatar from '../../../packages/ui/src/runtime/components/avatar.vue'
-import Combobox from '../../../packages/ui/src/runtime/components/combobox.vue'
+import KCombobox from '../../../packages/ui/src/runtime/components/combobox.vue'
 import Checkbox from '../../../packages/ui/src/runtime/components/checkbox.vue'
 import RadioGroup from '../../../packages/ui/src/runtime/components/radio-group.vue'
 import Pagination from '../../../packages/ui/src/runtime/components/pagination.vue'
@@ -96,6 +96,7 @@ import Alert from '../../../packages/ui/src/runtime/components/alert.vue'
 import KModal from '../../../packages/ui/src/runtime/components/modal.vue'
 
 import { items } from '../mocks/radio_mocks'
+import { people } from '../mocks/options_mocks'
 
 const components = ref([
   {
@@ -258,8 +259,8 @@ const components = ref([
   {
     title: 'Combobox',
     to: '/combobox',
-    element: shallowRef(Combobox),
-    props: {},
+    element: shallowRef(KCombobox),
+    props: { options: people, modelValue: people[1] },
     slots: [],
     codeExample: `<k-combobox />`,
   },

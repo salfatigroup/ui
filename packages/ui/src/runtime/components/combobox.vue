@@ -1,5 +1,9 @@
 <template>
-  <Combobox as="div" v-model="selectedOption">
+  <Combobox
+    as="div"
+    :model-value="modelValue"
+    @update:model-value="emit('update:modelValue', $event)"
+  >
     <ComboboxLabel
       class="block text-sm font-medium leading-6 text-brand-gray-900"
       >{{ label }}</ComboboxLabel
@@ -46,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, PropType } from 'vue'
+import { computed, ref, PropType, watch } from 'vue'
 import { ICheck, IChevronDown } from './icon'
 import Option, { OptionType } from './select/option.vue'
 import {
@@ -72,17 +76,33 @@ const props = defineProps({
     type: Array as PropType<Props['options']>,
     default: [] as Props['options'],
   },
+  multiple: {
+    type: Boolean,
+    default: true,
+  },
+  modelValue: {
+    type: [Object, Array] as PropType<OptionType | OptionType[]>,
+  },
+  onTextChange: {
+    type: Function as PropType<(value: string) => void>,
+  },
 })
 
 const query = ref('')
-const selectedOption = ref(null)
-const filteredOptions = computed(() =>
-  query.value === ''
-    ? props.options
-    : props.options.filter((option) => {
-        return option?.label
-          ?.toLowerCase?.()
-          .includes(query.value.toLowerCase())
-      }),
-)
+
+watch(query, (value) => {
+  props.onTextChange?.(value)
+})
+const filteredOptions = computed(() => {
+  if (props.onTextChange || query.value === '') {
+    return props.options
+  }
+  return props.options.filter((option) => {
+    return option?.label?.toLowerCase?.().includes(query.value.toLowerCase())
+  })
+})
+
+const emit = defineEmits<{
+  'update:modelValue': [value: OptionType | OptionType[]]
+}>()
 </script>
