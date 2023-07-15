@@ -8,7 +8,6 @@
         v-if="option?.icon"
         :is="option.icon"
         :class="'w-4 h-4'"
-        variant="filled"
       ></component>
       <img
         :src="option.avatar"
