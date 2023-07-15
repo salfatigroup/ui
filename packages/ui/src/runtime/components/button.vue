@@ -108,7 +108,7 @@ const buttonClasses = computed(() => {
 
   return {
     ...baseClasses[props.variant ?? 'primary'],
-    'font-semibold space-x-2': true,
+    'flex font-semibold space-x-2': true,
     'px-2 py-1': ['xs', 'sm'].includes(props.size),
     'px-2.5 py-1.5': ['md'].includes(props.size),
     'px-3 py-2': ['lg'].includes(props.size),
