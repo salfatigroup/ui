@@ -4,12 +4,7 @@
     :tabindex="i + 1"
     :key="button.label"
     v-bind="button"
-    @click="
-      () => {
-        button.onClick?.()
-        onClose?.()
-      }
-    "
+    @click="button.onClick?.()"
   >
     {{ button.label }}
   </k-button>
