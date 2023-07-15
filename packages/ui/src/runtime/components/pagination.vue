@@ -15,13 +15,14 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue'
-import CenteredPagination, { Props } from './pagination/centered-pagination.vue'
+import { PaginationProps } from './pagination/types'
+import CenteredPagination from './pagination/centered-pagination.vue'
 import FooterPagination from './pagination/footer-pagination.vue'
 
 defineProps({
   variant: {
-    type: String as PropType<Props['variant']>,
-    default: 'vertical' as Props['variant'],
+    type: String as PropType<PaginationProps['variant']>,
+    default: 'centered' as PaginationProps['variant'],
   },
 })
 

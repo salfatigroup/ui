@@ -14,6 +14,7 @@ export type Props = {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   soft?: boolean
   pill?: boolean
+  disabled?: boolean
 }
 
 const props = defineProps({
@@ -32,6 +33,10 @@ const props = defineProps({
   pill: {
     type: Boolean,
     default: false as Props['pill'],
+  },
+  disabled: {
+    type: Boolean,
+    default: false as Props['disabled'],
   },
 })
 
@@ -103,7 +108,7 @@ const buttonClasses = computed(() => {
 
   return {
     ...baseClasses[props.variant ?? 'primary'],
-    'font-semibold shadow-sm space-x-2': true,
+    'font-semibold space-x-2': true,
     'px-2 py-1': ['xs', 'sm'].includes(props.size),
     'px-2.5 py-1.5': ['md'].includes(props.size),
     'px-3 py-2': ['lg'].includes(props.size),
@@ -116,6 +121,9 @@ const buttonClasses = computed(() => {
     'rounded-full': props.pill,
     rounded: !props.pill && ['xs', 'sm'].includes(props.size),
     'rounded-md': !props.pill && ['md', 'lg', 'xl'].includes(props.size),
+
+    // Disabled
+    'opacity-50 pointer-events-none': props.disabled,
   }
 })
 </script>

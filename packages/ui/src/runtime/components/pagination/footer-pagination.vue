@@ -3,15 +3,29 @@
     class="flex items-center justify-between border-t border-brand-gray-200 bg-white px-4 py-3 sm:px-6"
   >
     <div class="flex flex-1 justify-between sm:hidden">
-      <a
-        href="#"
-        class="relative inline-flex items-center rounded-md border border-brand-gray-300 bg-white px-4 py-2 text-sm font-medium text-brand-gray-700 hover:bg-brand-gray-50"
-        >Previous</a
+      <k-button
+        :hidden="totalPages === 1"
+        :disabled="!hasPrevious"
+        variant="secondary"
+        @click="
+          () => {
+            emit('update:modelValue', Math.max(1, modelValue - 1))
+            onPrevious?.()
+          }
+        "
+        >Previous</k-button
       >
-      <a
-        href="#"
-        class="relative ml-3 inline-flex items-center rounded-md border border-brand-gray-300 bg-white px-4 py-2 text-sm font-medium text-brand-gray-700 hover:bg-brand-gray-50"
-        >Next</a
+      <k-button
+        :hidden="totalPages === 1"
+        :disabled="!hasNext"
+        variant="secondary"
+        @click="
+          () => {
+            emit('update:modelValue', Math.min(totalPages, modelValue + 1))
+            onNext?.()
+          }
+        "
+        >Next</k-button
       >
     </div>
     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
@@ -37,14 +51,22 @@
           class="isolate inline-flex -space-x-px rounded-md shadow-sm"
           aria-label="Pagination"
         >
-          <a
-            href="#"
-            @click="emit('update:modelValue', Math.max(1, modelValue - 1))"
-            class="relative inline-flex items-center rounded-l-md px-2 py-2 text-brand-gray-400 ring-1 ring-inset ring-brand-gray-300 hover:bg-brand-gray-50 focus:z-20 focus:outline-offset-0"
+          <k-button
+            :hidden="totalPages === 1"
+            :disabled="!hasPrevious"
+            variant="secondary"
+            size="sm"
+            class="space-x-0 rounded-r-none"
+            @click="
+              () => {
+                emit('update:modelValue', Math.max(1, modelValue - 1))
+                onPrevious?.()
+              }
+            "
           >
             <span class="sr-only">Previous</span>
             <IChevronLeft class="h-5 w-5" aria-hidden="true" variant="line" />
-          </a>
+          </k-button>
           <FooterPage
             v-for="i in pages.start"
             :key="i"
@@ -80,35 +102,54 @@
               @update:model-value="emit('update:modelValue', i)"
             />
           </template>
-          <a
-            href="#"
+          <k-button
+            :hidden="totalPages === 1"
+            :disabled="!hasNext"
+            variant="secondary"
+            size="sm"
+            class="space-x-0 rounded-l-none"
             @click="
-              emit('update:modelValue', Math.min(totalPages, modelValue + 1))
+              () => {
+                emit('update:modelValue', Math.min(totalPages, modelValue + 1))
+                onNext?.()
+              }
             "
-            class="relative inline-flex items-center rounded-r-md px-2 py-2 text-brand-gray-400 ring-1 ring-inset ring-brand-gray-300 hover:bg-brand-gray-50 focus:z-20 focus:outline-offset-0"
           >
             <span class="sr-only">Next</span>
             <IChevronRight class="h-5 w-5" aria-hidden="true" variant="line" />
-          </a>
+          </k-button>
         </nav>
       </div>
       <div
         v-else-if="variant === 'simple-footer'"
         class="flex flex-1 justify-between sm:justify-end"
       >
-        <a
-          href="#"
-          @click="emit('update:modelValue', Math.max(1, modelValue - 1))"
-          class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-brand-gray-900 ring-1 ring-inset ring-brand-gray-300 hover:bg-brand-gray-50 focus-visible:outline-offset-0"
-          >{{ previousLabel }}</a
-        >
-        <a
-          href="#"
-          class="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-brand-gray-900 ring-1 ring-inset ring-brand-gray-300 hover:bg-brand-gray-50 focus-visible:outline-offset-0"
+        <k-button
+          :hidden="totalPages === 1"
+          :disabled="!hasPrevious"
+          variant="secondary"
+          size="lg"
           @click="
-            emit('update:modelValue', Math.min(totalPages, modelValue + 1))
+            () => {
+              emit('update:modelValue', Math.max(1, modelValue - 1))
+              onPrevious?.()
+            }
           "
-          >{{ nextLabel }}</a
+          >{{ previousLabel }}</k-button
+        >
+        <k-button
+          :hidden="totalPages === 1"
+          :disabled="!hasNext"
+          variant="secondary"
+          size="lg"
+          class="ml-3"
+          @click="
+            () => {
+              emit('update:modelValue', Math.min(totalPages, modelValue + 1))
+              onNext?.()
+            }
+          "
+          >{{ nextLabel }}</k-button
         >
       </div>
     </div>
@@ -122,16 +163,8 @@ import { IChevronLeft, IChevronRight } from '../icon'
 import FooterPage from './footer-page.vue'
 import usePages from './use_pages'
 import useFromTo from './use_from_to'
+import { PaginationProps } from './types'
 
-type PaginationProps = {
-  total: number
-  modelValue: number
-  pageSize: number
-  previousLabel: string
-  nextLabel: string
-  variant: 'footer' | 'simple-footer'
-  maxPages: number
-}
 const props = defineProps({
   total: {
     type: Number as PropType<PaginationProps['total']>,
@@ -159,9 +192,15 @@ const props = defineProps({
     type: Number,
     default: 7,
   },
+  onNext: {
+    type: Function as PropType<PaginationProps['onNext']>,
+  },
+  onPrevious: {
+    type: Function as PropType<PaginationProps['onPrevious']>,
+  },
 })
 
-const { pages, totalPages } = usePages(props)
+const { pages, totalPages, hasNext, hasPrevious } = usePages(props)
 const { from, to } = useFromTo(props)
 
 const emit = defineEmits<{

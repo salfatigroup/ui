@@ -66,9 +66,14 @@ const usePages = (props) => {
     return pages
   })
 
+  const hasNext = computed(() => props.modelValue < totalPages.value)
+  const hasPrevious = computed(() => props.modelValue > 1)
+
   return {
     totalPages,
     pages,
+    hasNext,
+    hasPrevious,
   }
 }
 

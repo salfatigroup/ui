@@ -13,6 +13,19 @@
       :pageSize="50"
       variant="simple-footer"
     />
+    <k-pagination :total="20" v-model="currentPage" :pageSize="50" />
+    <k-pagination
+      :total="20"
+      v-model="currentPage"
+      :pageSize="50"
+      variant="footer"
+    />
+    <k-pagination
+      :total="20"
+      v-model="currentPage"
+      :pageSize="50"
+      variant="simple-footer"
+    />
   </div>
 </template>
 

@@ -2,11 +2,17 @@
   <nav
     class="flex items-center justify-between border-t border-brand-gray-200 px-4 sm:px-0 w-full"
   >
-    <div class="-mt-px flex flex-1 w-0">
+    <div :class="previousClasses">
       <a
-        href="#"
-        @click="emit('update:modelValue', Math.max(1, modelValue - 1))"
-        class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-brand-gray-500 hover:border-brand-gray-300 hover:text-brand-gray-700"
+        :hidden="totalPages === 1"
+        :disabled="!hasPrevious"
+        @click="
+          () => {
+            emit('update:modelValue', Math.max(1, modelValue - 1))
+            onPrevious?.()
+          }
+        "
+        class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-brand-gray-500 hover:border-brand-gray-300 hover:text-brand-gray-700 hidden:invisible"
       >
         <IArrowLeft
           class="mr-3 h-4 w-4 text-brand-gray-400"
@@ -53,11 +59,17 @@
         />
       </template>
     </div>
-    <div class="-mt-px flex flex-1 w-0 justify-end">
+    <div :class="nextClasses">
       <a
-        href="#"
-        @click="emit('update:modelValue', Math.min(totalPages, modelValue + 1))"
-        class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-brand-gray-500 hover:border-brand-gray-300 hover:text-brand-gray-700"
+        :hidden="totalPages === 1"
+        :disabled="!hasNext"
+        @click="
+          () => {
+            emit('update:modelValue', Math.min(totalPages, modelValue + 1))
+            onNext?.()
+          }
+        "
+        class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-brand-gray-500 hover:border-brand-gray-300 hover:text-brand-gray-700 cursor-pointer"
       >
         {{ nextLabel }}
         <IArrowRight
@@ -71,20 +83,12 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
+import { PropType, computed } from 'vue'
 import { IArrowLeft, IArrowRight } from '../icon'
 import Page from './page.vue'
 import usePages from './use_pages'
+import { PaginationProps } from './types'
 
-type PaginationProps = {
-  total: number
-  modelValue: number
-  pageSize: number
-  previousLabel: string
-  nextLabel: string
-  variant: 'centered' | 'footer' | 'simple-footer'
-  maxPages: number
-}
 const props = defineProps({
   total: {
     type: Number as PropType<PaginationProps['total']>,
@@ -104,13 +108,41 @@ const props = defineProps({
     type: String,
     default: 'Next',
   },
+  variant: {
+    type: String as PropType<PaginationProps['variant']>,
+    default: 'footer',
+  },
   maxPages: {
     type: Number,
     default: 7,
   },
+  onNext: {
+    type: Function as PropType<PaginationProps['onNext']>,
+  },
+  onPrevious: {
+    type: Function as PropType<PaginationProps['onPrevious']>,
+  },
 })
 
-const { pages, totalPages } = usePages(props)
+const { pages, totalPages, hasNext, hasPrevious } = usePages(props)
+
+const nextClasses = computed(() => [
+  {
+    '-mt-px flex flex-1 w-0 justify-end': true,
+    'cursor-pointer': hasNext.value,
+    invisible: totalPages.value === 1,
+    'opacity-50 cursor-not-allowed pointer-events-none': !hasNext.value,
+  },
+])
+
+const previousClasses = computed(() => [
+  {
+    '-mt-px flex flex-1 w-0': true,
+    'cursor-pointer': hasPrevious.value,
+    invisible: totalPages.value === 1,
+    'opacity-50 cursor-not-allowed pointer-events-none': !hasPrevious.value,
+  },
+])
 
 const emit = defineEmits<{
   'update:modelValue': [value: number]
