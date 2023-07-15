@@ -84,6 +84,7 @@ import Checkbox from '../../../packages/ui/src/runtime/components/checkbox.vue'
 import RadioGroup from '../../../packages/ui/src/runtime/components/radio-group.vue'
 import Pagination from '../../../packages/ui/src/runtime/components/pagination.vue'
 import Toggle from '../../../packages/ui/src/runtime/components/toggle.vue'
+import Alert from '../../../packages/ui/src/runtime/components/alert.vue'
 
 import { items } from '../mocks/radio_mocks'
 
@@ -284,6 +285,14 @@ const components = ref([
     props: {},
     slots: [],
     codeExample: `<k-toggle />`,
+  },
+  {
+    title: 'Alert',
+    to: '/alert',
+    element: shallowRef(Alert),
+    props: {},
+    slots: [],
+    codeExample: `<k-alert />`,
   },
 ])
 </script>
