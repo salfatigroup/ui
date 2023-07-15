@@ -64,6 +64,14 @@
       </li>
     </ul>
   </div>
+  <k-modal
+    :open="modalOpen"
+    :onClose="
+      () => {
+        modalOpen = false
+      }
+    "
+  />
 </template>
 
 <script setup lang="ts">
@@ -85,6 +93,7 @@ import RadioGroup from '../../../packages/ui/src/runtime/components/radio-group.
 import Pagination from '../../../packages/ui/src/runtime/components/pagination.vue'
 import Toggle from '../../../packages/ui/src/runtime/components/toggle.vue'
 import Alert from '../../../packages/ui/src/runtime/components/alert.vue'
+import KModal from '../../../packages/ui/src/runtime/components/modal.vue'
 
 import { items } from '../mocks/radio_mocks'
 
@@ -294,5 +303,15 @@ const components = ref([
     slots: [],
     codeExample: `<k-alert />`,
   },
+  {
+    title: 'Modal',
+    to: '/modal',
+    element: shallowRef(KButton),
+    props: { onClick: () => (modalOpen.value = true) },
+    slots: [{ name: 'default', content: 'Open modal' }],
+    codeExample: `<k-modal />`,
+  },
 ])
+
+const modalOpen = ref(false)
 </script>
