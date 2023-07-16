@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 
 export type Props = {
   variant?: 'primary' | 'secondary' | 'info' | 'warn' | 'danger' | 'success'
@@ -15,12 +15,12 @@ export type Props = {
   soft?: boolean
   pill?: boolean
   disabled?: boolean
-  type: 'button' | 'submit' | 'reset'
+  type: 'button' | 'submit' | 'reset' | undefined
 }
 
 const props = defineProps({
   variant: {
-    type: String,
+    type: String as PropType<Props['variant']>,
     default: 'primary' as Props['variant'],
   },
   size: {
@@ -40,7 +40,7 @@ const props = defineProps({
     default: false as Props['disabled'],
   },
   type: {
-    type: String,
+    type: String as PropType<Props['type']>,
     default: 'button' as Props['type'],
   },
 })
