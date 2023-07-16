@@ -52,34 +52,34 @@ const primaryClasses = computed(() => ({
   [primaryFocusVisible]: true,
   'focus-visible:outline-brand-600': true,
   'bg-brand-600 text-white hover:bg-brand-500': !props.soft,
-  'bg-brand-50 text-brand-600 hover:bg-brand-100': props.soft,
+  'bg-brand-100 text-brand-600 hover:bg-brand-200': props.soft,
 }))
 
 const secondaryClasses = computed(() => ({
   'ring-1 ring-inset ring-brand-gray-300 text-brand-gray-900 hover:bg-brand-gray-50':
     !props.soft,
-  'bg-brand-gray-50 text-brand-gray-500 hover:bg-brand-gray-100': props.soft,
+  'bg-brand-gray-100 text-brand-gray-500 hover:bg-brand-gray-200': props.soft,
 }))
 
 const infoClasses = computed(() => ({
   [primaryFocusVisible]: true,
   'focus-visible:outline-brand-info-600': true,
-  'bg-brand-info-600 text-white hover:bg-brand-info-500': !props.soft,
-  'bg-brand-info-50 text-brand-info-600 hover:bg-brand-info-100': props.soft,
+  'bg-brand-info-500 text-white hover:bg-brand-info-400': !props.soft,
+  'bg-brand-info-100 text-brand-info-600 hover:bg-brand-info-200': props.soft,
 }))
 
 const warnClasses = computed(() => ({
   [primaryFocusVisible]: true,
   'focus-visible:outline-brand-warn-600': true,
-  'bg-brand-warn-600 text-white hover:bg-brand-warn-500': !props.soft,
-  'bg-brand-warn-50 text-brand-warn-600 hover:bg-brand-warn-100': props.soft,
+  'bg-brand-warn-500 text-white hover:bg-brand-warn-400': !props.soft,
+  'bg-brand-warn-100 text-brand-warn-600 hover:bg-brand-warn-200': props.soft,
 }))
 
 const dangerClasses = computed(() => ({
   [primaryFocusVisible]: true,
   'focus-visible:outline-brand-danger-600': true,
-  'bg-brand-danger-600 text-white hover:bg-brand-danger-500': !props.soft,
-  'bg-brand-danger-50 text-brand-danger-600 hover:bg-brand-danger-100':
+  'bg-brand-danger-500 text-white hover:bg-brand-danger-400': !props.soft,
+  'bg-brand-danger-100 text-brand-danger-600 hover:bg-brand-danger-200':
     props.soft,
 }))
 
