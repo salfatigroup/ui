@@ -2,8 +2,8 @@ import { computed, ref } from 'vue'
 
 const usePages = (props) => {
   const maxDisplayPages = computed(() => {
-    if (props.maxPages) {
-      return Math.min(props.maxPages, 7)
+    if (props.maxPageButtons) {
+      return Math.min(props.maxPageButtons, 7)
     }
 
     return 7

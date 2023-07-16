@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center justify-between border-t border-brand-gray-200 bg-white px-4 py-3 sm:px-6"
+    class="flex items-center justify-between border-t border-brand-gray-200 bg-white px-4 py-3 sm:px-6 w-full"
   >
     <div class="flex flex-1 justify-between sm:hidden">
       <k-button
@@ -188,7 +188,7 @@ const props = defineProps({
     type: String as PropType<PaginationProps['variant']>,
     default: 'footer',
   },
-  maxPages: {
+  maxPageButtons: {
     type: Number,
     default: 7,
   },

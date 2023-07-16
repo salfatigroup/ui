@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col space-y-2 mt-10 justify-center items-center">
-    <ComponentCodeWrapper :code="script" />
     <ComponentCodeWrapper :code="example1">
       <k-alert variant="info" v-bind="props" />
     </ComponentCodeWrapper>
@@ -32,6 +31,8 @@
     <ComponentCodeWrapper :code="example8">
       <k-alert variant="danger" v-bind="props" accent :onClose="onClose" />
     </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="script" />
   </div>
 </template>
 <script setup lang="ts">

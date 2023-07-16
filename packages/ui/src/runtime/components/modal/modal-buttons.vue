@@ -14,9 +14,6 @@ import { PropType } from 'vue'
 import { ModalProps } from './types'
 
 defineProps({
-  onClose: {
-    type: Function as PropType<ModalProps['onClose']>,
-  },
   buttons: {
     type: Array as PropType<ModalProps['buttons']>,
     default: [

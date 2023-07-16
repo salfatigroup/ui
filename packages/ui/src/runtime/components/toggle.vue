@@ -1,6 +1,7 @@
 <template>
   <SwitchGroup as="div" class="flex items-center justify-between">
-    <span class="flex flex-grow flex-col" v-if="label || description">
+    <slot name="label"></slot>
+    <span class="flex flex-grow flex-col mr-2" v-if="label || description">
       <SwitchLabel
         as="span"
         class="text-sm font-medium leading-6 text-brand-gray-900"

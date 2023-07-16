@@ -1,6 +1,6 @@
 <template>
   <TransitionRoot as="template" :show="open">
-    <Dialog as="div" class="relative z-10" @close="onClose?.()">
+    <Dialog as="div" class="relative z-10" @close="emit('close')">
       <TransitionChild
         as="template"
         enter="ease-out duration-300"
@@ -31,7 +31,7 @@
             <DialogPanel
               class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
             >
-              <CloseButton v-if="!hideCloseButton" :onClose="onClose" />
+              <CloseButton v-if="!hideCloseButton" @close="emit('close')" />
               <div class="sm:flex sm:items-start">
                 <div :class="iconWrapperClasses">
                   <slot name="icon" :class="iconClasses">
@@ -61,7 +61,7 @@
                 class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse space-x-3 sm:space-x-reverse"
               >
                 <slot name="buttons">
-                  <ModalButtons :buttons="buttons" :onClose="onClose" />
+                  <ModalButtons :buttons="buttons" />
                 </slot>
               </div>
             </DialogPanel>
@@ -90,10 +90,6 @@ const props = defineProps({
   open: {
     type: Boolean as PropType<ModalProps['open']>,
     default: false,
-  },
-  onClose: {
-    type: Function as PropType<ModalProps['onClose']>,
-    default: undefined,
   },
   variant: {
     type: String as PropType<ModalProps['variant']>,
@@ -135,4 +131,8 @@ const iconClasses = computed(() => [
     'text-brand-danger-600': props.variant === 'danger',
   },
 ])
+
+const emit = defineEmits<{
+  (e: 'close'): void
+}>()
 </script>

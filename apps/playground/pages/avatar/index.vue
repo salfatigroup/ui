@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col space-y-2 mt-10 justify-center items-center">
-    <ComponentCodeWrapper :code="script" />
     <ComponentCodeWrapper :code="example1">
       <k-avatar size="xs" />
     </ComponentCodeWrapper>
@@ -66,6 +65,8 @@
         <k-avatar class="rounded-full ring-2 ring-white" :src="avatarSrc" />
       </div>
     </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="script" />
   </div>
 </template>
 <script setup lang="ts">

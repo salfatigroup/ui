@@ -22,7 +22,7 @@
           class="h-4 w-4 rounded border-brand-gray-300 text-brand-600 focus:ring-indigo-600"
         />
       </div>
-      <div class="ml-3 text-sm leading-6">
+      <div class="mx-3 text-sm leading-6">
         <label :for="current?.id" class="font-medium text-brand-gray-900">{{
           label
         }}</label>

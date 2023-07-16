@@ -1,7 +1,5 @@
 <template>
   <div class="flex flex-col space-y-2 mt-10">
-    <ComponentCodeWrapper :code="script" />
-
     <ComponentCodeWrapper :code="example1">
       <k-checkbox v-bind="props" v-model="checked" />
     </ComponentCodeWrapper>
@@ -13,6 +11,8 @@
     <ComponentCodeWrapper :code="example3">
       <k-checkbox v-bind="props" v-model="checked" right />
     </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="script" />
   </div>
 </template>
 

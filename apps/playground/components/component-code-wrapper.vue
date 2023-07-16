@@ -2,15 +2,16 @@
   <div class="flex bg-brand-gray-50 col-span-1 rounded-lg shadow w-full">
     <div
       v-if="$slots.default"
-      class="bg-white space-y-6 px-2 flex-1 flex flex-col py-6 justify-center items-center"
+      class="bg-white space-y-6 flex-1 flex flex-col p-6 justify-center items-center"
     >
       <slot></slot>
     </div>
     <code
       class="flex flex-1 py-6 pl-6 pr-2 text-sm font-mono text-brand-gray-500 rounded-b-lg overflow-x-scroll whitespace-pre-wrap w-full justify-between items-center"
     >
-      <slot name="code">{{ code.trim() }}</slot>
-
+      <div class="max-h-80 overflow-scroll">
+        <slot name="code">{{ code.trim() }}</slot>
+      </div>
       <div class="flex justify-end w-fit right-2 pl-6">
         <div
           class="hover:bg-brand-gray-100 rounded-md w-8 h-8 justify-center items-center flex"

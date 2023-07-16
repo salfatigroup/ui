@@ -1,7 +1,5 @@
 <template>
   <div class="w-full flex flex-col space-y-2 mt-10">
-    <ComponentCodeWrapper :code="script" />
-
     <ComponentCodeWrapper :code="example1">
       <k-dropdown :items="items" title="Menu"></k-dropdown>
     </ComponentCodeWrapper>
@@ -20,6 +18,7 @@
         </template>
       </k-dropdown>
     </ComponentCodeWrapper>
+    <ComponentCodeWrapper :code="script" />
   </div>
 </template>
 

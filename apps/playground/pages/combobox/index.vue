@@ -1,7 +1,5 @@
 <template>
   <div class="w-full flex flex-col space-y-2 mt-10">
-    <ComponentCodeWrapper :code="script" />
-
     <ComponentCodeWrapper :code="example1">
       <k-combobox
         label="Assigned to"
@@ -9,6 +7,8 @@
         v-model="selectedValue"
       />
     </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="script" />
   </div>
 </template>
 

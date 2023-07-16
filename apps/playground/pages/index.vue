@@ -293,7 +293,7 @@ const components = ref(
       title: 'Pagination',
       to: '/pagination',
       element: shallowRef(Pagination),
-      props: { total: 452, pageSize: 50, maxPages: 3, modelValue: 10 },
+      props: { total: 452, pageSize: 50, maxPageButtons: 3, modelValue: 10 },
       slots: [],
       codeExample: `<k-pagination :total="452" :page-size="50"/>`,
     },
