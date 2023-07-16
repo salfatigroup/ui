@@ -87,7 +87,7 @@ const successClasses = computed(() => ({
   [primaryFocusVisible]: true,
   'focus-visible:outline-brand-success-600': true,
   'bg-brand-success-600 text-white hover:bg-brand-success-500': !props.soft,
-  'bg-brand-success-50 text-brand-success-600 hover:bg-brand-success-100':
+  'bg-brand-success-100 text-brand-success-600 hover:bg-brand-success-200':
     props.soft,
 }))
 
