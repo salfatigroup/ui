@@ -47,7 +47,11 @@
 
           <div class="flex justify-center items-center flex-1">
             <keep-alive>
-              <component :is="component.element" v-bind="component.props">
+              <component
+                :is="component.element"
+                v-bind="component.props"
+                v-on="component.events"
+              >
                 <template v-for="slt in component.slots" :slot="slt.name">
                   {{ slt.content }}
                 </template>
@@ -72,6 +76,9 @@
       }
     "
   />
+  <k-slide-over :open="slideOverOpen" @close="slideOverOpen = false">
+    <div>This is a slide over</div>
+  </k-slide-over>
 </template>
 
 <script setup lang="ts">
@@ -94,6 +101,7 @@ import Pagination from '../../../packages/ui/src/runtime/components/pagination.v
 import Toggle from '../../../packages/ui/src/runtime/components/toggle.vue'
 import Alert from '../../../packages/ui/src/runtime/components/alert.vue'
 import KModal from '../../../packages/ui/src/runtime/components/modal.vue'
+import KSlideOver from '../../../packages/ui/src/runtime/components/slide-over.vue'
 
 import { items } from '../mocks/radio_mocks'
 import { people } from '../mocks/options_mocks'
@@ -308,11 +316,28 @@ const components = ref([
     title: 'Modal',
     to: '/modal',
     element: shallowRef(KButton),
-    props: { onClick: () => (modalOpen.value = true) },
     slots: [{ name: 'default', content: 'Open modal' }],
     codeExample: `<k-modal />`,
+    events: {
+      click() {
+        modalOpen.value = true
+      },
+    },
+  },
+  {
+    title: 'Slide Over',
+    to: '/slide-over',
+    element: shallowRef(KButton),
+    slots: [{ name: 'default', content: 'Open Slide Over' }],
+    codeExample: `<k-slide-over />`,
+    events: {
+      click() {
+        slideOverOpen.value = true
+      },
+    },
   },
 ])
 
 const modalOpen = ref(false)
+const slideOverOpen = ref(false)
 </script>
