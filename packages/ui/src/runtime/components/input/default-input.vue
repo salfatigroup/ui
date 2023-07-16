@@ -141,7 +141,8 @@ const labelClasses = computed(() => ({
   'pl-4': pill,
 }))
 const inputWrapperClasses = computed(() => ({
-  'mt-2': true,
+  'w-full': true,
+  'mt-2': !!label,
   'relative rounded-md shadow-sm': errorText || leadingIcon,
 }))
 

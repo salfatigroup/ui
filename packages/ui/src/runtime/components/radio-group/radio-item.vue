@@ -11,24 +11,25 @@
         class="h-4 w-4 border-brand-gray-300 text-brand-600 focus:ring-brand-600 cursor-pointer"
       />
     </div>
-
-    <div class="ml-3 text-sm leading-6">
-      <span class="font-medium text-brand-gray-900">{{ item.label }}</span>
-      <template v-if="inlineDescription">
-        {{ ' ' }}
-        <span :id="`${item.value}-description`" class="text-brand-gray-500">
+    <slot :checked="modelValue" :item="item">
+      <div class="ml-3 text-sm leading-6">
+        <span class="font-medium text-brand-gray-900">{{ item.label }}</span>
+        <template v-if="inlineDescription">
+          {{ ' ' }}
+          <span :id="`${item.value}-description`" class="text-brand-gray-500">
+            {{ item.description }}
+          </span>
+        </template>
+        <span
+          v-else-if="!hideDescription"
+          as="p"
+          :id="`${item.value}-description`"
+          class="text-brand-gray-500 block"
+        >
           {{ item.description }}
         </span>
-      </template>
-      <span
-        v-else-if="!hideDescription"
-        as="p"
-        :id="`${item.value}-description`"
-        class="text-brand-gray-500 block"
-      >
-        {{ item.description }}
-      </span>
-    </div>
+      </div>
+    </slot>
   </label>
 </template>
 <script setup lang="ts">
