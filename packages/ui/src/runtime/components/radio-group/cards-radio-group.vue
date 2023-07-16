@@ -4,7 +4,7 @@
       class="flex items-center justify-between"
       v-if="variant === 'small-cards'"
     >
-      <slot name="title" :title="title">
+      <slot name="title" :title="title" v-if="variant === 'small-cards'">
         <h2 class="text-sm font-medium leading-6 text-brand-gray-900">
           {{ title }}
         </h2>
@@ -19,7 +19,7 @@
     <RadioGroup
       :model-value="modelValue"
       @update:model-value="emit('update:modelValue', $event)"
-      class="mt-4"
+      class="mt-4 space-y-4"
     >
       <slot name="title" :title="title" v-if="variant !== 'small-cards'">
         <RadioGroupLabel

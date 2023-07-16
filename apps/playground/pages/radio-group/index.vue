@@ -44,6 +44,22 @@
       :items="items"
       v-model="checked"
     />
+    <k-radio-group
+      title="Select a stacked card"
+      name="notifications6"
+      variant="stacked-cards"
+      :items="items"
+      v-model="checked"
+      ><template #title
+        ><h2 class="text-lg font-medium leading-6 text-brand-gray-900">
+          Custom title
+        </h2></template
+      ><template v-slot="{ checked, item }"
+        ><div>
+          {{ `${checked ? 'Checked - ' : ''}${JSON.stringify(item)}` }}
+        </div></template
+      >
+    </k-radio-group>
   </div>
 </template>
 
