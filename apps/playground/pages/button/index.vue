@@ -3,9 +3,13 @@
     <k-button variant="primary">Primary</k-button>
     <k-button variant="secondary">Secondary</k-button>
     <k-button variant="info">Info</k-button>
+    <k-button soft variant="info">Info Soft</k-button>
     <k-button variant="success">Success</k-button>
+    <k-button soft variant="success">Success Soft</k-button>
     <k-button variant="warn">Warn</k-button>
+    <k-button soft variant="warn">Warn Soft</k-button>
     <k-button variant="danger">Danger</k-button>
+    <k-button soft variant="danger">Danger Soft</k-button>
 
     <k-button size="xs">Extra small</k-button>
     <k-button size="sm">Small</k-button>

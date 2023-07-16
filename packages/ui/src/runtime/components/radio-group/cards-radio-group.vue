@@ -4,9 +4,11 @@
       class="flex items-center justify-between"
       v-if="variant === 'small-cards'"
     >
-      <h2 class="text-sm font-medium leading-6 text-brand-gray-900">
-        {{ title }}
-      </h2>
+      <slot name="title" :title="title" v-if="variant === 'small-cards'">
+        <h2 class="text-sm font-medium leading-6 text-brand-gray-900">
+          {{ title }}
+        </h2>
+      </slot>
       <a
         v-if="learnMoreText"
         :href="learnMoreLink ?? '#'"
@@ -17,13 +19,15 @@
     <RadioGroup
       :model-value="modelValue"
       @update:model-value="emit('update:modelValue', $event)"
-      class="mt-4"
+      class="mt-4 space-y-4"
     >
-      <RadioGroupLabel
-        v-if="variant !== 'small-cards'"
-        class="text-base font-semibold leading-6 text-brand-gray-900"
-        >{{ title }}</RadioGroupLabel
-      >
+      <slot name="title" :title="title" v-if="variant !== 'small-cards'">
+        <RadioGroupLabel
+          class="text-base font-semibold leading-6 text-brand-gray-900"
+        >
+          {{ title }}</RadioGroupLabel
+        >
+      </slot>
 
       <div
         v-if="variant === 'cards'"
@@ -44,30 +48,34 @@
               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none',
             ]"
           >
-            <span class="flex flex-1">
-              <span class="flex flex-col">
-                <RadioGroupLabel
-                  as="span"
-                  class="block text-sm font-medium text-brand-gray-900"
-                  >{{ item.label }}</RadioGroupLabel
-                >
-                <RadioGroupDescription
-                  as="span"
-                  class="mt-1 flex items-center text-sm text-brand-gray-500"
-                  >{{ item.description }}</RadioGroupDescription
-                >
-                <RadioGroupDescription
-                  as="span"
-                  class="mt-6 text-sm font-medium text-brand-gray-900"
-                  >{{ item.bottomText }}</RadioGroupDescription
-                >
+            <slot :active="active" :checked="checked" :item="item">
+              <span class="flex flex-1">
+                <span class="flex flex-col">
+                  <RadioGroupLabel
+                    as="span"
+                    class="block text-sm font-medium text-brand-gray-900"
+                    >{{ item.label }}</RadioGroupLabel
+                  >
+                  <RadioGroupDescription
+                    as="span"
+                    class="mt-1 flex items-center text-sm text-brand-gray-500"
+                    >{{ item.description }}</RadioGroupDescription
+                  >
+                  <RadioGroupDescription
+                    as="span"
+                    class="mt-6 text-sm font-medium text-brand-gray-900"
+                    >{{ item.bottomText }}</RadioGroupDescription
+                  >
+                </span>
               </span>
-            </span>
-            <ICheckCircle
-              :class="[!checked ? 'invisible' : '', 'h-5 w-5 text-brand-600']"
-              aria-hidden="true"
-              variant="filled"
-            />
+            </slot>
+            <slot name="icon" :active="active" :checked="checked" :item="item">
+              <ICheckCircle
+                :class="[!checked ? 'invisible' : '', 'h-5 w-5 text-brand-600']"
+                aria-hidden="true"
+                variant="filled"
+              />
+            </slot>
             <span
               :class="[
                 active ? 'border' : 'border-2',
@@ -103,7 +111,11 @@
               'flex items-center justify-center rounded-md py-3 px-3 text-sm font-semibold uppercase sm:flex-1',
             ]"
           >
-            <RadioGroupLabel as="span">{{ item.label }}</RadioGroupLabel>
+            <RadioGroupLabel as="span"
+              ><slot :active="active" :checked="checked" :item="item">{{
+                item.label
+              }}</slot></RadioGroupLabel
+            >
           </div>
         </RadioGroupOption>
       </div>
@@ -115,46 +127,48 @@
           :value="item.value"
           v-slot="{ active, checked }"
         >
-          <div
-            :class="[
-              active
-                ? 'border-brand-600 ring-2 ring-brand-600'
-                : 'border-brand-gray-300',
-              'relative block cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none sm:flex sm:justify-between',
-            ]"
-          >
-            <span class="flex items-center">
-              <span class="flex flex-col text-sm">
-                <RadioGroupLabel
-                  as="span"
-                  class="font-medium text-brand-gray-900"
-                  >{{ item.label }}</RadioGroupLabel
-                >
-                <RadioGroupDescription as="span" class="text-brand-gray-500">
-                  <span class="block sm:inline">{{ item.description }}</span>
-                </RadioGroupDescription>
-              </span>
-            </span>
-            <RadioGroupDescription
-              as="span"
-              class="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right"
-            >
-              <span class="font-medium text-brand-gray-900">{{
-                item.sideLabel
-              }}</span>
-              <span class="ml-1 text-brand-gray-500 sm:ml-0">{{
-                item.bottomText
-              }}</span>
-            </RadioGroupDescription>
-            <span
+          <slot :active="active" :checked="checked" :item="item">
+            <div
               :class="[
-                active ? 'border' : 'border-2',
-                checked ? 'border-brand-600' : 'border-transparent',
-                'pointer-events-none absolute -inset-px rounded-lg',
+                active
+                  ? 'border-brand-600 ring-2 ring-brand-600'
+                  : 'border-brand-gray-300',
+                'relative block cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none sm:flex sm:justify-between',
               ]"
-              aria-hidden="true"
-            />
-          </div>
+            >
+              <span class="flex items-center">
+                <span class="flex flex-col text-sm">
+                  <RadioGroupLabel
+                    as="span"
+                    class="font-medium text-brand-gray-900"
+                    >{{ item.label }}</RadioGroupLabel
+                  >
+                  <RadioGroupDescription as="span" class="text-brand-gray-500">
+                    <span class="block sm:inline">{{ item.description }}</span>
+                  </RadioGroupDescription>
+                </span>
+              </span>
+              <RadioGroupDescription
+                as="span"
+                class="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right"
+              >
+                <span class="font-medium text-brand-gray-900">{{
+                  item.sideLabel
+                }}</span>
+                <span class="ml-1 text-brand-gray-500 sm:ml-0">{{
+                  item.bottomText
+                }}</span>
+              </RadioGroupDescription>
+              <span
+                :class="[
+                  active ? 'border' : 'border-2',
+                  checked ? 'border-brand-600' : 'border-transparent',
+                  'pointer-events-none absolute -inset-px rounded-lg',
+                ]"
+                aria-hidden="true"
+              />
+            </div>
+          </slot>
         </RadioGroupOption>
       </div>
     </RadioGroup>

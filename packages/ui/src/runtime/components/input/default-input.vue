@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-full">
     <div class="flex justify-between">
       <label :for="current?.id" :class="labelClasses">{{ label }}</label>
       <span class="text-sm leading-6 text-brand-gray-500" id="email-optional">{{
@@ -76,7 +76,7 @@ type InputProps = {
   pill: boolean
 }
 
-const { errorText, helpText, label, pill } = defineProps({
+const props = defineProps({
   label: {
     type: String as PropType<InputProps['label']>,
     default: '',
@@ -136,20 +136,21 @@ onMounted(() => {
 
 const { leadingIcon, trailingIcon } = defineSlots()
 const labelClasses = computed(() => ({
-  'block text-sm font-medium leading-6 text-brand-gray-900': label,
-  'sr-only': !label,
-  'pl-4': pill,
+  'block text-sm font-medium leading-6 text-brand-gray-900': props.label,
+  'sr-only': !props.label,
+  'pl-4': props.pill,
 }))
 const inputWrapperClasses = computed(() => ({
-  'mt-2': true,
-  'relative rounded-md shadow-sm': errorText || leadingIcon,
+  'w-full': true,
+  'mt-2': !!props.label,
+  'relative rounded-md shadow-sm': props.errorText || leadingIcon,
 }))
 
 const bottomTextClasses = computed(() => ({
   'mt-2 text-sm': true,
-  hidden: !errorText && !helpText,
-  'text-brand-gray-500': !errorText,
-  'text-brand-danger-500': errorText,
+  hidden: !props.errorText && !props.helpText,
+  'text-brand-gray-500': !props.errorText,
+  'text-brand-danger-500': props.errorText,
 }))
 
 const inputClasses = computed(() => ({
@@ -157,12 +158,12 @@ const inputClasses = computed(() => ({
     true,
   [DISABLED_INPUT_CLASSES]: true,
   'text-brand-gray-900 ring-brand-gray-300 placeholder:text-brand-gray-400 focus:ring-brand-600':
-    !errorText,
+    !props.errorText,
   'text-brand-danger-900 ring-brand-danger-300 placeholder:text-brand-danger-400 focus:ring-brand-danger-500':
-    errorText || trailingIcon,
+    props.errorText || trailingIcon,
 
-  'rounded-full px-4': pill,
-  'rounded-md': !pill,
+  'rounded-full px-4': props.pill,
+  'rounded-md': !props.pill,
   // These will be overriden by the onMounted hook above, but prevents a glitch on load
   'pr-10': trailingIcon,
   'pl-10': leadingIcon,
