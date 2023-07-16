@@ -3,6 +3,8 @@
     as="div"
     :model-value="modelValue"
     @update:model-value="emit('update:modelValue', $event)"
+    v-bind="$attrs"
+    class="w-full"
   >
     <ComboboxLabel
       class="block text-sm font-medium leading-6 text-brand-gray-900"

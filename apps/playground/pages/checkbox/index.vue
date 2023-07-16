@@ -1,21 +1,39 @@
 <template>
-  <div class="w-[40%] flex flex-col space-y-10 mt-10">
-    <k-checkbox
-      label="Comments"
-      v-model="checked"
-      description="Get notified when someones posts a comment on a posting."
-    />
-    <k-checkbox
-      inline-description
-      v-model="checked"
-      label="Comments"
-      description="Get notified when someones posts a comment on a posting."
-    />
-    <k-checkbox right label="Comments" v-model="checked" />
+  <div class="flex flex-col space-y-2 mt-10">
+    <ComponentCodeWrapper :code="script" />
+
+    <ComponentCodeWrapper :code="example1">
+      <k-checkbox v-bind="props" v-model="checked" />
+    </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="example2">
+      <k-checkbox v-bind="props" v-model="checked" inline-description />
+    </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="example3">
+      <k-checkbox v-bind="props" v-model="checked" right />
+    </ComponentCodeWrapper>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 const checked = ref(true)
+const label = 'Comments'
+const description = 'Get notified when someones posts a comment on a posting.'
+const props = { label, description }
+
+const script = `
+<script setup lang="ts">
+  import { ref } from 'vue'
+  const checked = ref(true)
+  const label = 'Comments'
+  const description = 'Get notified when someones posts a comment on a posting.'
+  const props = { label, description }
+\<\/script\>
+`
+
+const example1 = `<k-checkbox v-bind="props" v-model="checked" />`
+const example2 = `<k-checkbox v-bind="props" v-model="checked" inline-description />`
+const example3 = `<k-checkbox v-bind="props" v-model="checked" right />`
 </script>

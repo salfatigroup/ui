@@ -140,7 +140,7 @@ const iconProps = computed(() => {
 })
 const wrapperClasses = computed(() => {
   return {
-    'p-4': true,
+    'p-4 w-full': true,
     'bg-brand-info-50': props.variant === 'info',
     'bg-brand-success-50': props.variant === 'success',
     'bg-brand-warn-50': props.variant === 'warn',

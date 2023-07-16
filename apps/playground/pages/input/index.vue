@@ -1,5 +1,57 @@
 <template>
   <div class="w-full flex flex-col space-y-10 mt-10">
+    <Documentation
+      componentName="KTextInput"
+      :propsDefinition="[
+        {
+          name: 'modelValue',
+          type: 'string',
+          description: 'The value of the input',
+        },
+        {
+          name: 'label',
+          type: 'string',
+          description: 'The label of the input',
+        },
+        {
+          name: 'helpText',
+          type: 'string',
+          description: 'The help text of the input',
+        },
+        {
+          name: 'errorText',
+          type: 'string',
+          description: 'The error text of the input',
+        },
+        {
+          name: 'cornerHint',
+          type: 'string',
+          description: 'The corner hint of the input',
+        },
+        {
+          name: 'placeholder',
+          type: 'string',
+          description: 'The placeholder of the input',
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          description: 'Whether the input is disabled',
+        },
+        {
+          name: 'insetLabel',
+          type: 'boolean',
+          description: 'Whether the input has an inset label',
+        },
+        {
+          name: 'pill',
+          type: 'boolean',
+          description: 'Whether the input is pill shaped',
+        },
+      ]"
+      :slotsDefinition="[]"
+      :emitDefinition="[]"
+    />
     <k-text-input modelValue="No labels" />
     <k-text-input
       label="Company Name"
