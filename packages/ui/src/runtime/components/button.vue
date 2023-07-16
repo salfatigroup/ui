@@ -1,7 +1,7 @@
 <template>
-  <button v-bind="$attrs" :class="buttonClasses">
+  <button v-bind="$attrs" :type="type" :class="buttonClasses">
     <slot name="prefixIcon" v-if="$slots.prefixIcon"></slot>
-    <slot></slot>
+    <div><slot></slot></div>
     <slot name="suffixIcon" v-if="$slots.suffixIcon"></slot>
   </button>
 </template>
@@ -15,6 +15,7 @@ export type Props = {
   soft?: boolean
   pill?: boolean
   disabled?: boolean
+  type: 'button' | 'submit' | 'reset'
 }
 
 const props = defineProps({
@@ -37,6 +38,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false as Props['disabled'],
+  },
+  type: {
+    type: String,
+    default: 'button' as Props['type'],
   },
 })
 
