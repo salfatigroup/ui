@@ -5,7 +5,7 @@ export type PaginationProps = {
   previousLabel: string
   nextLabel: string
   variant: 'footer' | 'simple-footer' | 'centered'
-  maxPages: number
+  maxPageButtons: number
   onNext: () => void
   onPrevious: () => void
 }

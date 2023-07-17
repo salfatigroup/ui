@@ -112,7 +112,7 @@ const props = defineProps({
     type: String as PropType<PaginationProps['variant']>,
     default: 'footer',
   },
-  maxPages: {
+  maxPageButtons: {
     type: Number,
     default: 7,
   },

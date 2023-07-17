@@ -17,11 +17,13 @@
       </p>
     </div>
   </div>
-  <BaseAvatar v-else v-bind="$attrs">
-    <template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
-      ><slot :name="slot" v-bind="scope"
-    /></template>
-  </BaseAvatar>
+  <div v-else class="flex items-center">
+    <BaseAvatar v-bind="$attrs">
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
+        ><slot :name="slot" v-bind="scope"
+      /></template>
+    </BaseAvatar>
+  </div>
 </template>
 
 <script setup lang="ts">

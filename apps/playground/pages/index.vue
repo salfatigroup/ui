@@ -106,237 +106,239 @@ import KSlideOver from '../../../packages/ui/src/runtime/components/slide-over.v
 import { items } from '../mocks/radio_mocks'
 import { people } from '../mocks/options_mocks'
 
-const components = ref([
-  {
-    title: 'Button',
-    to: '/button',
-    element: shallowRef(KButton),
-    props: {
-      class: 'w-full',
-    },
-    slots: [
-      {
-        name: 'default',
-        content: 'Button',
+const components = ref(
+  [
+    {
+      title: 'Button',
+      to: '/button',
+      element: shallowRef(KButton),
+      props: {
+        class: 'w-full',
       },
-    ],
-    codeExample: `<k-button>Button</k-button>`,
-  },
-  {
-    title: 'Dropdown',
-    to: '/dropdown',
-    element: shallowRef(KDrowdown),
-    props: {
-      class: 'w-full',
-      items: [
+      slots: [
         {
-          value: '1',
-          label: 'Option 1',
-        },
-        {
-          value: '2',
-          label: 'Option 2',
+          name: 'default',
+          content: 'Button',
         },
       ],
+      codeExample: `<k-button>Button</k-button>`,
     },
-    slots: [
-      {
-        name: 'default',
-        content: 'Dropdown',
+    {
+      title: 'Dropdown',
+      to: '/dropdown',
+      element: shallowRef(KDrowdown),
+      props: {
+        class: 'w-full',
+        items: [
+          {
+            value: '1',
+            label: 'Option 1',
+          },
+          {
+            value: '2',
+            label: 'Option 2',
+          },
+        ],
       },
-    ],
-    codeExample: `<k-dropdown>Dropdown</k-dropdown>`,
-  },
-  {
-    title: 'Badge',
-    to: '/badge',
-    element: shallowRef(KBadge),
-    props: {
-      dot: true,
-    },
-    slots: [
-      {
-        name: 'default',
-        content: 'Badge',
-      },
-    ],
-    codeExample: `<k-badge>Badge</k-badge>`,
-  },
-  {
-    title: 'Select',
-    to: '/select',
-    element: shallowRef(KSelect),
-    props: {
-      class: 'w-full',
-      options: [
+      slots: [
         {
-          value: '1',
-          label: 'Wade Cooper',
-        },
-        {
-          value: '2',
-          label: 'Arlene Mccoy',
-          avatar:
-            'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          name: 'default',
+          content: 'Dropdown',
         },
       ],
+      codeExample: `<k-dropdown>Dropdown</k-dropdown>`,
     },
-    slots: [
-      {
-        name: 'default',
-        content: 'Select',
+    {
+      title: 'Badge',
+      to: '/badge',
+      element: shallowRef(KBadge),
+      props: {
+        dot: true,
       },
-    ],
-    codeExample: `<k-select>Select</k-select>`,
-  },
-  {
-    title: 'Input',
-    to: '/input',
-    element: shallowRef(KInput),
-    props: {
-      class: 'w-full',
+      slots: [
+        {
+          name: 'default',
+          content: 'Badge',
+        },
+      ],
+      codeExample: `<k-badge>Badge</k-badge>`,
     },
-    slots: [
-      {
-        name: 'default',
-        content: 'Input',
+    {
+      title: 'Select',
+      to: '/select',
+      element: shallowRef(KSelect),
+      props: {
+        class: 'w-full',
+        options: [
+          {
+            value: '1',
+            label: 'Wade Cooper',
+          },
+          {
+            value: '2',
+            label: 'Arlene Mccoy',
+            avatar:
+              'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          },
+        ],
       },
-    ],
-    codeExample: `<k-input>Input</k-input>`,
-  },
-  {
-    title: 'Text area',
-    to: '/text-area',
-    element: shallowRef(KTextArea),
-    props: {
-      class: 'w-full',
+      slots: [
+        {
+          name: 'default',
+          content: 'Select',
+        },
+      ],
+      codeExample: `<k-select>Select</k-select>`,
     },
-    slots: [
-      {
-        name: 'default',
-        content: 'Text area',
+    {
+      title: 'Input',
+      to: '/input',
+      element: shallowRef(KInput),
+      props: {
+        class: 'w-full',
       },
-    ],
-    codeExample: `<k-text-area>Text area</k-text-area>`,
-  },
-  {
-    title: 'Icon',
-    description:
-      'You can find the full icon list <a target="_blank" class="text-brand-500 hover:text-brand-700" href="https://www.figma.com/file/kNBOQOHOM9muhOOG3HxaYM/Anron-Icons-10?type=design&node-id=2542%3A5990&mode=design&t=6DiKPOPQ1BsiKzkG-1">here.</a>',
-    to: '/icon',
-    element: shallowRef(IStar),
-    props: {
-      class: 'w-5 h-5 text-brand-500',
-      variant: 'duotone',
+      slots: [
+        {
+          name: 'default',
+          content: 'Input',
+        },
+      ],
+      codeExample: `<k-input>Input</k-input>`,
     },
-    slots: [],
-    codeExample: `<KIconStar variant="duotone" class="w-5 h-5" />`,
-  },
-  {
-    title: 'Comment',
-    to: '/comment-input',
-    element: shallowRef(CommentInput),
-    props: {
-      class: 'w-fit h-fit',
-      avatar:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    {
+      title: 'Text area',
+      to: '/text-area',
+      element: shallowRef(KTextArea),
+      props: {
+        class: 'w-full',
+      },
+      slots: [
+        {
+          name: 'default',
+          content: 'Text area',
+        },
+      ],
+      codeExample: `<k-text-area>Text area</k-text-area>`,
     },
-    slots: [],
-    codeExample: `<k-comment-input class="w-fit h-fit" />`,
-  },
-  {
-    title: 'Title Description',
-    to: '/title-desc-input',
-    element: shallowRef(TitleDescInput),
-    props: {
-      class: 'w-fit h-fit',
+    {
+      title: 'Icon',
+      description:
+        'You can find the full icon list <a target="_blank" class="text-brand-500 hover:text-brand-700" href="https://www.figma.com/file/kNBOQOHOM9muhOOG3HxaYM/Anron-Icons-10?type=design&node-id=2542%3A5990&mode=design&t=6DiKPOPQ1BsiKzkG-1">here.</a>',
+      to: '/icon',
+      element: shallowRef(IStar),
+      props: {
+        class: 'w-5 h-5 text-brand-500',
+        variant: 'duotone',
+      },
+      slots: [],
+      codeExample: `<KIconStar variant="duotone" class="w-5 h-5" />`,
     },
-    slots: [],
-    codeExample: `<k-title-desc-input class="w-fit h-fit" />`,
-  },
-  {
-    title: 'Avatar',
-    to: '/avatar',
-    element: shallowRef(Avatar),
-    props: {
-      src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    {
+      title: 'Comment',
+      to: '/comment-input',
+      element: shallowRef(CommentInput),
+      props: {
+        class: 'w-fit h-fit',
+        avatar:
+          'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      },
+      slots: [],
+      codeExample: `<k-comment-input class="w-fit h-fit" />`,
     },
-    slots: [],
-    codeExample: `<k-avatar src="https://..." />`,
-  },
-  {
-    title: 'Combobox',
-    to: '/combobox',
-    element: shallowRef(KCombobox),
-    props: { options: people, modelValue: people[1] },
-    slots: [],
-    codeExample: `<k-combobox />`,
-  },
-  {
-    title: 'Checkbox',
-    to: '/checkbox',
-    element: shallowRef(Checkbox),
-    props: {},
-    slots: [],
-    codeExample: `<k-checkbox />`,
-  },
-  {
-    title: 'Radio Group',
-    to: '/radio-group',
-    element: shallowRef(RadioGroup),
-    props: { items: [items[1], items[2]], modelValue: items[1].value },
-    slots: [],
-    codeExample: `<k-radio-group items="[...]" />`,
-  },
-  {
-    title: 'Pagination',
-    to: '/pagination',
-    element: shallowRef(Pagination),
-    props: { total: 452, pageSize: 50, maxPages: 3, modelValue: 10 },
-    slots: [],
-    codeExample: `<k-pagination :total="452" :page-size="50"/>`,
-  },
-  {
-    title: 'Toggle',
-    to: '/toggle',
-    element: shallowRef(Toggle),
-    props: {},
-    slots: [],
-    codeExample: `<k-toggle />`,
-  },
-  {
-    title: 'Alert',
-    to: '/alert',
-    element: shallowRef(Alert),
-    props: {},
-    slots: [],
-    codeExample: `<k-alert />`,
-  },
-  {
-    title: 'Modal',
-    to: '/modal',
-    element: shallowRef(KButton),
-    slots: [{ name: 'default', content: 'Open modal' }],
-    codeExample: `<k-modal />`,
-    events: {
-      click() {
-        modalOpen.value = true
+    {
+      title: 'Title Description',
+      to: '/title-desc-input',
+      element: shallowRef(TitleDescInput),
+      props: {
+        class: 'w-fit h-fit',
+      },
+      slots: [],
+      codeExample: `<k-title-desc-input class="w-fit h-fit" />`,
+    },
+    {
+      title: 'Avatar',
+      to: '/avatar',
+      element: shallowRef(Avatar),
+      props: {
+        src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      },
+      slots: [],
+      codeExample: `<k-avatar src="https://..." />`,
+    },
+    {
+      title: 'Combobox',
+      to: '/combobox',
+      element: shallowRef(KCombobox),
+      props: { options: people, modelValue: people[1] },
+      slots: [],
+      codeExample: `<k-combobox />`,
+    },
+    {
+      title: 'Checkbox',
+      to: '/checkbox',
+      element: shallowRef(Checkbox),
+      props: {},
+      slots: [],
+      codeExample: `<k-checkbox />`,
+    },
+    {
+      title: 'Radio Group',
+      to: '/radio-group',
+      element: shallowRef(RadioGroup),
+      props: { items: [items[1], items[2]], modelValue: items[1].value },
+      slots: [],
+      codeExample: `<k-radio-group items="[...]" />`,
+    },
+    {
+      title: 'Pagination',
+      to: '/pagination',
+      element: shallowRef(Pagination),
+      props: { total: 452, pageSize: 50, maxPageButtons: 3, modelValue: 10 },
+      slots: [],
+      codeExample: `<k-pagination :total="452" :page-size="50"/>`,
+    },
+    {
+      title: 'Toggle',
+      to: '/toggle',
+      element: shallowRef(Toggle),
+      props: {},
+      slots: [],
+      codeExample: `<k-toggle />`,
+    },
+    {
+      title: 'Alert',
+      to: '/alert',
+      element: shallowRef(Alert),
+      props: {},
+      slots: [],
+      codeExample: `<k-alert />`,
+    },
+    {
+      title: 'Modal',
+      to: '/modal',
+      element: shallowRef(KButton),
+      slots: [{ name: 'default', content: 'Open modal' }],
+      codeExample: `<k-modal />`,
+      events: {
+        click() {
+          modalOpen.value = true
+        },
       },
     },
-  },
-  {
-    title: 'Slide Over',
-    to: '/slide-over',
-    element: shallowRef(KButton),
-    slots: [{ name: 'default', content: 'Open Slide Over' }],
-    codeExample: `<k-slide-over />`,
-    events: {
-      click() {
-        slideOverOpen.value = true
+    {
+      title: 'Slide Over',
+      to: '/slide-over',
+      element: shallowRef(KButton),
+      slots: [{ name: 'default', content: 'Open Slide Over' }],
+      codeExample: `<k-slide-over />`,
+      events: {
+        click() {
+          slideOverOpen.value = true
+        },
       },
     },
-  },
-])
+  ].sort((a, b) => a.title.localeCompare(b.title)),
+)
 
 const modalOpen = ref(false)
 const slideOverOpen = ref(false)

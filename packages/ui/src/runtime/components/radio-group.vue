@@ -1,16 +1,18 @@
 <template>
-  <CardsRadioGroup
-    v-if="cardsVariants.includes(variant)"
-    :variant="variant"
-    v-bind="$attrs"
-    ><template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
-      ><slot :name="slot" v-bind="scope" /></template
-  ></CardsRadioGroup>
-  <DefaultRadioGroup v-else v-bind="$attrs" :variant="variant">
-    <template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
-      ><slot :name="slot" v-bind="scope"
-    /></template>
-  </DefaultRadioGroup>
+  <div class="w-full">
+    <CardsRadioGroup
+      v-if="cardsVariants.includes(variant)"
+      :variant="variant"
+      v-bind="$attrs"
+      ><template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
+        ><slot :name="slot" v-bind="scope" /></template
+    ></CardsRadioGroup>
+    <DefaultRadioGroup v-else v-bind="$attrs" :variant="variant">
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope"
+        ><slot :name="slot" v-bind="scope"
+      /></template>
+    </DefaultRadioGroup>
+  </div>
 </template>
 
 <script setup lang="ts">

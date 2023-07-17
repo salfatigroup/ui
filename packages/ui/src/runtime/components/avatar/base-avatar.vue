@@ -1,5 +1,5 @@
 <template>
-  <span class="relative inline-block">
+  <span class="relative inline-block shrink-0">
     <img v-if="src" v-bind="$attrs" :class="classes" :src="src" :alt="alt" />
     <span v-else-if="placeholderInitials" :class="placeholderInitialsClasses">
       <span class="font-medium leading-none text-white">{{
