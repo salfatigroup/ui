@@ -34,7 +34,7 @@
             :key="item.value ?? item.label"
             @click="item.onClick?.()"
             as="button"
-            class="block w-full text-left hover:bg-brand-gray-500/10 py-1"
+            class="block w-full text-left"
           >
             <slot v-bind="menuItemSlot" :item="item" name="item">
               <div
@@ -42,7 +42,7 @@
                   menuItemSlot.active
                     ? 'bg-brand-gray-100 text-brand-gray-900'
                     : 'text-brand-gray-700',
-                  'block px-4 text-sm',
+                  'block px-4 text-sm py-1',
                 ]"
               >
                 {{ item.label }}

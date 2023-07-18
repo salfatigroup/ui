@@ -8,6 +8,15 @@
       />
     </ComponentCodeWrapper>
 
+    <ComponentCodeWrapper :code="example6">
+      <k-select
+        :options="people"
+        v-model="selectedSingle"
+        label="Assign to one"
+        direction="up"
+      />
+    </ComponentCodeWrapper>
+
     <ComponentCodeWrapper :code="example2">
       <k-select
         :options="people"
@@ -155,5 +164,14 @@ const example5 = `
     <IUserCircle variant="filled" class="w-4 h-4" />
   </template>
 </k-select>
+`
+
+const example6 = `
+<k-select
+  :options="people"
+  v-model="selectedSingle"
+  label="Assign to one"
+  direction="up"
+/>
 `
 </script>
