@@ -5,6 +5,9 @@
     ".": {
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
+    },
+    "./components": {
+      "import": "./dist/runtime/components/index.mjs"
     }
   },
   "publishConfig": {
@@ -14,8 +17,7 @@
   "main": "./dist/module.cjs",
   "types": "./dist/types.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "nuxt-module-build",
