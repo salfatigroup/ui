@@ -13,8 +13,9 @@
             onPrevious?.()
           }
         "
-        >Previous</k-button
       >
+        Previous
+      </k-button>
       <k-button
         :hidden="totalPages === 1"
         :disabled="!hasNext"
@@ -25,8 +26,9 @@
             onNext?.()
           }
         "
-        >Next</k-button
       >
+        Next
+      </k-button>
     </div>
     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
       <div>
@@ -78,8 +80,9 @@
           <template v-if="pages.middle.length">
             <span
               class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-brand-gray-700 ring-1 ring-inset ring-brand-gray-300 focus:outline-offset-0"
-              >...</span
             >
+              ...
+            </span>
             <FooterPage
               v-for="i in pages.middle"
               :key="i"
@@ -92,8 +95,9 @@
           <template v-if="pages.end.length">
             <span
               class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-brand-gray-700 ring-1 ring-inset ring-brand-gray-300 focus:outline-offset-0"
-              >...</span
             >
+              ...
+            </span>
             <FooterPage
               v-for="i in pages.end"
               :key="i"
@@ -135,8 +139,9 @@
               onPrevious?.()
             }
           "
-          >{{ previousLabel }}</k-button
         >
+          {{ previousLabel }}
+        </k-button>
         <k-button
           :hidden="totalPages === 1"
           :disabled="!hasNext"
@@ -149,8 +154,9 @@
               onNext?.()
             }
           "
-          >{{ nextLabel }}</k-button
         >
+          {{ nextLabel }}
+        </k-button>
       </div>
     </div>
   </div>
@@ -158,7 +164,6 @@
 
 <script setup lang="ts">
 import { PropType, ref, computed } from 'vue'
-import { useElementSize } from '@vueuse/core'
 import { IChevronLeft, IChevronRight } from '../icon'
 import FooterPage from './footer-page.vue'
 import usePages from './use_pages'

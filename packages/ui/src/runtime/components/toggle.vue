@@ -6,11 +6,12 @@
         as="span"
         class="text-sm font-medium leading-6 text-brand-gray-900"
         passive
-        >{{ label }}</SwitchLabel
       >
-      <SwitchDescription as="span" class="text-sm text-brand-gray-500">{{
-        description
-      }}</SwitchDescription>
+        {{ label }}
+      </SwitchLabel>
+      <SwitchDescription as="span" class="text-sm text-brand-gray-500">
+        {{ description }}
+      </SwitchDescription>
     </span>
     <Switch
       v-bind="$attrs"
