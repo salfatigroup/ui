@@ -2,26 +2,27 @@
   <div class="flex">
     <div
       class="flex items-center text-left"
-      v-if="option.online !== undefined || option.avatar || option?.icon"
+      v-if="option?.online !== undefined || option?.avatar || option?.icon"
     >
       <component
         v-if="option?.icon"
-        :is="option.icon"
+        :is="option?.icon"
         :class="'w-4 h-4'"
+        v-bind="option?.iconProps"
       ></component>
       <img
-        :src="option.avatar"
+        :src="option?.avatar"
         alt=""
         class="h-5 w-5 flex-shrink-0 rounded-full"
-        v-if="option.avatar"
+        v-if="option?.avatar"
       />
       <span
         :class="[
-          option.online ? 'bg-green-400' : 'bg-gray-200',
+          option?.online ? 'bg-green-400' : 'bg-gray-200',
           'inline-block h-2 w-2 flex-shrink-0 rounded-full',
         ]"
         aria-hidden="true"
-        v-if="option.online !== undefined"
+        v-if="option?.online !== undefined"
       />
       <span
         :class="[
@@ -29,9 +30,9 @@
           'ml-3 block truncate',
         ]"
       >
-        {{ option.label }}
-        <span class="sr-only" v-if="option.online !== undefined">
-          is {{ option.online ? 'online' : 'offline' }}
+        {{ option?.label }}
+        <span class="sr-only" v-if="option?.online !== undefined">
+          is {{ option?.online ? 'online' : 'offline' }}
         </span>
       </span>
     </div>
@@ -40,16 +41,16 @@
       class="text-left"
       :class="[selected ? 'font-semibold' : 'font-normal', 'block truncate']"
     >
-      {{ option.label }}
+      {{ option?.label }}
     </span>
     <span
-      v-if="option.description"
+      v-if="option?.description"
       :class="[
         'ml-2 truncate text-brand-gray-500',
         active ? 'text-brand-200' : 'text-brand-gray-500',
       ]"
     >
-      {{ option.description }}
+      {{ option?.description }}
     </span>
     <slot></slot>
     <span
@@ -74,6 +75,7 @@ export type OptionType = {
   avatar?: string
   icon?: Object
   description?: string
+  iconProps?: Record<string, string>
 }
 
 const { option } = defineProps({

@@ -1,6 +1,7 @@
 <template>
   <Listbox
     as="div"
+    class="w-full"
     :model-value="modelValue"
     @update:model-value="
       emit('update:modelValue', $event?.value === null ? undefined : $event)
@@ -49,9 +50,7 @@
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
-        <ListboxOptions
-          class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-        >
+        <ListboxOptions :class="listboxOptionsClasses">
           <ListboxOption
             as="template"
             v-for="option in options"
@@ -95,6 +94,7 @@ type Props = {
   label: string
   pill: boolean
   disabled: boolean
+  direction: 'up' | 'down'
 }
 
 const props = defineProps({
@@ -126,6 +126,10 @@ const props = defineProps({
     type: Boolean as PropType<Props['disabled']>,
     default: false,
   },
+  direction: {
+    type: String as PropType<Props['direction']>,
+    default: 'down',
+  },
 })
 
 const emit = defineEmits<{
@@ -148,5 +152,12 @@ const listBoxButtonClasses = computed(() => ({
   'inline-flex items-center whitespace-nowrap rounded-full bg-brand-gray-50 px-2 py-2 text-sm font-medium hover:bg-brand-gray-100 sm:px-3':
     props.pill,
   [DISABLED_INPUT_CLASSES]: true,
+}))
+
+const listboxOptionsClasses = computed(() => ({
+  'absolute z-10 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm':
+    true,
+  'top-full mt-1': props.direction === 'down',
+  'bottom-full mb-1': props.direction === 'up',
 }))
 </script>

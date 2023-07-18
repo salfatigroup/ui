@@ -7,7 +7,12 @@ export const dates = [
   { value: 2, label: 'Tomorrow' },
 ]
 export const people: OptionType[] = [
-  { value: null, label: 'Unassign', icon: IUserCircle },
+  {
+    value: null,
+    label: 'Unassign',
+    icon: IUserCircle,
+    iconProps: { variant: 'filled' },
+  },
   { value: 1, label: 'Wade Cooper', online: true },
   {
     value: 2,

@@ -9,8 +9,10 @@
         <IMoreVert class="w-5 h-5 text-brand-gray-500" variant="duotone" />
 
         <template #item="{ item }">
-          <div class="flex items-center space-x-2">
-            <div class="flex-shrink-0 w-5 h-5 text-brand-gray-500">
+          <div class="flex items-center space-x-2 hover:bg-brand-gray-100 p-1">
+            <div
+              class="flex items-center flex-shrink-0 w-5 h-5 text-brand-gray-500"
+            >
               <IMoreVert variant="duotone" />
             </div>
             <div class="text-brand-gray-700">{{ item.label }}</div>
