@@ -1,14 +1,12 @@
 {
   "name": "@salfatigroup/ui",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
     },
-    "./dist/runtime/components": {
-      "import": "./dist/runtime/components/index.mjs"
-    }
+    "./dist/runtime/components/": "./dist/runtime/components/"
   },
   "publishConfig": {
     "access": "public",
