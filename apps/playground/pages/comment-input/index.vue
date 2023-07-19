@@ -15,6 +15,9 @@
         </template>
       </k-comment-input>
     </ComponentCodeWrapper>
+    <ComponentCodeWrapper :code="example3">
+      <k-comment-input skeleton />
+    </ComponentCodeWrapper>
   </div>
 </template>
 
@@ -33,5 +36,9 @@ const example2 = `
     <div class="text-sm text-brand-gray-600">Yesterday, 12:10 am</div>
   </template>
 </k-comment-input>
+`
+
+const example3 = `
+<k-comment-input skeleton />
 `
 </script>
