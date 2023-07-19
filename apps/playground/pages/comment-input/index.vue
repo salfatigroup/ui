@@ -15,6 +15,15 @@
         </template>
       </k-comment-input>
     </ComponentCodeWrapper>
+    <ComponentCodeWrapper :code="example3">
+      <k-comment-input
+        is-posting="true"
+        avatar="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      />
+    </ComponentCodeWrapper>
+    <ComponentCodeWrapper :code="example4">
+      <k-comment-input skeleton />
+    </ComponentCodeWrapper>
   </div>
 </template>
 
@@ -33,5 +42,16 @@ const example2 = `
     <div class="text-sm text-brand-gray-600">Yesterday, 12:10 am</div>
   </template>
 </k-comment-input>
+`
+
+const example3 = `
+<k-comment-input
+  is-posting="true"
+  avatar="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+/>
+`
+
+const example4 = `
+<k-comment-input skeleton />
 `
 </script>

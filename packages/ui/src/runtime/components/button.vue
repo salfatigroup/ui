@@ -16,6 +16,7 @@ export type Props = {
   pill?: boolean
   disabled?: boolean
   type: 'button' | 'submit' | 'reset' | undefined
+  loading?: boolean
 }
 
 const props = defineProps({
@@ -42,6 +43,10 @@ const props = defineProps({
   type: {
     type: String as PropType<Props['type']>,
     default: 'button' as Props['type'],
+  },
+  loading: {
+    type: Boolean,
+    default: false as Props['loading'],
   },
 })
 
@@ -123,6 +128,7 @@ const buttonClasses = computed(() => {
     'opacity-50 pointer-events-none': props.disabled,
 
     'space-x-2': slots.prefixIcon || slots.suffixIcon,
+    'animate-bounce': props.loading,
   }
 })
 </script>
