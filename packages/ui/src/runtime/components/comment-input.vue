@@ -59,9 +59,7 @@
           $slots.customAddons ? 'w-full' : 'w-fit',
         ]"
       >
-        <div
-          class="flex items-center justify-between space-x-5 w-full flex-1 mr-[49%]"
-        >
+        <div :class="footerClasses">
           <div class="w-fit">
             <slot name="customAddons"></slot>
           </div>
@@ -69,7 +67,7 @@
             <KButton
               variant="secondary"
               size="xs2"
-              iconButton
+              isIcon
               @click="expanded = !expanded"
             >
               <IChevronsUpRec v-if="expanded" />
@@ -165,4 +163,9 @@ const emit = defineEmits<{
   'update:modelValue': [value: string]
   post: []
 }>()
+
+const footerClasses = computed(() => ({
+  'flex items-center justify-between space-x-5 w-full flex-1': true,
+  'mr-[49%]': props.readonly,
+}))
 </script>
