@@ -9,10 +9,10 @@
         <textarea
           v-bind="$attrs"
           :disabled="disabled || readonly || isPosting"
-          rows="3"
+          :rows="rows"
           name="comment"
           id="comment"
-          class="block w-full resize-none border-0 bg-transparent py-1.5 text-brand-gray-900 placeholder:text-brand-gray-400 focus:ring-0 sm:text-sm sm:leading-6 min-h-fit"
+          class="block w-full resize-none border-0 bg-transparent py-1.5 text-brand-gray-900 placeholder:text-brand-gray-400 focus:ring-0 sm:text-sm sm:leading-6 min-h-fit overflow-ellipsis"
           :placeholder="!readonly ? placeholder : ''"
           @input="emit('update:modelValue', $event?.target?.value)"
           :value="text"
@@ -32,8 +32,23 @@
           $slots.customAddons ? 'w-full' : 'w-fit',
         ]"
       >
-        <div class="flex items-center space-x-5 w-full flex-1">
-          <slot name="customAddons"></slot>
+        <div
+          class="flex items-center justify-between space-x-5 w-full flex-1 mr-[49%]"
+        >
+          <div class="w-fit">
+            <slot name="customAddons"></slot>
+          </div>
+          <div v-if="expandable" class="justify-end flex -mb-1">
+            <KButton
+              variant="secondary"
+              size="xs2"
+              iconButton
+              @click="expanded = !expanded"
+            >
+              <IChevronsUpRec v-if="expanded" />
+              <IChevronsDownRec v-else />
+            </KButton>
+          </div>
         </div>
         <div class="flex-grow-0">
           <slot name="actionButton">
@@ -53,7 +68,8 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
+import { computed, PropType, ref } from 'vue'
+import { IChevronsDownRec, IChevronsUpRec } from './icon'
 
 type Props = {
   placeholder: string
@@ -63,9 +79,10 @@ type Props = {
   disabled: boolean
   readonly: boolean
   isPosting: boolean
+  expandable: boolean
 }
 
-defineProps({
+const props = defineProps({
   placeholder: {
     type: String as PropType<Props['placeholder']>,
     default: 'Add your comment...',
@@ -94,8 +111,24 @@ defineProps({
     type: Boolean as PropType<Props['readonly']>,
     default: false,
   },
+  expandable: {
+    type: Boolean as PropType<Props['expandable']>,
+    default: false,
+  },
 })
 
+const expanded = ref(false)
+const rows = computed(() => {
+  if (!props.expandable) {
+    return 3
+  }
+
+  if (props.readonly) {
+    return expanded.value ? 5 : 1
+  }
+
+  return expanded.value ? 5 : 3
+})
 const emit = defineEmits<{
   'update:modelValue': [value: string]
   post: []
