@@ -6,7 +6,7 @@
     "dev": "nuxt dev -p 4200",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "postinstall": "pnpm -C ../../packages/ui/ run build; nuxt prepare",
     "clean": "rimraf dist node_modules .turbo .nuxt .output"
   },
   "devDependencies": {
