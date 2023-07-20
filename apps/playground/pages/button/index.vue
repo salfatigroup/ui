@@ -29,7 +29,7 @@
     <ComponentCodeWrapper
       code='<k-button soft variant="info">Info Soft</k-button>'
     >
-      <k-button variant="success">Info Soft</k-button>
+      <k-button soft variant="info">Info Soft</k-button>
     </ComponentCodeWrapper>
     <ComponentCodeWrapper code='<k-button variant="success">Success</k-button>'>
       <k-button variant="success">Success</k-button>
