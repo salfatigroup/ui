@@ -26,20 +26,28 @@
       </div>
     </div>
   </div>
-  <div class="flex items-start space-x-4 w-full" v-else>
+  <div :class="wrapperClasses" v-else>
     <KAvatar :src="avatar" />
     <div class="min-w-0 flex-1 relative">
       <div
         class="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-brand-gray-300 focus-within:ring-2 focus-within:ring-brand-600 min-h-fit"
       >
         <label for="comment" class="sr-only">{{ placeholder }}</label>
+
+        <div
+          v-if="readonly && expandable && !expanded"
+          :class="readonlyDivClasses"
+        >
+          {{ modelValue }}
+        </div>
         <textarea
+          v-else
           v-bind="$attrs"
           :disabled="disabled || readonly || isPosting"
           :rows="rows"
           name="comment"
           id="comment"
-          class="block w-full resize-none border-0 bg-transparent py-1.5 text-brand-gray-900 placeholder:text-brand-gray-400 focus:ring-0 sm:text-sm sm:leading-6 min-h-fit overflow-ellipsis"
+          class="block w-full resize-none border-0 bg-transparent py-1.5 text-brand-gray-900 placeholder:text-brand-gray-400 focus:ring-0 sm:text-sm sm:leading-6 min-h-fit"
           :placeholder="!readonly ? placeholder : ''"
           @input="emit('update:modelValue', $event?.target?.value)"
           :value="modelValue"
@@ -167,5 +175,16 @@ const emit = defineEmits<{
 const footerClasses = computed(() => ({
   'flex items-center justify-between space-x-5 w-full flex-1': true,
   'mr-[49%]': props.readonly,
+}))
+
+const wrapperClasses = computed(() => ({
+  'flex items-start space-x-4 w-full': true,
+}))
+
+const readonlyDivClasses = computed(() => ({
+  'block resize-none border-0 py-1.5 px-3 text-brand-gray-900 sm:text-sm sm:leading-6 mr-2 min-h-fit truncate':
+    true,
+  'xs:max-w-[10rem] sm:max-w-[14rem] md:max-w-[18rem] lg:max-w-[25rem] xl:max-w-[30rem] 2xl:max-w-[35rem]':
+    props.readonly,
 }))
 </script>
