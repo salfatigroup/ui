@@ -177,9 +177,9 @@ const wrapperClasses = computed(() => ({
 }))
 
 const readonlyDivClasses = computed(() => ({
-  'block resize-none border-0 px-3 text-brand-gray-900 sm:text-sm sm:leading-6 mr-2 min-h-fit':
+  'block resize-none border-0 px-3 text-brand-gray-900 sm:text-sm sm:leading-6 mr-2 min-h-fit whitespace-pre-wrap':
     true,
-  'xs:max-w-[10rem] sm:max-w-[14rem] md:max-w-[18rem] lg:max-w-[25rem] xl:max-w-[30rem] 2xl:max-w-[35rem] truncate':
+  'xs:max-w-[10rem] sm:max-w-[14rem] md:max-w-[18rem] lg:max-w-[25rem] xl:max-w-[30rem] 2xl:max-w-[35rem] truncate max-h-[2.5rem]':
     props.expandable && !expanded.value,
 }))
 

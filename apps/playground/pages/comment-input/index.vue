@@ -40,7 +40,9 @@
     <ComponentCodeWrapper :code="example5">
       <k-comment-input
         readonly
-        model-value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        :model-value="`Lorem ipsum dolor
+
+         sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum`"
       >
         <template #customAddons>
           <div class="text-sm text-brand-gray-600">Yesterday, 12:10 am</div>
@@ -99,13 +101,15 @@ const example4 = `
 
 const example5 = `
 <k-comment-input
-  readonly
-  model-value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
->
-  <template #customAddons>
-    <div class="text-sm text-brand-gray-600">Yesterday, 12:10 am</div>
-  </template>
-</k-comment-input>
+        readonly
+        :model-value="\`Lorem ipsum dolor
+
+         sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\`"
+      >
+        <template #customAddons>
+          <div class="text-sm text-brand-gray-600">Yesterday, 12:10 am</div>
+        </template>
+      </k-comment-input>
 `
 
 const example6 = `
