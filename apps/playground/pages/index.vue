@@ -102,6 +102,7 @@ import Toggle from '../../../packages/ui/src/runtime/components/toggle.vue'
 import Alert from '../../../packages/ui/src/runtime/components/alert.vue'
 import KModal from '../../../packages/ui/src/runtime/components/modal.vue'
 import KSlideOver from '../../../packages/ui/src/runtime/components/slide-over.vue'
+import KSpinner from '../../../packages/ui/src/runtime/components/spinner.vue'
 
 import { items } from '../mocks/radio_mocks'
 import { people } from '../mocks/options_mocks'
@@ -336,6 +337,13 @@ const components = ref(
           slideOverOpen.value = true
         },
       },
+    },
+    {
+      title: 'Spinner',
+      to: '/spinner',
+      element: shallowRef(KSpinner),
+      slots: [],
+      codeExample: `<k-spinner />`,
     },
   ].sort((a, b) => a.title.localeCompare(b.title)),
 )
