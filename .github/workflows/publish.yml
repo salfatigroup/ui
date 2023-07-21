@@ -14,6 +14,12 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8.4.0
+          run_install: false
       - run: pnpm publish-packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
