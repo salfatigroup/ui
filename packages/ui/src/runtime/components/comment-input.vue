@@ -151,7 +151,7 @@ const props = defineProps({
 })
 
 const buttonDisabled = computed(
-  () => props.disabled || props.isPosting || !props.modelValue,
+  () => props.disabled || props.isPosting || !value.value,
 )
 
 const expanded = ref(false)
