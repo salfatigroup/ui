@@ -97,6 +97,9 @@
     <ComponentCodeWrapper code="<k-button pill>Pill</k-button>">
       <k-button pill>Pill</k-button>
     </ComponentCodeWrapper>
+    <ComponentCodeWrapper code="<k-button loading>Loading...</k-button>">
+      <k-button loading>Loading...</k-button>
+    </ComponentCodeWrapper>
   </div>
 </template>
 <script setup lang="ts">
@@ -105,6 +108,4 @@ import {
   IScan,
 } from '../../../../packages/ui/src/runtime/components/icon'
 import ComponentCodeWrapper from '../../components/component-code-wrapper.vue'
-
-const x = { a: 2 }
 </script>

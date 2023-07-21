@@ -1,6 +1,7 @@
 <template>
   <button v-bind="$attrs" :type="type" :class="buttonClasses">
     <slot name="prefixIcon" v-if="$slots.prefixIcon"></slot>
+    <KSpinner class="mr-2" size="sm" v-if="loading" />
     <div><slot></slot></div>
     <slot name="suffixIcon" v-if="$slots.suffixIcon"></slot>
   </button>
@@ -134,7 +135,6 @@ const buttonClasses = computed(() => {
     'opacity-50 pointer-events-none': props.disabled,
 
     'space-x-2': slots.prefixIcon || slots.suffixIcon,
-    'animate-bounce': props.loading,
   }
 })
 </script>
