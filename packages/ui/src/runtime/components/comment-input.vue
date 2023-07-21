@@ -44,7 +44,7 @@
           id="comment"
           class="block w-full resize-none border-0 bg-transparent py-1.5 text-brand-gray-900 placeholder:text-brand-gray-400 focus:ring-0 sm:text-sm sm:leading-6 min-h-fit"
           :placeholder="!readonly ? placeholder : ''"
-          @input="emit('update:modelValue', $event?.target?.value)"
+          @input="onChange"
           :value="modelValue"
         />
         <!-- Spacer element to match the height of the toolbar -->
@@ -82,7 +82,7 @@
           <slot name="actionButton">
             <KButton
               v-if="!readonly"
-              @click="emit('post')"
+              @click="emit('post', value)"
               :loading="isPosting"
               :disabled="buttonDisabled"
             >
@@ -155,6 +155,13 @@ const buttonDisabled = computed(
 )
 
 const expanded = ref(false)
+const value = ref(props.modelValue)
+
+const onChange = (e: Event) => {
+  const target = e.target as HTMLTextAreaElement
+  value.value = target.value
+  emit('update:modelValue', value.value)
+}
 const rows = computed(() => {
   if (!props.expandable) {
     return 3
