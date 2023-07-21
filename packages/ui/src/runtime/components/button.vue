@@ -16,6 +16,8 @@ export type Props = {
   pill?: boolean
   disabled?: boolean
   type: 'button' | 'submit' | 'reset' | undefined
+  loading?: boolean
+  isIcon: boolean
 }
 
 const props = defineProps({
@@ -43,6 +45,14 @@ const props = defineProps({
     type: String as PropType<Props['type']>,
     default: 'button' as Props['type'],
   },
+  loading: {
+    type: Boolean,
+    default: false as Props['loading'],
+  },
+  isIcon: {
+    type: Boolean,
+    default: false as Props['isIcon'],
+  },
 })
 
 const primaryFocusVisible =
@@ -56,8 +66,8 @@ const primaryClasses = computed(() => ({
 }))
 
 const secondaryClasses = computed(() => ({
-  'ring-1 ring-inset ring-brand-gray-300 text-brand-gray-900 hover:bg-brand-gray-50':
-    !props.soft,
+  'text-brand-gray-900 hover:bg-brand-gray-50': !props.soft,
+  'ring-1 ring-inset ring-brand-gray-300': !props.isIcon,
   'bg-brand-gray-100 text-brand-gray-500 hover:bg-brand-gray-200': props.soft,
 }))
 
@@ -106,23 +116,25 @@ const buttonClasses = computed(() => {
   return {
     ...baseClasses[props.variant ?? 'primary'],
     'flex justify-center items-center font-semibold': true,
+    'px-1 py-1': ['xs2'].includes(props.size),
     'px-2 py-1': ['xs', 'sm'].includes(props.size),
     'px-2.5 py-1.5': ['md'].includes(props.size),
     'px-3 py-2': ['lg'].includes(props.size),
     'px-3.5 py-2.5': ['xl'].includes(props.size),
 
-    'text-xs': ['xs'].includes(props.size),
+    'text-xs': ['xs', 'xs2'].includes(props.size),
     'text-sm': ['sm', 'md', 'lg', 'xl'].includes(props.size),
 
     // Pill
     'rounded-full': props.pill,
-    rounded: !props.pill && ['xs', 'sm'].includes(props.size),
+    rounded: !props.pill && ['xs2', 'xs', 'sm'].includes(props.size),
     'rounded-md': !props.pill && ['md', 'lg', 'xl'].includes(props.size),
 
     // Disabled
     'opacity-50 pointer-events-none': props.disabled,
 
     'space-x-2': slots.prefixIcon || slots.suffixIcon,
+    'animate-bounce': props.loading,
   }
 })
 </script>
