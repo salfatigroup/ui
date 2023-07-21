@@ -150,12 +150,12 @@ const props = defineProps({
   },
 })
 
-const buttonDisabled = computed(
-  () => props.disabled || props.isPosting || !props.modelValue,
-)
-
 const expanded = ref(false)
 const value = ref(props.modelValue)
+
+const buttonDisabled = computed(
+  () => props.disabled || props.isPosting || !value.value,
+)
 
 const onChange = (e: Event) => {
   const target = e.target as HTMLTextAreaElement
