@@ -29,15 +29,10 @@
   <div :class="wrapperClasses" v-else>
     <KAvatar :src="avatar" />
     <div class="min-w-0 flex-1 relative">
-      <div
-        class="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-brand-gray-300 focus-within:ring-2 focus-within:ring-brand-600 min-h-fit"
-      >
+      <div :class="textAreaWrapperClasses">
         <label for="comment" class="sr-only">{{ placeholder }}</label>
 
-        <div
-          v-if="readonly && expandable && !expanded"
-          :class="readonlyDivClasses"
-        >
+        <div v-if="readonly" :class="readonlyDivClasses">
           {{ modelValue }}
         </div>
         <textarea
@@ -182,9 +177,15 @@ const wrapperClasses = computed(() => ({
 }))
 
 const readonlyDivClasses = computed(() => ({
-  'block resize-none border-0 py-1.5 px-3 text-brand-gray-900 sm:text-sm sm:leading-6 mr-2 min-h-fit truncate':
+  'block resize-none border-0 px-3 text-brand-gray-900 sm:text-sm sm:leading-6 mr-2 min-h-fit':
     true,
-  'xs:max-w-[10rem] sm:max-w-[14rem] md:max-w-[18rem] lg:max-w-[25rem] xl:max-w-[30rem] 2xl:max-w-[35rem]':
-    props.readonly,
+  'xs:max-w-[10rem] sm:max-w-[14rem] md:max-w-[18rem] lg:max-w-[25rem] xl:max-w-[30rem] 2xl:max-w-[35rem] truncate':
+    props.expandable && !expanded.value,
+}))
+
+const textAreaWrapperClasses = computed(() => ({
+  'overflow-hidden rounded-lg min-h-fit': true,
+  'ring-1 ring-inset ring-brand-gray-300 focus-within:ring-2 focus-within:ring-brand-600':
+    !props.readonly,
 }))
 </script>
