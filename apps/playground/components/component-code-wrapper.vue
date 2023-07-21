@@ -9,7 +9,7 @@
     <code
       class="flex flex-1 py-6 pl-6 pr-2 text-sm font-mono text-brand-gray-500 rounded-b-lg overflow-x-scroll whitespace-pre-wrap w-full justify-between items-center"
     >
-      <div class="max-h-80 overflow-scroll">
+      <div class="max-h-80 overflow-scroll w-full">
         <slot name="code">{{ code.trim() }}</slot>
       </div>
       <div class="flex justify-end w-fit right-2 pl-6">

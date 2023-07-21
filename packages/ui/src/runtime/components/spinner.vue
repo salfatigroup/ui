@@ -29,14 +29,13 @@
 import { PropType, computed } from 'vue'
 
 type SpinnerProps = {
-  label: String
+  label: string
   size: 'sm' | 'md' | 'lg'
 }
 
 const props = defineProps({
   label: {
     type: String as PropType<SpinnerProps['label']>,
-    required: true,
   },
   size: {
     type: String as PropType<SpinnerProps['size']>,

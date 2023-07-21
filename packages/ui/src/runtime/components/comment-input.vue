@@ -84,7 +84,7 @@
               v-if="!readonly"
               @click="emit('post')"
               :loading="isPosting"
-              :disabled="isPosting"
+              :disabled="buttonDisabled"
             >
               {{ actionText }}
             </KButton>
@@ -149,6 +149,10 @@ const props = defineProps({
     default: false,
   },
 })
+
+const buttonDisabled = computed(
+  () => props.disabled || props.isPosting || !props.modelValue,
+)
 
 const expanded = ref(false)
 const rows = computed(() => {

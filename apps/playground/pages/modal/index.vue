@@ -60,6 +60,41 @@
         Simple modal
       </k-button>
     </ComponentCodeWrapper>
+    <ComponentCodeWrapper :code="example3">
+      <k-modal
+        :open="slottedOpen"
+        layout="simple"
+        @close="slottedOpen = false"
+        variant="info"
+        hideCloseButton
+        :buttons="[
+          {
+            label: 'Cancel',
+            variant: 'secondary',
+            onClick: () => {
+              slottedOpen = false
+            },
+          },
+          {
+            label: 'Confirm',
+            variant: 'info',
+            onClick: () => {
+              slottedOpen = false
+            },
+          },
+        ]"
+      >
+        <template #title>Slotted title</template>
+        <template #description>
+          Slotted description
+          <KButton>And a button</KButton>
+        </template>
+        <template #icon>ICON</template>
+      </k-modal>
+      <k-button @click="slottedOpen = true" variant="info">
+        Modal with slots
+      </k-button>
+    </ComponentCodeWrapper>
     <ComponentCodeWrapper :code="script" />
   </div>
 </template>
@@ -68,12 +103,14 @@ import { ref } from 'vue'
 
 const centeredOpen = ref(false)
 const simpleOpen = ref(false)
+const slottedOpen = ref(false)
 
 const script = `<script setup lang="ts">
   import { ref } from 'vue'
 
   const centeredOpen = ref(false)
   const simpleOpen = ref(false)
+  const slottedOpen = ref(false)
 \<\/script\>`
 
 const example1 = `<k-modal
@@ -131,5 +168,40 @@ const example2 = `<k-modal
 />
 <k-button @click="simpleOpen = true" variant="danger">
   Simple modal
+</k-button>`
+
+const example3 = `
+<k-modal
+  :open="slottedOpen"
+  layout="simple"
+  @close="slottedOpen = false"
+  variant="info"
+  hideCloseButton
+  :buttons="[
+    {
+      label: 'Cancel',
+      variant: 'secondary',
+      onClick: () => {
+        slottedOpen = false
+      },
+    },
+    {
+      label: 'Confirm',
+      variant: 'info',
+      onClick: () => {
+        slottedOpen = false
+      },
+    },
+  ]"
+>
+  <template #title>Slotted title</template>
+  <template #description>
+    Slotted description
+    <KButton>And a button</KButton>
+  </template>
+  <template #icon>ICON</template>
+</k-modal>
+<k-button @click="slottedOpen = true" variant="info">
+  Modal with slots
 </k-button>`
 </script>
