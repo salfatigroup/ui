@@ -20,6 +20,11 @@ jobs:
         with:
           version: 8.4.0
           run_install: false
-      - run: pnpm publish-packages
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build package
+        run: pnpm build
+      - name: Publish package
+        run: pnpm publish-packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
