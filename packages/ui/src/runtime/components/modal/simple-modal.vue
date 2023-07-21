@@ -46,8 +46,9 @@
                   <DialogTitle
                     as="h3"
                     class="text-base font-semibold leading-6 text-brand-gray-900"
-                    ><slot name="title">{{ title }}</slot></DialogTitle
                   >
+                    <slot name="title">{{ title }}</slot>
+                  </DialogTitle>
                   <div class="mt-2">
                     <slot name="description">
                       <p class="text-sm text-brand-gray-500">
@@ -133,6 +134,6 @@ const iconClasses = computed(() => [
 ])
 
 const emit = defineEmits<{
-  (e: 'close'): void
+  close: []
 }>()
 </script>

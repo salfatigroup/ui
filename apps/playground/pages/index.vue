@@ -50,7 +50,7 @@
               <component
                 :is="component.element"
                 v-bind="component.props"
-                v-on="component.events"
+                v-on="component.events ?? {}"
               >
                 <template v-for="slt in component.slots" :slot="slt.name">
                   {{ slt.content }}
