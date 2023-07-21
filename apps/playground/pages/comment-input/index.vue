@@ -62,12 +62,20 @@
     <ComponentCodeWrapper :code="example7">
       <k-comment-input skeleton />
     </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="example8">
+      <k-button @click="showAutoFocus = !showAutoFocus">
+        Toggle auto focus textarea
+      </k-button>
+      <k-comment-input autofocus v-if="showAutoFocus" />
+    </ComponentCodeWrapper>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 const modelValue = ref('hi')
+const showAutoFocus = ref(false)
 
 const example1 = `
 <k-comment-input
@@ -132,5 +140,12 @@ const example6 = `
 
 const example7 = `
 <k-comment-input skeleton />
+`
+
+const example8 = `
+<k-button @click="showAutoFocus = !showAutoFocus">
+  Toggle auto focus textarea
+</k-button>
+<k-comment-input autofocus v-if="showAutoFocus" />
 `
 </script>

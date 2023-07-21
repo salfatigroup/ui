@@ -42,6 +42,7 @@
           :rows="rows"
           name="comment"
           id="comment"
+          ref="textAreaRef"
           class="block w-full resize-none border-0 bg-transparent py-1.5 text-brand-gray-900 placeholder:text-brand-gray-400 focus:ring-0 sm:text-sm sm:leading-6 min-h-fit"
           :placeholder="!readonly ? placeholder : ''"
           @input="onChange"
@@ -96,7 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref } from 'vue'
+import { computed, PropType, ref, onMounted } from 'vue'
 import { IChevronsDownRec, IChevronsUpRec } from './icon'
 
 type Props = {
@@ -109,6 +110,7 @@ type Props = {
   isPosting: boolean
   expandable: boolean
   skeleton: boolean
+  autofocus: boolean
 }
 
 const props = defineProps({
@@ -146,6 +148,10 @@ const props = defineProps({
   },
   skeleton: {
     type: Boolean as PropType<Props['skeleton']>,
+    default: false,
+  },
+  autofocus: {
+    type: Boolean as PropType<Props['autofocus']>,
     default: false,
   },
 })
@@ -199,4 +205,9 @@ const textAreaWrapperClasses = computed(() => ({
   'ring-1 ring-inset ring-brand-gray-300 focus-within:ring-2 focus-within:ring-brand-600':
     !props.readonly,
 }))
+
+const textAreaRef = ref<HTMLTextAreaElement | null>(null)
+onMounted(() => {
+  if (props.autofocus) textAreaRef.value?.focus()
+})
 </script>
