@@ -67,7 +67,11 @@
       <k-button @click="showAutoFocus = !showAutoFocus">
         Toggle auto focus textarea
       </k-button>
-      <k-comment-input autofocus v-if="showAutoFocus" />
+      <k-comment-input
+        autofocus
+        v-model="autoFocusValue"
+        v-if="showAutoFocus"
+      />
     </ComponentCodeWrapper>
   </div>
 </template>
@@ -75,6 +79,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 const modelValue = ref('hi')
+const autoFocusValue = ref('')
 const showAutoFocus = ref(false)
 
 const example1 = `
@@ -116,15 +121,15 @@ const example4 = `
 
 const example5 = `
 <k-comment-input
-        readonly
-        :model-value="\`Lorem ipsum dolor
+  readonly
+  :model-value="\`Lorem ipsum dolor
 
-         sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\`"
-      >
-        <template #customAddons>
-          <div class="text-sm text-brand-gray-600">Yesterday, 12:10 am</div>
-        </template>
-      </k-comment-input>
+    sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\`"
+>
+  <template #customAddons>
+    <div class="text-sm text-brand-gray-600">Yesterday, 12:10 am</div>
+  </template>
+</k-comment-input>
 `
 
 const example6 = `
@@ -146,6 +151,10 @@ const example8 = `
 <k-button @click="showAutoFocus = !showAutoFocus">
   Toggle auto focus textarea
 </k-button>
-<k-comment-input autofocus v-if="showAutoFocus" />
+<k-comment-input
+  autofocus
+  v-model="autoFocusValue"
+  v-if="showAutoFocus"
+/>
 `
 </script>

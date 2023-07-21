@@ -46,7 +46,7 @@
           class="block w-full resize-none border-0 bg-transparent py-1.5 text-brand-gray-900 placeholder:text-brand-gray-400 focus:ring-0 sm:text-sm sm:leading-6 min-h-fit"
           :placeholder="!readonly ? placeholder : ''"
           @input="onChange"
-          :value="modelValue"
+          :value="value"
         />
         <!-- Spacer element to match the height of the toolbar -->
         <div class="py-2" aria-hidden="true" v-if="$slots.customAddons">
