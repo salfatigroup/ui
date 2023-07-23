@@ -9,7 +9,7 @@
     :multiple="multiple"
     :disabled="disabled"
   >
-    <slot>
+    <slot name="label">
       <ListboxLabel
         class="block text-sm font-medium leading-6 text-brand-gray-900"
       >

@@ -6,7 +6,6 @@
     v-bind="$attrs"
     class="w-full"
   >
-    "
     <slot name="label">
       <ComboboxLabel
         class="block text-sm font-medium leading-6 text-brand-gray-900"
