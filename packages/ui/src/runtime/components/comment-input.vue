@@ -97,7 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType, ref, onMounted } from 'vue'
+import { computed, PropType, ref, onMounted, watch } from 'vue'
 import { IChevronsDownRec, IChevronsUpRec } from './icon'
 
 type Props = {
@@ -157,6 +157,9 @@ const props = defineProps({
 })
 
 const expanded = ref(false)
+
+// The purpose of this ref is to keep the value of the textarea in case only :model-value is sent
+// Then we need the updated value
 const value = ref(props.modelValue)
 
 const buttonDisabled = computed(
@@ -179,6 +182,14 @@ const rows = computed(() => {
 
   return expanded.value ? 5 : 3
 })
+
+watch(
+  () => props.modelValue,
+  (newValue: string) => {
+    value.value = newValue
+  },
+)
+
 const emit = defineEmits<{
   'update:modelValue': [value: string]
   post: []

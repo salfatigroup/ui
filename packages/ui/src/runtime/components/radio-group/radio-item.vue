@@ -36,7 +36,7 @@
 import { PropType, computed, ref } from 'vue'
 export type Item = {
   label: string
-  value: string
+  value: string | number | boolean | null
   description?: string
 }
 

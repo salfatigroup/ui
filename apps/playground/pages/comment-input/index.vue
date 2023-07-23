@@ -73,6 +73,7 @@
         v-if="showAutoFocus"
       />
     </ComponentCodeWrapper>
+    <KButton @click="modelValue = ''">CLEAR</KButton>
   </div>
 </template>
 

@@ -9,19 +9,22 @@
     :multiple="multiple"
     :disabled="disabled"
   >
-    <ListboxLabel
-      class="block text-sm font-medium leading-6 text-brand-gray-900"
-      >{{ label }}</ListboxLabel
-    >
+    <slot>
+      <ListboxLabel
+        class="block text-sm font-medium leading-6 text-brand-gray-900"
+      >
+        {{ label }}
+      </ListboxLabel>
+    </slot>
     <div class="relative mt-2">
       <ListboxButton :class="listBoxButtonClasses">
         <slot name="prefixIcon"></slot>
         <Option :option="modelValue" v-if="!Array.isArray(modelValue)" />
-        <Option :option="modelValue[0]" v-else-if="modelValue.length > 0"
-          ><template v-if="modelValue.length > 1">
-            <span class="text-brand-gray-500 text-ellipsis ml-1"
-              >+{{ modelValue.length - 1 }} more</span
-            >
+        <Option :option="modelValue[0]" v-else-if="modelValue.length > 0">
+          <template v-if="modelValue.length > 1">
+            <span class="text-brand-gray-500 text-ellipsis ml-1">
+              +{{ modelValue.length - 1 }} more
+            </span>
           </template>
         </Option>
         <div
