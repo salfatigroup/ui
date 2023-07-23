@@ -13,25 +13,27 @@
         v-if="learnMoreText"
         :href="learnMoreLink ?? '#'"
         class="text-sm font-medium leading-6 text-brand-600 hover:text-brand-500"
-        >{{ learnMoreText }}</a
       >
+        {{ learnMoreText }}
+      </a>
     </div>
     <RadioGroup
       :model-value="modelValue"
       @update:model-value="emit('update:modelValue', $event)"
       class="mt-4 space-y-4"
+      v-bind="$attrs"
     >
       <slot name="title" :title="title" v-if="variant !== 'small-cards'">
         <RadioGroupLabel
           class="text-base font-semibold leading-6 text-brand-gray-900"
         >
-          {{ title }}</RadioGroupLabel
-        >
+          {{ title }}
+        </RadioGroupLabel>
       </slot>
 
       <div
         v-if="variant === 'cards'"
-        class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4"
+        :class="wrapperClasses ?? cardsWrapperClasses"
       >
         <RadioGroupOption
           as="template"
@@ -54,18 +56,21 @@
                   <RadioGroupLabel
                     as="span"
                     class="block text-sm font-medium text-brand-gray-900"
-                    >{{ item.label }}</RadioGroupLabel
                   >
+                    {{ item.label }}
+                  </RadioGroupLabel>
                   <RadioGroupDescription
                     as="span"
                     class="mt-1 flex items-center text-sm text-brand-gray-500"
-                    >{{ item.description }}</RadioGroupDescription
                   >
+                    {{ item.description }}
+                  </RadioGroupDescription>
                   <RadioGroupDescription
                     as="span"
                     class="mt-6 text-sm font-medium text-brand-gray-900"
-                    >{{ item.bottomText }}</RadioGroupDescription
                   >
+                    {{ item.bottomText }}
+                  </RadioGroupDescription>
                 </span>
               </span>
             </slot>
@@ -89,7 +94,7 @@
       </div>
       <div
         v-else-if="variant === 'small-cards'"
-        class="grid grid-cols-3 gap-3 sm:grid-cols-6"
+        :class="wrapperClasses ?? smallCardsWrapperClasses"
       >
         <RadioGroupOption
           as="template"
@@ -111,15 +116,18 @@
               'flex items-center justify-center rounded-md py-3 px-3 text-sm font-semibold uppercase sm:flex-1',
             ]"
           >
-            <RadioGroupLabel as="span"
-              ><slot :active="active" :checked="checked" :item="item">{{
-                item.label
-              }}</slot></RadioGroupLabel
-            >
+            <RadioGroupLabel as="span">
+              <slot :active="active" :checked="checked" :item="item">
+                {{ item.label }}
+              </slot>
+            </RadioGroupLabel>
           </div>
         </RadioGroupOption>
       </div>
-      <div v-else-if="variant === 'stacked-cards'" class="space-y-4">
+      <div
+        v-else-if="variant === 'stacked-cards'"
+        :class="wrapperClasses ?? stackedCardsWrapperClasses"
+      >
         <RadioGroupOption
           as="template"
           v-for="item in items"
@@ -141,8 +149,9 @@
                   <RadioGroupLabel
                     as="span"
                     class="font-medium text-brand-gray-900"
-                    >{{ item.label }}</RadioGroupLabel
                   >
+                    {{ item.label }}
+                  </RadioGroupLabel>
                   <RadioGroupDescription as="span" class="text-brand-gray-500">
                     <span class="block sm:inline">{{ item.description }}</span>
                   </RadioGroupDescription>
@@ -152,12 +161,12 @@
                 as="span"
                 class="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right"
               >
-                <span class="font-medium text-brand-gray-900">{{
-                  item.sideLabel
-                }}</span>
-                <span class="ml-1 text-brand-gray-500 sm:ml-0">{{
-                  item.bottomText
-                }}</span>
+                <span class="font-medium text-brand-gray-900">
+                  {{ item.sideLabel }}
+                </span>
+                <span class="ml-1 text-brand-gray-500 sm:ml-0">
+                  {{ item.bottomText }}
+                </span>
               </RadioGroupDescription>
               <span
                 :class="[
@@ -176,7 +185,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue'
+import { PropType, computed } from 'vue'
 import {
   RadioGroup,
   RadioGroupDescription,
@@ -203,6 +212,7 @@ export type Props = {
   inlineItemDescription?: boolean
   learnMoreText?: string
   learnMoreLink?: string
+  wrapperClasses?: string
 }
 const props = defineProps({
   title: {
@@ -241,9 +251,23 @@ const props = defineProps({
     type: String,
     default: '' as Props['learnMoreLink'],
   },
+  wrapperClasses: {
+    type: String,
+    default: null as Props['wrapperClasses'],
+  },
 })
 
 const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
+
+const cardsWrapperClasses = computed(() => ({
+  'mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4': true,
+}))
+const smallCardsWrapperClasses = computed(() => ({
+  'grid grid-cols-3 gap-3 sm:grid-cols-6': true,
+}))
+const stackedCardsWrapperClasses = computed(() => ({
+  'space-y-4': true,
+}))
 </script>

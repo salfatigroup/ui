@@ -64,10 +64,22 @@
 
     <ComponentCodeWrapper :code="example7">
       <k-radio-group
+        title="Custom wrapper classes"
+        name="notifications7"
+        variant="cards"
+        wrapperClasses="grid grid-cols-2 gap-7"
+        :items="items"
+        v-model="checked"
+      />
+    </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="example8">
+      <k-radio-group
         title="Select a stacked card"
-        name="notifications6"
+        name="notifications8"
         variant="stacked-cards"
         :items="items"
+        class="sm:grid-cols-2"
         v-model="checked"
       >
         <template #title>
@@ -179,6 +191,16 @@ const example6 = `
   />`
 
 const example7 = `
+<k-radio-group
+  title="Custom wrapper classes"
+  name="notifications4"
+  variant="cards"
+  wrapperClasses="grid grid-cols-2 gap-7"
+  :items="items"
+  v-model="checked"
+  />`
+
+const example8 = `
 <k-radio-group
   title="Select a stacked card"
   name="notifications6"
