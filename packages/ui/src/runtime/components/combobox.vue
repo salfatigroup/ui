@@ -6,16 +6,22 @@
     v-bind="$attrs"
     class="w-full"
   >
-    <ComboboxLabel
-      class="block text-sm font-medium leading-6 text-brand-gray-900"
-      >{{ label }}</ComboboxLabel
-    >
+    "
+    <slot name="label">
+      <ComboboxLabel
+        class="block text-sm font-medium leading-6 text-brand-gray-900"
+      >
+        {{ label }}
+      </ComboboxLabel>
+    </slot>
     <div class="relative mt-2">
       <ComboboxInput
         class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-10 text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6"
         @change="query = $event.target.value"
         :display-value="(option) => option?.label"
-      />
+      >
+        <slot></slot>
+      </ComboboxInput>
       <ComboboxButton
         class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none"
       >

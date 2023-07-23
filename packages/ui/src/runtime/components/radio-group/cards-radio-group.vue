@@ -196,7 +196,7 @@ import { ICheckCircle } from '../icon'
 import { Variant } from './types'
 
 export type CardItem = {
-  value: string
+  value: string | number | boolean | null
   label: string
   description?: string
   bottomText?: string
