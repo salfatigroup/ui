@@ -196,7 +196,7 @@ import { ICheckCircle } from '../icon'
 import { Variant } from './types'
 
 export type CardItem = {
-  value: string | number | boolean | null
+  value: string | number | null
   label: string
   description?: string
   bottomText?: string
@@ -213,6 +213,7 @@ export type Props = {
   learnMoreText?: string
   learnMoreLink?: string
   wrapperClasses?: string
+  modelValue: string | number | null
 }
 const props = defineProps({
   title: {
