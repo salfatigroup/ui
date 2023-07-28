@@ -32,21 +32,23 @@
     </div>
     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
       <div>
-        <p class="text-sm text-brand-gray-700">
-          Showing
-          {{ ' ' }}
-          <span class="font-medium">{{ from }}</span>
-          {{ ' ' }}
-          to
-          {{ ' ' }}
-          <span class="font-medium">{{ to }}</span>
-          {{ ' ' }}
-          of
-          {{ ' ' }}
-          <span class="font-medium">{{ total }}</span>
-          {{ ' ' }}
-          results
-        </p>
+        <slot name="resultsText">
+          <p class="text-sm text-brand-gray-700" v-if="(total ?? 0) > 0">
+            Showing
+            {{ ' ' }}
+            <span class="font-medium">{{ from }}</span>
+            {{ ' ' }}
+            to
+            {{ ' ' }}
+            <span class="font-medium">{{ to }}</span>
+            {{ ' ' }}
+            of
+            {{ ' ' }}
+            <span class="font-medium">{{ total }}</span>
+            {{ ' ' }}
+            results
+          </p>
+        </slot>
       </div>
       <div v-if="variant === 'footer'">
         <nav
