@@ -2,7 +2,7 @@
   <button v-bind="$attrs" :type="type" :class="buttonClasses">
     <slot name="prefixIcon" v-if="$slots.prefixIcon"></slot>
     <KSpinner class="mr-2" size="sm" v-if="loading" />
-    <div><slot></slot></div>
+    <div class="w-full"><slot></slot></div>
     <slot name="suffixIcon" v-if="$slots.suffixIcon"></slot>
   </button>
 </template>
