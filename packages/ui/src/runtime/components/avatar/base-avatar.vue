@@ -2,9 +2,9 @@
   <span class="relative inline-block shrink-0">
     <img v-if="src" v-bind="$attrs" :class="classes" :src="src" :alt="alt" />
     <span v-else-if="placeholderInitials" :class="placeholderInitialsClasses">
-      <span class="font-medium leading-none text-white">{{
-        placeholderInitials
-      }}</span>
+      <span class="font-medium leading-none text-white">
+        {{ placeholderInitials }}
+      </span>
     </span>
 
     <span v-else :class="placeholderClasses">
@@ -85,6 +85,12 @@ const classes = computed(() => ({
 
 const placeholderInitialsClasses = computed(() => ({
   ...classes.value,
+  'text-xs': props.size === 'xs',
+  'text-sm': props.size === 'sm',
+  'text-md': props.size === 'md',
+  'text-lg': props.size === 'lg',
+  'text-xl': props.size === 'xl',
+  'text-2xl': props.size === '2xl',
   'inline-flex items-center justify-center bg-brand-gray-500': true,
 }))
 const placeholderClasses = computed(() => ({

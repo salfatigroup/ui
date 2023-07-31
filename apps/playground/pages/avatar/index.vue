@@ -45,7 +45,14 @@
     </ComponentCodeWrapper>
 
     <ComponentCodeWrapper :code="example8">
-      <k-avatar placeholderInitials="JD" size="lg" />
+      <div class="flex space-x-2">
+        <k-avatar placeholderInitials="JD" size="xs" />
+        <k-avatar placeholderInitials="JD" size="sm" />
+        <k-avatar placeholderInitials="JD" size="md" />
+        <k-avatar placeholderInitials="JD" size="lg" />
+        <k-avatar placeholderInitials="JD" size="xl" />
+        <k-avatar placeholderInitials="JD" size="2xl" />
+      </div>
     </ComponentCodeWrapper>
 
     <ComponentCodeWrapper :code="example9">
@@ -114,7 +121,14 @@ const example7 = `<k-avatar
   :notificationProps="{ color: 'red', position: 'top-left' }"
   size="xl"
 />`
-const example8 = `<k-avatar placeholderInitials="JD" size="lg" />`
+const example8 = `<div class="flex space-x-2">
+  <k-avatar placeholderInitials="JD" size="xs" />
+  <k-avatar placeholderInitials="JD" size="sm" />
+  <k-avatar placeholderInitials="JD" size="md" />
+  <k-avatar placeholderInitials="JD" size="lg" />
+  <k-avatar placeholderInitials="JD" size="xl" />
+  <k-avatar placeholderInitials="JD" size="2xl" />
+</div>`
 const example9 = `<k-avatar
   :src="avatarSrc"
   size="md"
