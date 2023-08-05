@@ -1,6 +1,13 @@
 <template>
   <span class="relative inline-block shrink-0">
-    <img v-if="src" v-bind="$attrs" :class="classes" :src="src" :alt="alt" />
+    <nuxt-img
+      v-if="src && !hasError"
+      v-bind="$attrs"
+      :class="classes"
+      :src="src"
+      :alt="alt"
+      @error="hasError = true"
+    />
     <span v-else-if="placeholderInitials" :class="placeholderInitialsClasses">
       <span class="font-medium leading-none text-white">
         {{ placeholderInitials }}
@@ -30,8 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType } from 'vue'
-
+import { computed, PropType, ref } from 'vue'
 export type NotificationProps = {
   position: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
   color: 'gray' | 'red' | 'green'
@@ -44,6 +50,8 @@ type Props = {
   notificationProps?: NotificationProps
   placeholderInitials?: string
 }
+
+const hasError = ref(false)
 
 const props = defineProps({
   src: {

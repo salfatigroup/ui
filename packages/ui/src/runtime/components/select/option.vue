@@ -10,7 +10,7 @@
         :class="'w-4 h-4'"
         v-bind="option?.iconProps"
       ></component>
-      <img
+      <nuxt-img
         :src="option?.avatar"
         alt=""
         class="h-5 w-5 flex-shrink-0 rounded-full"

@@ -27,7 +27,12 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ['@salfatigroup/ui', '@nuxtjs/google-fonts', '@nuxt/content'],
+  modules: [
+    '@salfatigroup/ui',
+    '@nuxtjs/google-fonts',
+    '@nuxt/content',
+    '@nuxt/image-edge',
+  ],
   googleFonts: {
     prefetch: true,
     display: 'swap',
