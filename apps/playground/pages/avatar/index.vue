@@ -9,7 +9,7 @@
     </ComponentCodeWrapper>
 
     <ComponentCodeWrapper :code="example3">
-      <k-avatar :src="avatarSrc" variant="rounded" size="md" />
+      <k-avatar :src="noAvatarSrc" variant="rounded" size="md" />
     </ComponentCodeWrapper>
 
     <ComponentCodeWrapper :code="example4">
@@ -85,7 +85,8 @@ const avatar3Src =
   'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80'
 const avatar4Src =
   'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-
+const noAvatarSrc =
+  'https://media.licdn.com/dms/image/D4D03AQFU535XzNJURg/profile-displayphoto-shrink_800_800/0/1677953208954?e=1695859200&v=beta&t=3CTQPNhf2qkQEmpIm6QWzoKtn1m01CG31UTnD8RMQo4'
 const script = `<script setup lang="ts">
 const avatarSrc =
   'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
@@ -95,11 +96,13 @@ const avatar3Src =
   'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80'
 const avatar4Src =
   'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+const noAvatarSrc =
+  'https://media.licdn.com/dms/image/D4D03AQFU535XzNJURg/profile-displayphoto-shrink_800_800/0/1677953208954?e=1695859200&v=beta&t=3CTQPNhf2qkQEmpIm6QWzoKtn1m01CG31UTnD8RMQo4'
 \<\/script\>`
 
 const example1 = `<k-avatar size="xs" />`
 const example2 = `<k-avatar :src="avatarSrc" size="sm" />`
-const example3 = `<k-avatar :src="avatarSrc" variant="rounded" size="md" />`
+const example3 = `<k-avatar :src="noAvatarSrc" variant="rounded" size="md" />`
 const example4 = `<k-avatar
   :src="avatarSrc"
   :notificationProps="{ color: 'gray', position: 'top-right' }"
