@@ -62,6 +62,15 @@
         </template>
       </k-select>
     </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="example7">
+      <k-select
+        :options="people"
+        v-model="selectedSingle"
+        label="Assign to one"
+        errorText="This is an error example"
+      />
+    </ComponentCodeWrapper>
     <ComponentCodeWrapper :code="script" />
   </div>
 </template>
@@ -172,6 +181,15 @@ const example6 = `
   v-model="selectedSingle"
   label="Assign to one"
   direction="up"
+/>
+`
+
+const example7 = `
+<k-select
+  :options="people"
+  v-model="selectedSingle"
+  label="Assign to one"
+  errorText="This is an error example"
 />
 `
 </script>
