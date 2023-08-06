@@ -15,7 +15,7 @@
                   aria-hidden="true"
                   variant="filled"
                 />
-                <nuxt-img
+                <img
                   v-else
                   :src="assigned.avatar"
                   alt=""
@@ -52,7 +52,7 @@
                       ]"
                     >
                       <div class="flex items-center">
-                        <nuxt-img
+                        <img
                           v-if="assignee.avatar"
                           :src="assignee.avatar"
                           alt=""
@@ -315,7 +315,7 @@ const example1 = `
             aria-hidden="true"
             variant="filled"
           />
-          <nuxt-img
+          <img
             v-else
             :src="assigned.avatar"
             alt=""
@@ -352,7 +352,7 @@ const example1 = `
                 ]"
               >
                 <div class="flex items-center">
-                  <nuxt-img
+                  <img
                     v-if="assignee.avatar"
                     :src="assignee.avatar"
                     alt=""

@@ -1,6 +1,6 @@
 <template>
   <span class="relative inline-block shrink-0">
-    <nuxt-img
+    <img
       v-if="src && !hasError"
       v-bind="$attrs"
       :class="classes"
