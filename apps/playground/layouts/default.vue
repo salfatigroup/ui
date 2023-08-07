@@ -47,7 +47,7 @@
         >
           <div class="flex items-center">
             <div>
-              <nuxt-img
+              <img
                 class="inline-block h-9 w-9 rounded-full"
                 :src="cont.avatar"
                 :alt="`${cont.name}'s Profile Picture'`"

@@ -16,7 +16,6 @@
     "rimraf": "latest"
   },
   "dependencies": {
-    "@nuxt/image-edge": "1.0.0-rc.1-28180077.d51e794",
     "@nuxtjs/google-fonts": "^3.0.1",
     "@salfatigroup/tailwind-config": "workspace:*",
     "@salfatigroup/ui": "workspace:*",

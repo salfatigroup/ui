@@ -23,7 +23,7 @@ const example2 = `<div class="w-52">
 </div>`
 
 const number1 = ref(0)
-const number2 = ref(0)
+const number2 = ref(9)
 
 const script = `
 <script setup lang="ts">
