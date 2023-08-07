@@ -1,5 +1,9 @@
 <template>
   <div class="flex flex-col space-y-2 mt-10 justify-center items-center">
+    <ComponentCodeWrapper :code="example9">
+      <k-alert variant="info" :description="props.description" />
+    </ComponentCodeWrapper>
+
     <ComponentCodeWrapper :code="example1">
       <k-alert variant="info" v-bind="props" />
     </ComponentCodeWrapper>
@@ -58,4 +62,5 @@ const example5 = `<k-alert variant="info" v-bind="props" accent :onClose="onClos
 const example6 = `<k-alert variant="success" v-bind="props" accent :onClose="onClose" />`
 const example7 = `<k-alert variant="warn" v-bind="props" accent :onClose="onClose" />`
 const example8 = `<k-alert variant="danger" v-bind="props" accent :onClose="onClose" />`
+const example9 = `<k-alert variant="info" :description="props.description" />`
 </script>

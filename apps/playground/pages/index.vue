@@ -99,7 +99,7 @@ import Checkbox from '../../../packages/ui/src/runtime/components/checkbox.vue'
 import RadioGroup from '../../../packages/ui/src/runtime/components/radio-group.vue'
 import Pagination from '../../../packages/ui/src/runtime/components/pagination.vue'
 import Toggle from '../../../packages/ui/src/runtime/components/toggle.vue'
-import Alert from '../../../packages/ui/src/runtime/components/alert.vue'
+import KAlert from '../../../packages/ui/src/runtime/components/alert.vue'
 import KModal from '../../../packages/ui/src/runtime/components/modal.vue'
 import KSlideOver from '../../../packages/ui/src/runtime/components/slide-over.vue'
 import KSpinner from '../../../packages/ui/src/runtime/components/spinner.vue'
@@ -308,10 +308,13 @@ const components = ref(
       codeExample: `<k-toggle />`,
     },
     {
-      title: 'Alert',
+      title: 'KAlert',
       to: '/alert',
-      element: shallowRef(Alert),
-      props: {},
+      element: shallowRef(KAlert),
+      props: {
+        description:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid pariatur, ipsum similique veniam.',
+      },
       slots: [],
       codeExample: `<k-alert />`,
     },
