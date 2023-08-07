@@ -45,7 +45,7 @@
         <p class="mt-3 text-sm md:ml-6 md:mt-0" v-if="onLearnMore">
           <a href="#" :class="learnMoreClasses">
             {{ learnMoreText }}
-            <span aria-hidden="true"> &rarr;</span>
+            <span aria-hidden="true">&rarr;</span>
           </a>
         </p>
       </slot>
@@ -166,7 +166,8 @@ const titleClasses = computed(() => {
 
 const descriptionClasses = computed(() => {
   return {
-    'mt-2 text-sm': true,
+    'mt-2': props.title,
+    'text-sm': true,
     'text-brand-info-700': props.variant === 'info',
     'text-brand-success-700': props.variant === 'success',
     'text-brand-warn-700': props.variant === 'warn',
