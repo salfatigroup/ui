@@ -5,11 +5,20 @@
         <h2 class="text-lg leading-6 font-medium text-brand-gray-900">
           @salfatigroup/ui
         </h2>
-        <code
-          class="inline-block p-2 text-xs font-mono text-brand-gray-500 rounded-lg border border-brand-gray-200"
-        >
-          npm i @salfatigroup/ui
-        </code>
+        <div class="flex space-x-2 items-center text-brand-gray-500">
+          <nuxt-link
+            to="https://github.com/salfatigroup/ui"
+            class="text-sm font-medium text-brand-500 hover:text-brand-700"
+          >
+            <IGithub class="text-brand-gray-500" />
+          </nuxt-link>
+
+          <code
+            class="inline-block p-2 text-xs font-mono text-brand-gray-500 rounded-lg border border-brand-gray-200"
+          >
+            npm i @salfatigroup/ui
+          </code>
+        </div>
       </div>
     </div>
 
@@ -91,6 +100,7 @@ import KSelect from '../../../packages/ui/src/runtime/components/select.vue'
 import KInput from '../../../packages/ui/src/runtime/components/input/default-input.vue'
 import KTextArea from '../../../packages/ui/src/runtime/components/text-area.vue'
 import IStar from '../../../packages/ui/src/runtime/components/icon/star.vue'
+import IGithub from '../../../packages/ui/src/runtime/components/icon/github.vue'
 import CommentInput from '../../../packages/ui/src/runtime/components/comment-input.vue'
 import TitleDescInput from '../../../packages/ui/src/runtime/components/title-desc-input.vue'
 import Avatar from '../../../packages/ui/src/runtime/components/avatar.vue'

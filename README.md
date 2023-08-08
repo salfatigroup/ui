@@ -1,9 +1,13 @@
-# Easy to use UI components for Vue.
+# Easy to use UI components for Vue and Tailwind.
 
-## Usage
+## Examples
+
+https://ui.salfati.group
+
+## Install
 
 ```
-<k-button variant="primary" />
+npm i @salfatigroup/ui
 ```
 
 ## Customize all components with your brand color
