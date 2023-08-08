@@ -5,7 +5,7 @@
         <h2 class="text-lg leading-6 font-medium text-brand-gray-900">
           @salfatigroup/ui
         </h2>
-        <div class="flex space-x-2 items-center text-brand-gray-500">
+        <div class="flex space-x-4 items-center text-brand-gray-500">
           <nuxt-link
             to="https://github.com/salfatigroup/ui"
             class="text-sm font-medium text-brand-500 hover:text-brand-700"
