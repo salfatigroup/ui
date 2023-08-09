@@ -1,10 +1,7 @@
 <template>
   <Menu as="div" class="relative inline-block text-left">
     <div>
-      <MenuButton
-        class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white font-semibold text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 hover:bg-brand-gray-50"
-        :class="buttonSizeClasses"
-      >
+      <MenuButton :class="buttonClasses" :disabled="disabled" v-bind="$attrs">
         <slot>
           {{ title }}
         </slot>
@@ -71,6 +68,7 @@ export type Props = {
   items?: MenuItemType[]
   size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   preventChevron: boolean
+  disabled?: boolean
 }
 
 const props = defineProps({
@@ -90,9 +88,13 @@ const props = defineProps({
     type: Boolean as PropType<Props['preventChevron']>,
     default: false,
   },
+  disabled: {
+    type: Boolean as PropType<Props['disabled']>,
+    default: false,
+  },
 })
 
-const buttonSizeClasses = computed(() => ({
+const buttonClasses = computed(() => ({
   'px-2 py-1': ['xs', 'sm'].includes(props.size),
   'px-2.5 py-1.5': ['md'].includes(props.size),
   'px-3 py-2': ['lg'].includes(props.size),
@@ -100,5 +102,9 @@ const buttonSizeClasses = computed(() => ({
 
   'text-xs': ['xs'].includes(props.size),
   'text-sm': ['sm', 'md', 'lg', 'xl'].includes(props.size),
+
+  'inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white font-semibold text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 hover:bg-brand-gray-50':
+    true,
+  'opacity-50 pointer-events-none': props.disabled,
 }))
 </script>

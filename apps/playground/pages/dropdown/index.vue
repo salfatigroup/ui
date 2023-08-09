@@ -20,6 +20,31 @@
         </template>
       </k-dropdown>
     </ComponentCodeWrapper>
+    <ComponentCodeWrapper :code="example3">
+      <k-dropdown
+        size="md"
+        :items="items"
+        prevent-chevron
+        class="w-10"
+        disabled
+      >
+        <IMoreVert class="w-5 h-5 text-brand-gray-500" variant="duotone" />
+
+        <template #item="{ item }">
+          <div class="flex items-center space-x-2 hover:bg-brand-gray-100 p-1">
+            <div
+              class="flex items-center flex-shrink-0 w-5 h-5 text-brand-gray-500"
+            >
+              <IMoreVert variant="duotone" />
+            </div>
+            <div class="text-brand-gray-700">{{ item.label }}</div>
+          </div>
+        </template>
+      </k-dropdown>
+    </ComponentCodeWrapper>
+    <ComponentCodeWrapper :code="example4">
+      <k-dropdown :items="items" title="Menu" disabled></k-dropdown>
+    </ComponentCodeWrapper>
     <ComponentCodeWrapper :code="script" />
   </div>
 </template>
@@ -64,4 +89,20 @@ const example2 = `
     </div>
   </template>
 </k-dropdown>`
+
+const example3 = `
+<k-dropdown size="md" :items="items" prevent-chevron class="w-10" disabled>
+  <IMoreVert class="w-5 h-5 text-brand-gray-500" variant="duotone" />
+  <template #item="{ item }">
+    <div class="flex items-center space-x-2">
+      <div class="flex-shrink-0 w-5 h-5 text-brand-gray-500">
+        <IMoreVert variant="duotone" />
+      </div>
+      <div class="text-brand-gray-700">{{ item.label }}</div>
+    </div>
+  </template>
+</k-dropdown>`
+const example4 = `
+<k-dropdown :items="items" title="Menu" disabled></k-dropdown>
+`
 </script>
