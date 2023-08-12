@@ -27,7 +27,9 @@
     </div>
   </div>
   <div :class="wrapperClasses" v-else>
-    <KAvatar :src="avatar" />
+    <slot name="avatar">
+      <KAvatar v-if="avatar" :src="avatar" />
+    </slot>
     <div class="min-w-0 flex-1 relative">
       <div :class="textAreaWrapperClasses">
         <label for="comment" class="sr-only">{{ placeholder }}</label>
