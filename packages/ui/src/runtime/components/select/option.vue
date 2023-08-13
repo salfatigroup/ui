@@ -76,6 +76,7 @@ export type OptionType = {
   icon?: Object
   description?: string
   iconProps?: Record<string, string>
+  [key: string]: any
 }
 
 const { option } = defineProps({
