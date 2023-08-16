@@ -104,24 +104,24 @@
           :disabled="item.disabled"
           v-slot="{ active, checked }"
         >
-          <div
-            :class="[
-              !item.disabled
-                ? 'cursor-pointer focus:outline-none'
-                : 'cursor-not-allowed opacity-25',
-              active ? 'ring-2 ring-brand-600 ring-offset-2' : '',
-              checked
-                ? 'bg-brand-600 text-white hover:bg-brand-500'
-                : 'ring-1 ring-inset ring-brand-gray-300 bg-white text-brand-gray-900 hover:bg-brand-gray-50',
-              'flex items-center justify-center rounded-md py-3 px-3 text-sm font-semibold uppercase sm:flex-1',
-            ]"
-          >
-            <RadioGroupLabel as="span">
-              <slot :active="active" :checked="checked" :item="item">
+          <slot :active="active" :checked="checked" :item="item">
+            <div
+              :class="[
+                !item.disabled
+                  ? 'cursor-pointer focus:outline-none'
+                  : 'cursor-not-allowed opacity-25',
+                active ? 'ring-2 ring-brand-600 ring-offset-2' : '',
+                checked
+                  ? 'bg-brand-600 text-white hover:bg-brand-500'
+                  : 'ring-1 ring-inset ring-brand-gray-300 bg-white text-brand-gray-900 hover:bg-brand-gray-50',
+                'flex items-center justify-center rounded-md py-3 px-3 text-sm font-semibold uppercase sm:flex-1',
+              ]"
+            >
+              <RadioGroupLabel as="span">
                 {{ item.label }}
-              </slot>
-            </RadioGroupLabel>
-          </div>
+              </RadioGroupLabel>
+            </div>
+          </slot>
         </RadioGroupOption>
       </div>
       <div
@@ -212,7 +212,7 @@ export type Props = {
   inlineItemDescription?: boolean
   learnMoreText?: string
   learnMoreLink?: string
-  wrapperClasses?: string
+  wrapperClasses?: string | null
 }
 const props = defineProps({
   title: {
