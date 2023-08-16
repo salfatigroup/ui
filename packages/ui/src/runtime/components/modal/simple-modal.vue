@@ -35,11 +35,7 @@
               <div class="sm:flex sm:items-start">
                 <div :class="iconWrapperClasses">
                   <slot name="icon" :class="iconClasses">
-                    <IAlertTriangle
-                      :class="iconClasses"
-                      aria-hidden="true"
-                      variant="filled"
-                    />
+                    <IAlertTriangle :class="iconClasses" aria-hidden="true" />
                   </slot>
                 </div>
                 <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
@@ -116,6 +112,7 @@ const props = defineProps({
 const iconWrapperClasses = computed(() => [
   'mx-auto flex h-12 w-12 items-center justify-center rounded-full flex-shrink-0 sm:mx-0 sm:h-10 sm:w-10',
   {
+    'bg-brand-100': props.variant === 'primary',
     'bg-brand-info-100': props.variant === 'info',
     'bg-brand-success-100': props.variant === 'success',
     'bg-brand-warn-100': props.variant === 'warn',
@@ -126,6 +123,7 @@ const iconWrapperClasses = computed(() => [
 const iconClasses = computed(() => [
   'h-6 w-6',
   {
+    'bg-brand-100': props.variant === 'primary',
     'text-brand-info-600': props.variant === 'info',
     'text-brand-success-600': props.variant === 'success',
     'text-brand-warn-600': props.variant === 'warn',

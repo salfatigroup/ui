@@ -1,5 +1,5 @@
 export type ModalProps = {
-  variant: 'info' | 'danger' | 'success' | 'warn'
+  variant: 'info' | 'danger' | 'success' | 'warn' | 'primary'
   layout: 'centered' | 'simple'
   title: string
   description: string
