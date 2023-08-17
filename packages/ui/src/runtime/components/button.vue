@@ -116,7 +116,7 @@ const buttonClasses = computed(() => {
 
   return {
     ...baseClasses[props.variant ?? 'primary'],
-    'flex justify-center items-center font-semibold': true,
+    'flex justify-center items-center font-semibold shrink-0': true,
     'px-1 py-1': ['xs2'].includes(props.size),
     'px-2 py-1': ['xs', 'sm'].includes(props.size),
     'px-2.5 py-1.5': ['md'].includes(props.size),

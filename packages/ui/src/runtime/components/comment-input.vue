@@ -33,7 +33,7 @@
     <div class="min-w-0 flex-1 relative">
       <div :class="textAreaWrapperClasses">
         <label for="comment" class="sr-only">{{ placeholder }}</label>
-
+        <slot name="description"></slot>
         <div v-if="readonly" :class="readonlyDivClasses">
           {{ modelValue }}
         </div>
