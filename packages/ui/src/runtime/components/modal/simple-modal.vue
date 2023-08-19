@@ -39,12 +39,14 @@
                   </slot>
                 </div>
                 <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                  <DialogTitle
-                    as="h3"
-                    class="text-base font-semibold leading-6 text-brand-gray-900"
-                  >
-                    <slot name="title">{{ title }}</slot>
-                  </DialogTitle>
+                  <slot name="title">
+                    <DialogTitle
+                      as="h3"
+                      class="text-base font-semibold leading-6 text-brand-gray-900 w-11/12"
+                    >
+                      {{ title }}
+                    </DialogTitle>
+                  </slot>
                   <div class="mt-2">
                     <slot name="description">
                       <p class="text-sm text-brand-gray-500">
