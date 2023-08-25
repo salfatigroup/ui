@@ -54,28 +54,39 @@
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
-          <ListboxOptions :class="listboxOptionsClasses">
-            <ListboxOption
-              as="template"
-              v-for="option in options"
-              :key="option.value ?? ''"
-              :value="option"
-              v-slot="{ active, selected }"
-            >
-              <li
-                :class="[
-                  active ? 'bg-brand-600 text-white' : 'text-brand-gray-900',
-                  'relative cursor-default select-none py-2 pl-3 pr-9',
-                ]"
+          <slot name="options">
+            <ListboxOptions :class="listboxOptionsClasses">
+              <ListboxOption
+                as="template"
+                v-for="option in options"
+                :key="option.value ?? ''"
+                :value="option"
+                v-slot="{ active, selected }"
               >
-                <Option
+                <slot
                   :active="active"
                   :selected="selected"
                   :option="option"
-                />
-              </li>
-            </ListboxOption>
-          </ListboxOptions>
+                  name="option"
+                >
+                  <li
+                    :class="[
+                      active
+                        ? 'bg-brand-600 text-white'
+                        : 'text-brand-gray-900',
+                      'relative cursor-default select-none py-2 pl-3 pr-9',
+                    ]"
+                  >
+                    <Option
+                      :active="active"
+                      :selected="selected"
+                      :option="option"
+                    />
+                  </li>
+                </slot>
+              </ListboxOption>
+            </ListboxOptions>
+          </slot>
         </transition>
       </div>
     </Listbox>

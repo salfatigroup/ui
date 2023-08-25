@@ -1,16 +1,18 @@
 <template>
   <Menu as="div" class="relative inline-block text-left">
     <div>
-      <MenuButton :class="buttonClasses" :disabled="disabled" v-bind="$attrs">
-        <slot>
-          {{ title }}
-        </slot>
-        <IChevronDown
-          v-if="!preventChevron"
-          class="-mr-1 w-5 h-5 text-brand-gray-400"
-          aria-hidden="true"
-        />
-      </MenuButton>
+      <slot name="button">
+        <MenuButton :class="buttonClasses" :disabled="disabled" v-bind="$attrs">
+          <slot>
+            {{ title }}
+          </slot>
+          <IChevronDown
+            v-if="!preventChevron"
+            class="-mr-1 w-5 h-5 text-brand-gray-400"
+            aria-hidden="true"
+          />
+        </MenuButton>
+      </slot>
     </div>
 
     <transition
@@ -21,33 +23,35 @@
       leave-from-class="transform opacity-100 scale-100"
       leave-to-class="transform opacity-0 scale-95"
     >
-      <MenuItems
-        class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-      >
-        <div class="py-1">
-          <MenuItem
-            v-slot="menuItemSlot"
-            v-for="item in items"
-            :key="item.value ?? item.label"
-            @click="item.onClick?.()"
-            as="button"
-            class="block w-full text-left"
-          >
-            <slot v-bind="menuItemSlot" :item="item" name="item">
-              <div
-                :class="[
-                  menuItemSlot.active
-                    ? 'bg-brand-gray-100 text-brand-gray-900'
-                    : 'text-brand-gray-700',
-                  'block px-4 text-sm py-1',
-                ]"
-              >
-                {{ item.label }}
-              </div>
-            </slot>
-          </MenuItem>
-        </div>
-      </MenuItems>
+      <slot name="items">
+        <MenuItems
+          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+        >
+          <div class="py-1">
+            <MenuItem
+              v-slot="menuItemSlot"
+              v-for="item in items"
+              :key="item.value ?? item.label"
+              @click="item.onClick?.()"
+              as="button"
+              class="block w-full text-left"
+            >
+              <slot v-bind="menuItemSlot" :item="item" name="item">
+                <div
+                  :class="[
+                    menuItemSlot.active
+                      ? 'bg-brand-gray-100 text-brand-gray-900'
+                      : 'text-brand-gray-700',
+                    'block px-4 text-sm py-1',
+                  ]"
+                >
+                  {{ item.label }}
+                </div>
+              </slot>
+            </MenuItem>
+          </div>
+        </MenuItems>
+      </slot>
     </transition>
   </Menu>
 </template>
