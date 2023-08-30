@@ -4,6 +4,7 @@
     :model-value="modelValue"
     @update:model-value="emit('update:modelValue', $event)"
     v-bind="$attrs"
+    :disabled="disabled"
     class="w-full"
   >
     <slot name="label">
@@ -16,8 +17,9 @@
     <div class="relative mt-2">
       <slot name="input">
         <ComboboxInput
-          class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-10 text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6"
+          class="w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6 disabled:bg-brand-gray-50 disabled:cursor-not-allowed"
           @change="query = $event.target.value"
+          :disabled="disabled"
           :display-value="(option) => option?.label"
         >
           <slot></slot>
@@ -25,7 +27,8 @@
       </slot>
       <slot name="button">
         <ComboboxButton
-          class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none"
+          :disabled="disabled"
+          class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none disabled:cursor-not-allowed"
         >
           <IChevronDown
             class="h-5 w-5 text-brand-gray-400"
@@ -38,6 +41,7 @@
       <slot name="options">
         <ComboboxOptions
           v-if="filteredOptions.length > 0"
+          :disabled="disabled"
           class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
         >
           <ComboboxOption
@@ -78,6 +82,7 @@ import {
 type Props = {
   options: OptionType[]
   label: string
+  disabled?: boolean
 }
 
 const props = defineProps({
@@ -98,6 +103,10 @@ const props = defineProps({
   },
   onTextChange: {
     type: Function as PropType<(value: string) => void>,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 })
 

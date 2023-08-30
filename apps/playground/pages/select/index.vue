@@ -71,6 +71,7 @@
         errorText="This is an error example"
       />
     </ComponentCodeWrapper>
+
     <ComponentCodeWrapper :code="script" />
   </div>
 </template>

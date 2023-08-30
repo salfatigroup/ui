@@ -8,6 +8,14 @@
       />
     </ComponentCodeWrapper>
 
+    <ComponentCodeWrapper>
+      <k-combobox
+        label="Assigned to (disabled)"
+        :options="people"
+        v-model="selectedValue"
+        disabled
+      />
+    </ComponentCodeWrapper>
     <ComponentCodeWrapper :code="script" />
   </div>
 </template>

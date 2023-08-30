@@ -12,6 +12,10 @@
       <k-checkbox v-bind="props" v-model="checked" right />
     </ComponentCodeWrapper>
 
+    <ComponentCodeWrapper>
+      <k-checkbox v-bind="props" v-model="checked" disabled />
+    </ComponentCodeWrapper>
+
     <ComponentCodeWrapper :code="script" />
   </div>
 </template>

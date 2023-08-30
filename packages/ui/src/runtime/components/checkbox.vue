@@ -10,6 +10,7 @@
         <input
           v-bind="$attrs"
           v-uid
+          :disabled="disabled"
           ref="current"
           type="checkbox"
           :checked="modelValue"
@@ -23,16 +24,16 @@
         />
       </div>
       <div class="mx-3 text-sm leading-6">
-        <label :for="current?.id" class="font-medium text-brand-gray-900">{{
-          label
-        }}</label>
+        <label :for="current?.id" class="font-medium text-brand-gray-900">
+          {{ label }}
+        </label>
 
         <template v-if="inlineDescription">
           {{ ' ' }}
-          <span class="text-brand-gray-500"
-            ><span class="sr-only">{{ label }}</span
-            >{{ description }}</span
-          >
+          <span class="text-brand-gray-500">
+            <span class="sr-only">{{ label }}</span>
+            {{ description }}
+          </span>
         </template>
         <p class="text-brand-gray-500" v-else>
           {{ description }}
