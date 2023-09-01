@@ -29,7 +29,7 @@
     <ComponentCodeWrapper :code="example3">
       <k-select
         :options="people"
-        disabled
+        :disabled="'true'"
         v-model="selectedSingle"
         label="Disabled"
       />

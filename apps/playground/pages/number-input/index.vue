@@ -10,6 +10,12 @@
       </div>
     </ComponentCodeWrapper>
 
+    <ComponentCodeWrapper>
+      <div class="w-52">
+        <k-number-input v-model="number2" :min="0" :max="10" disabled />
+      </div>
+    </ComponentCodeWrapper>
+
     <ComponentCodeWrapper :code="script" />
   </div>
 </template>

@@ -8,7 +8,7 @@
         emit('update:modelValue', $event?.value === null ? undefined : $event)
       "
       :multiple="multiple"
-      :disabled="disabled"
+      :disabled="disabled === true || disabled === 'true'"
     >
       <slot name="label">
         <ListboxLabel
@@ -116,7 +116,7 @@ type Props = {
   placeholder: string
   label: string
   pill: boolean
-  disabled: boolean
+  disabled: boolean | string
   direction: 'up' | 'down'
   errorText?: string
 }
@@ -147,7 +147,7 @@ const props = defineProps({
     default: false,
   },
   disabled: {
-    type: Boolean as PropType<Props['disabled']>,
+    type: [Boolean, String] as PropType<Props['disabled']>,
     default: false,
   },
   direction: {

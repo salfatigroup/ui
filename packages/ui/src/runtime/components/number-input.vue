@@ -1,6 +1,11 @@
 <template>
   <div class="flex">
-    <KButton variant="secondary" class="h-9" @click="decrementDelay">
+    <KButton
+      variant="secondary"
+      class="h-9"
+      @click="decrementDelay"
+      :disabled="disabled"
+    >
       <KIconMinus class="h-4 w-4 text-brand-gray-500" aria-hidden="true" />
     </KButton>
 
@@ -12,12 +17,18 @@
         :min="min"
         :max="max"
         :model-value="modelValue"
+        :disabled="disabled"
         v-bind="$attrs"
         @update:model-value="handleDelayChange"
       />
     </div>
 
-    <KButton variant="secondary" class="h-9" @click="incrementDelay">
+    <KButton
+      variant="secondary"
+      class="h-9"
+      @click="incrementDelay"
+      :disabled="disabled"
+    >
       <KIconPlus class="h-4 w-4 text-brand-gray-500" aria-hidden="true" />
     </KButton>
   </div>
@@ -25,7 +36,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const props = defineProps<{ modelValue?: number; min?: number; max?: number }>()
+const props = defineProps<{
+  modelValue?: number
+  min?: number
+  max?: number
+  disabled?: boolean
+}>()
 const emit = defineEmits<{ 'update:modelValue': [value: number] }>()
 
 const modelValue = computed<number>({
