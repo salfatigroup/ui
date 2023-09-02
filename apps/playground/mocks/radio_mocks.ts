@@ -7,7 +7,12 @@ export const items = [
     bottomText: '10000 users',
     sideLabel: 'side label',
   },
-  { value: '2', label: 'Push notification', description: 'This is spammy' },
+  {
+    value: '2',
+    label: 'Push notification',
+    description: 'This is spammy',
+    disabled: true,
+  },
   { value: '3', label: 'No description' },
 ]
 

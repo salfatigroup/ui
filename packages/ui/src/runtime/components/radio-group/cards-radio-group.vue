@@ -141,7 +141,10 @@
                 active
                   ? 'border-brand-600 ring-2 ring-brand-600'
                   : 'border-brand-gray-300',
-                'relative block cursor-pointer rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none sm:flex sm:justify-between',
+                'relative block rounded-lg border bg-white px-6 py-4 shadow-sm focus:outline-none sm:flex sm:justify-between',
+                item.disabled
+                  ? 'opacity-50 cursor-not-allowed pointer-events-none'
+                  : 'cursor-pointer',
               ]"
             >
               <span class="flex items-center">
