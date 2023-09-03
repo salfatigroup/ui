@@ -12,6 +12,7 @@
     >
       <slot name="label">
         <ListboxLabel
+          v-if="label"
           class="block text-sm font-medium leading-6 text-brand-gray-900 mb-2"
         >
           {{ label }}
