@@ -50,13 +50,16 @@
           @input="onChange"
           :value="value"
         />
+
         <!-- Spacer element to match the height of the toolbar -->
-        <div class="py-2" aria-hidden="true" v-if="$slots.customAddons">
-          <!-- Matches height of button in toolbar (1px border + 16px content height) -->
-          <div class="py-px">
-            <div class="h-4" />
+        <slot name="spacer">
+          <div class="py-2" aria-hidden="true" v-if="$slots.customAddons">
+            <!-- Matches height of button in toolbar (1px border + 16px content height) -->
+            <div class="py-px">
+              <div class="h-4" />
+            </div>
           </div>
-        </div>
+        </slot>
       </div>
 
       <slot name="footer">
