@@ -29,7 +29,7 @@
               leave-from="translate-x-0"
               leave-to="translate-x-full"
             >
-              <DialogPanel class="pointer-events-auto w-screen max-w-md">
+              <DialogPanel :class="dialogPanelClass">
                 <div
                   class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl"
                 >
@@ -85,6 +85,10 @@ const props = defineProps({
   open: {
     type: Boolean,
     required: true,
+  },
+  dialogPanelClass: {
+    type: String,
+    default: 'pointer-events-auto w-screen max-w-md',
   },
 })
 
