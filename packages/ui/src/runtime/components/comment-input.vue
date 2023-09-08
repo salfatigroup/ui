@@ -59,41 +59,43 @@
         </div>
       </div>
 
-      <div
-        :class="[
-          'absolute bottom-0 flex justify-between pb-2 pl-3 pr-2 right-0',
-          $slots.customAddons ? 'w-full' : 'w-fit',
-        ]"
-      >
-        <div :class="footerClasses">
-          <div class="w-fit">
-            <slot name="customAddons"></slot>
+      <slot name="footer">
+        <div
+          :class="[
+            'absolute bottom-0 flex justify-between pb-2 pl-3 pr-2 right-0',
+            $slots.customAddons ? 'w-full' : 'w-fit',
+          ]"
+        >
+          <div :class="footerClasses">
+            <div class="w-fit">
+              <slot name="customAddons"></slot>
+            </div>
+            <div v-if="expandable" class="justify-end flex -mb-1">
+              <KButton
+                variant="secondary"
+                size="xs2"
+                isIcon
+                @click="expanded = !expanded"
+              >
+                <IChevronsUpRec v-if="expanded" />
+                <IChevronsDownRec v-else />
+              </KButton>
+            </div>
           </div>
-          <div v-if="expandable" class="justify-end flex -mb-1">
-            <KButton
-              variant="secondary"
-              size="xs2"
-              isIcon
-              @click="expanded = !expanded"
-            >
-              <IChevronsUpRec v-if="expanded" />
-              <IChevronsDownRec v-else />
-            </KButton>
+          <div class="flex-grow-0">
+            <slot name="actionButton">
+              <KButton
+                v-if="!readonly"
+                @click="emit('post', value)"
+                :loading="isPosting"
+                :disabled="buttonDisabled"
+              >
+                {{ actionText }}
+              </KButton>
+            </slot>
           </div>
         </div>
-        <div class="flex-grow-0">
-          <slot name="actionButton">
-            <KButton
-              v-if="!readonly"
-              @click="emit('post', value)"
-              :loading="isPosting"
-              :disabled="buttonDisabled"
-            >
-              {{ actionText }}
-            </KButton>
-          </slot>
-        </div>
-      </div>
+      </slot>
     </div>
   </div>
 </template>
