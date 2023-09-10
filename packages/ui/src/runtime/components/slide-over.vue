@@ -33,30 +33,32 @@
                 <div
                   class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl"
                 >
-                  <div class="px-4 sm:px-6">
-                    <div class="flex items-start justify-between">
-                      <DialogTitle
-                        v-if="$slots.title"
-                        class="text-base font-semibold leading-6 text-brand-gray-900"
-                      >
-                        <slot name="title" />
-                      </DialogTitle>
-                      <div class="ml-3 flex h-7 items-center">
-                        <button
-                          type="button"
-                          class="rounded-md bg-white text-brand-gray-400 hover:text-brand-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-                          @click="$emit('close')"
+                  <slot name="content">
+                    <div class="px-4 sm:px-6">
+                      <div class="flex items-start justify-between">
+                        <DialogTitle
+                          v-if="$slots.title"
+                          class="text-base font-semibold leading-6 text-brand-gray-900"
                         >
-                          <span class="sr-only">Close panel</span>
-                          <ICross class="h-6 w-6" aria-hidden="true" />
-                        </button>
+                          <slot name="title" />
+                        </DialogTitle>
+                        <div class="ml-3 flex h-7 items-center">
+                          <button
+                            type="button"
+                            class="rounded-md bg-white text-brand-gray-400 hover:text-brand-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                            @click="$emit('close')"
+                          >
+                            <span class="sr-only">Close panel</span>
+                            <ICross class="h-6 w-6" aria-hidden="true" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="relative mt-6 flex-1 px-4 sm:px-6">
-                    <!-- Your content -->
-                    <slot />
-                  </div>
+                    <div class="relative mt-6 flex-1 px-4 sm:px-6">
+                      <!-- Your content -->
+                      <slot />
+                    </div>
+                  </slot>
                 </div>
               </DialogPanel>
             </TransitionChild>
