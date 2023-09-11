@@ -30,10 +30,10 @@
               leave-to="translate-x-full"
             >
               <DialogPanel :class="dialogPanelClass">
-                <div
-                  class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl"
-                >
-                  <slot name="content">
+                <slot name="content">
+                  <div
+                    class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl"
+                  >
                     <div class="px-4 sm:px-6">
                       <div class="flex items-start justify-between">
                         <DialogTitle
@@ -58,8 +58,8 @@
                       <!-- Your content -->
                       <slot />
                     </div>
-                  </slot>
-                </div>
+                  </div>
+                </slot>
               </DialogPanel>
             </TransitionChild>
           </div>
