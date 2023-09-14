@@ -32,9 +32,19 @@
               v-slot="menuItemSlot"
               v-for="item in items"
               :key="item.value ?? item.label"
-              @click="item.onClick?.()"
+              @click="
+                () => {
+                  if (!item.disabled) {
+                    item.onClick?.()
+                  }
+                }
+              "
               as="button"
-              class="block w-full text-left"
+              :disabled="item.disabled"
+              :class="{
+                'block w-full text-left': true,
+                'opacity-50 cursor-not-allowed': item.disabled,
+              }"
             >
               <slot v-bind="menuItemSlot" :item="item" name="item">
                 <div
@@ -42,10 +52,18 @@
                     menuItemSlot.active
                       ? 'bg-brand-gray-100 text-brand-gray-900'
                       : 'text-brand-gray-700',
-                    'block px-4 text-sm py-1',
+                    'block px-4 text-sm py-1 flex items-center justify-between',
                   ]"
                 >
-                  {{ item.label }}
+                  <div>
+                    {{ item.label }}
+                  </div>
+
+                  <IRefreshCw
+                    v-if="item.loading"
+                    class="h-4 w-4 text-brand-gray-400 animate-spin"
+                    aria-hidden="true"
+                  />
                 </div>
               </slot>
             </MenuItem>
@@ -59,11 +77,13 @@
 <script setup lang="ts">
 import { PropType, computed } from 'vue'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { IChevronDown } from './icon'
+import { IChevronDown, IRefreshCw } from './icon'
 
 export type MenuItemType = {
   label: string
   value: string
+  disabled?: boolean
+  loading?: boolean
   onClick?: () => void
 }
 

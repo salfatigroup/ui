@@ -45,6 +45,23 @@
     <ComponentCodeWrapper :code="example4">
       <k-dropdown :items="items" title="Menu" disabled></k-dropdown>
     </ComponentCodeWrapper>
+    <ComponentCodeWrapper :code="example5">
+      <k-dropdown
+        :items="[
+          {
+            label: 'test',
+            value: 'test',
+            disabled: true,
+            loading: true,
+            onClick: () => {
+              console.log('hi')
+            },
+          },
+          { label: 'test-1', value: 'test-1' },
+        ]"
+        title="Menu"
+      />
+    </ComponentCodeWrapper>
     <ComponentCodeWrapper :code="script" />
   </div>
 </template>
@@ -104,5 +121,22 @@ const example3 = `
 </k-dropdown>`
 const example4 = `
 <k-dropdown :items="items" title="Menu" disabled></k-dropdown>
+`
+const example5 = `
+<k-dropdown
+  :items="[
+    {
+      label: 'test',
+      value: 'test',
+      disabled: true,
+      loading: true,
+      onClick: () => {
+        console.log('hi')
+      },
+    },
+    { label: 'test-1', value: 'test-1' },
+  ]"
+  title="Menu"
+/>
 `
 </script>
