@@ -6,7 +6,7 @@
           <component :is="iconComponent?.value" v-bind="iconProps"></component>
         </slot>
       </div>
-      <div class="ml-3">
+      <div class="ml-3 w-full">
         <h3 :class="titleClasses">
           <slot name="title">{{ title }}</slot>
         </h3>
