@@ -118,6 +118,7 @@ type Props = {
   expandable: boolean
   skeleton: boolean
   autofocus: boolean
+  wrapperClasses: string
 }
 
 const props = defineProps({
@@ -160,6 +161,10 @@ const props = defineProps({
   autofocus: {
     type: Boolean as PropType<Props['autofocus']>,
     default: false,
+  },
+  wrapperClasses: {
+    type: String as PropType<Props['wrapperClasses']>,
+    default: 'flex items-start space-x-4 w-full',
   },
 })
 
@@ -205,10 +210,6 @@ const emit = defineEmits<{
 const footerClasses = computed(() => ({
   'flex items-center justify-between space-x-5 w-full flex-1': true,
   'mr-[49%]': props.readonly,
-}))
-
-const wrapperClasses = computed(() => ({
-  'flex items-start space-x-4 w-full': true,
 }))
 
 const readonlyDivClasses = computed(() => ({
