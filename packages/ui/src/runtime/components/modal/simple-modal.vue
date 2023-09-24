@@ -31,38 +31,40 @@
             <DialogPanel
               class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
             >
-              <CloseButton v-if="!hideCloseButton" @close="emit('close')" />
-              <div class="sm:flex sm:items-start">
-                <div :class="iconWrapperClasses">
-                  <slot name="icon" :class="iconClasses">
-                    <IAlertTriangle :class="iconClasses" aria-hidden="true" />
-                  </slot>
-                </div>
-                <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                  <slot name="title">
-                    <DialogTitle
-                      as="h3"
-                      class="text-base font-semibold leading-6 text-brand-gray-900 w-11/12"
-                    >
-                      {{ title }}
-                    </DialogTitle>
-                  </slot>
-                  <div class="mt-2">
-                    <slot name="description">
-                      <p class="text-sm text-brand-gray-500">
-                        {{ description }}
-                      </p>
+              <slot>
+                <CloseButton v-if="!hideCloseButton" @close="emit('close')" />
+                <div class="sm:flex sm:items-start">
+                  <div :class="iconWrapperClasses">
+                    <slot name="icon" :class="iconClasses">
+                      <IAlertTriangle :class="iconClasses" aria-hidden="true" />
                     </slot>
                   </div>
+                  <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                    <slot name="title">
+                      <DialogTitle
+                        as="h3"
+                        class="text-base font-semibold leading-6 text-brand-gray-900 w-11/12"
+                      >
+                        {{ title }}
+                      </DialogTitle>
+                    </slot>
+                    <div class="mt-2">
+                      <slot name="description">
+                        <p class="text-sm text-brand-gray-500">
+                          {{ description }}
+                        </p>
+                      </slot>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div
-                class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse space-x-3 sm:space-x-reverse"
-              >
-                <slot name="buttons">
-                  <ModalButtons :buttons="buttons" />
-                </slot>
-              </div>
+                <div
+                  class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse space-x-3 sm:space-x-reverse"
+                >
+                  <slot name="buttons">
+                    <ModalButtons :buttons="buttons" />
+                  </slot>
+                </div>
+              </slot>
             </DialogPanel>
           </TransitionChild>
         </div>
