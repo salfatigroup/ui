@@ -24,9 +24,7 @@
       leave-to-class="transform opacity-0 scale-95"
     >
       <slot name="items">
-        <MenuItems
-          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-        >
+        <MenuItems :class="menuItemsClasses">
           <div class="py-1">
             <MenuItem
               v-slot="menuItemSlot"
@@ -93,6 +91,7 @@ export type Props = {
   size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   preventChevron: boolean
   disabled?: boolean
+  direction: 'up' | 'down'
 }
 
 const props = defineProps({
@@ -116,6 +115,10 @@ const props = defineProps({
     type: Boolean as PropType<Props['disabled']>,
     default: false,
   },
+  direction: {
+    type: String as PropType<Props['direction']>,
+    default: 'down',
+  },
 })
 
 const buttonClasses = computed(() => ({
@@ -130,5 +133,12 @@ const buttonClasses = computed(() => ({
   'inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white font-semibold text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 hover:bg-brand-gray-50':
     true,
   'opacity-50 pointer-events-none': props.disabled,
+}))
+
+const menuItemsClasses = computed(() => ({
+  'absolute right-0 z-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none':
+    true,
+  'top-full mt-2': props.direction === 'down',
+  'bottom-full mb-2': props.direction === 'up',
 }))
 </script>
