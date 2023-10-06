@@ -99,7 +99,7 @@ const props = defineProps({
   },
   multiple: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   modelValue: {
     type: [Object, Array] as PropType<OptionType | OptionType[]>,
