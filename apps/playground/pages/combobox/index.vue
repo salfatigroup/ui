@@ -8,12 +8,21 @@
       />
     </ComponentCodeWrapper>
 
-    <ComponentCodeWrapper>
+    <ComponentCodeWrapper :code="example2">
       <k-combobox
         label="Assigned to (disabled)"
         :options="people"
         v-model="selectedValue"
         disabled
+      />
+    </ComponentCodeWrapper>
+
+    <ComponentCodeWrapper :code="example3">
+      <k-combobox
+        label="Assigned to (multiple)"
+        :options="people"
+        v-model="selectedValues"
+        multiple
       />
     </ComponentCodeWrapper>
     <ComponentCodeWrapper :code="script" />
@@ -24,6 +33,7 @@
 import { ref } from 'vue'
 import { people } from '../../mocks/options_mocks'
 const selectedValue = ref(people[1])
+const selectedValues = ref([people[1]])
 
 const script = `
 <script setup lang="ts">
@@ -47,6 +57,7 @@ const script = `
     { value: 10, label: 'Emil Schaefer' },
   ]
   const selectedValue = ref(people[1])
+  const selectedValues = ref([people[1]])
 \<\/script\>
 `
 const example1 = `
@@ -54,6 +65,24 @@ const example1 = `
   label="Assigned to"
   :options="people"
   v-model="selectedValue"
+/>
+`
+
+const example2 = `
+<k-combobox
+  label="Assigned to (disabled)"
+  :options="people"
+  v-model="selectedValue"
+  disabled
+/>
+`
+
+const example3 = `
+<k-combobox
+  label="Assigned to (multiple)"
+  :options="people"
+  v-model="selectedValues"
+  multiple
 />
 `
 </script>

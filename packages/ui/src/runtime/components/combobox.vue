@@ -4,6 +4,7 @@
     :model-value="modelValue"
     @update:model-value="emit('update:modelValue', $event)"
     v-bind="$attrs"
+    :multiple="multiple"
     :disabled="disabled"
     class="w-full"
   >
