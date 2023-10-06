@@ -16,20 +16,21 @@
       </ComboboxLabel>
     </slot>
     <div class="relative mt-2">
-      <slot>
-        <div
-          class="absolute pointer-events-none line-clamp-1 py-1.5 pl-3 pr-10 peer-focus:hidden"
-        >
-          <slot name="placeholder"></slot>
-        </div>
-      </slot>
       <slot name="input">
         <ComboboxInput
           class="w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-brand-gray-900 shadow-sm ring-1 ring-inset ring-brand-gray-300 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6 disabled:cursor-not-allowed disabled:bg-brand-gray-50 disabled:text-brand-gray-500 disabled:ring-brand-gray-200 peer"
           @change="query = $event.target.value"
+          @blur="query = ''"
           :disabled="disabled"
           :display-value="(option) => option?.label"
         ></ComboboxInput>
+      </slot>
+      <slot>
+        <div
+          class="absolute pointer-events-none line-clamp-1 pt-2 pl-3 pr-10 peer-focus:hidden top-0 text-sm text-brand-gray-900"
+        >
+          <slot name="placeholder"></slot>
+        </div>
       </slot>
       <slot name="button">
         <ComboboxButton
