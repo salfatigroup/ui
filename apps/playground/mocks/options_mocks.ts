@@ -21,7 +21,11 @@ export const people: OptionType[] = [
       'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   },
   { value: 3, label: 'Devon Webb', description: '@devonwebb' },
-  { value: 4, label: 'Tom Cook' },
+  {
+    value: 4,
+    label:
+      'Tom Cook this is a very long name of a person Tom Cook this is a very long name of a person Tom Cook this is a very long name of a person',
+  },
   { value: 5, label: 'Tanya Fox' },
   { value: 6, label: 'Hellen Schmvaluet' },
   { value: 7, label: 'Caroline Schultz' },
