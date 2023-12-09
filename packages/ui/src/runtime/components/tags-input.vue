@@ -1,26 +1,34 @@
 <template>
   <div
     :class="[
-      'flex items-center justify-center border-0 p-1 shadow-sm ring-inset rounded-md',
+      'flex space-x-1 shrink-0 items-center border-0 p-1 shadow-sm ring-inset rounded-md flex-wrap cursor-text',
       focused ? 'ring-brand-600 ring-2' : 'ring-brand-gray-300 ring-1',
     ]"
+    @click="inputRef?.focus()"
   >
     <slot name="tags">
-      <div :class="['flex space-x-1']">
-        <slot v-for="tag in model" name="tag">
-          <Tag brand removable v-bind="tag.attrs">{{ tag.name }}</Tag>
-        </slot>
-      </div>
+      <slot v-for="(tag, i) in model" name="tag">
+        <Tag
+          brand
+          removable
+          v-bind="tag.attrs"
+          @click="removeTag(i)"
+          class="shrink-0"
+        >
+          {{ tag.name }}
+        </Tag>
+      </slot>
     </slot>
-    <slot name="input">
+    <slot name="input" v-bind="{ addTag, removeTag, mode: input }">
       <input
         v-model="input"
+        ref="inputRef"
         @keydown.enter="addTag"
-        @keydown.delete="removeTag"
+        @keydown.delete="removeTag()"
         @keydown.passive="$event.code === 'Comma' && addTag()"
         @focus="focused = true"
         @blur="focused = false"
-        class="w-full text-brand-gray-900 outline-none ml-1"
+        class="text-brand-gray-900 outline-none ml-1"
       />
     </slot>
   </div>
@@ -31,6 +39,8 @@ import { PropType, computed, ref } from 'vue'
 import Tag from './tag.vue'
 
 const focused = ref(false)
+const inputRef = ref<HTMLInputElement | null>(null)
+
 type TagType = {
   index: number
   name: string
@@ -76,10 +86,12 @@ const addTag = () => {
   }
 }
 
-const removeTag = () => {
-  if (input.value.length === 0 && model.value.length > 0) {
+const removeTag = (index?: number) => {
+  if (index !== undefined) {
+    model.value.splice(index, 1)
+  } else if (input.value.length === 0 && model.value.length > 0) {
     model.value.pop()
-    model.value = [...model.value]
   }
+  model.value = [...model.value]
 }
 </script>
