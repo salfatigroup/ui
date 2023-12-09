@@ -11,13 +11,21 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 const model = computed({
-  get: () => ['tag1', 'tag2', 'tag3'],
+  get: () => [
+    { name: 'tag1', attrs: {} },
+    { name: 'tag2', attrs: {} },
+    { name: 'tag3', attrs: {} },
+  ],
   set: (value: string) => console.log(value),
 })
 
 const code = `
 const model = computed({
-  get: () => ['tag1', 'tag2', 'tag3'],
+  get: () => [
+    { name: 'tag1', attrs: {} },
+    { name: 'tag2', attrs: {} },
+    { name: 'tag3', attrs: {} },
+  ],
   set: (value: string) => console.log(value),
 })
 

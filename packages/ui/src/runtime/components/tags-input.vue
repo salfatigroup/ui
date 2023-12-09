@@ -1,59 +1,43 @@
-<style lang="css">
-.v3ti--focus {
-  border: 1px solid #6952d5 !important;
-  box-shadow: #6952d5 0px 0px 0px 1px !important;
-}
-.v3ti {
-  border: 1px solid #6b7280;
-  display: flex;
-}
-
-.v3ti .v3ti-tag {
-  background: transparent;
-  margin-left: 0;
-  margin-right: 0;
-  padding-right: 0;
-  position: relative;
-}
-
-.v3ti .v3ti-tag .v3ti-remove-tag {
-  position: absolute;
-  color: transparent;
-  width: 100%;
-  pointer-events: all;
-}
-
-.v3ti-remove-tag:hover {
-  color: transparent !important;
-}
-
-.v3ti .v3ti-tag .v3ti-remove-tag:hover {
-  color: #ffffff;
-}
-</style>
-
 <template>
-  <div class="flex items-center justify-center">
-    <Vue3TagsInput
-      :tags="model"
-      @on-tags-changed="model = $event"
-      v-bind="$attrs"
-      :add-tag-on-keys="[13, 188]"
-    >
-      <template #item="{ tag, index }">
-        <Tag removable>{{ tag }}</Tag>
-      </template>
-    </Vue3TagsInput>
+  <div
+    :class="[
+      'flex items-center justify-center border-0 p-1 shadow-sm ring-inset rounded-md',
+      focused ? 'ring-brand-600 ring-2' : 'ring-brand-gray-300 ring-1',
+    ]"
+  >
+    <slot name="tags">
+      <div :class="['flex space-x-1']">
+        <slot v-for="tag in model" name="tag">
+          <Tag brand removable v-bind="tag.attrs">{{ tag.name }}</Tag>
+        </slot>
+      </div>
+    </slot>
+    <slot name="input">
+      <input
+        v-model="input"
+        @keydown.enter="addTag"
+        @keydown.delete="removeTag"
+        @keydown.passive="$event.code === 'Comma' && addTag()"
+        @focus="focused = true"
+        @blur="focused = false"
+        class="w-full text-brand-gray-900 outline-none ml-1"
+      />
+    </slot>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
-import Vue3TagsInput from 'vue3-tags-input'
+import { PropType, computed, ref } from 'vue'
 import Tag from './tag.vue'
 
+const focused = ref(false)
+type TagType = {
+  index: number
+  name: string
+  attrs: Record<string, unknown>
+}
 type TagProps = {
-  modelValue: string[]
+  modelValue: TagType[]
 }
 
 const props = defineProps({
@@ -64,11 +48,38 @@ const props = defineProps({
 })
 
 const emit = defineEmits<{
-  'update:modelValue': [value: string]
+  'update:modelValue': [value: TagType[]]
 }>()
 
+const innerModel = ref(props.modelValue)
+
 const model = computed({
-  get: () => props.modelValue,
-  set: (value: string) => emit('update:modelValue', value),
+  get: () => innerModel.value,
+  set: (value: TagType[]) => {
+    emit('update:modelValue', value)
+    innerModel.value = value
+  },
 })
+
+const input = ref('')
+const addTag = () => {
+  if (input.value.length > 0) {
+    model.value.push({
+      index: model.value.length,
+      name: input.value,
+      attrs: {},
+    })
+    input.value = ''
+    setTimeout(() => {
+      input.value = ''
+    }, 0)
+  }
+}
+
+const removeTag = () => {
+  if (input.value.length === 0 && model.value.length > 0) {
+    model.value.pop()
+    model.value = [...model.value]
+  }
+}
 </script>
