@@ -1,6 +1,6 @@
 {
   "name": "@salfatigroup/ui",
-  "version": "0.1.59",
+  "version": "0.1.70",
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
