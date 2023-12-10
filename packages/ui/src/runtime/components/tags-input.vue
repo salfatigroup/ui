@@ -80,7 +80,6 @@ const addTag = () => {
       name: input.value,
       attrs: {},
     })
-    model.value = [...model.value]
     input.value = ''
     setTimeout(() => {
       input.value = ''
