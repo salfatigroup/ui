@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'flex shrink-0 items-center border-0 pl-1 pt-1 shadow-sm ring-inset rounded-md flex-wrap cursor-text',
+      'flex space-x-1 shrink-0 items-center border-0 p-1 shadow-sm ring-inset rounded-md flex-wrap cursor-text',
       focused ? 'ring-brand-600 ring-2' : 'ring-brand-gray-300 ring-1',
     ]"
     @click="inputRef?.focus()"
@@ -13,7 +13,7 @@
           removable
           v-bind="tag.attrs"
           @click="removeTag(i)"
-          class="shrink-0 mr-1 mb-1"
+          class="shrink-0"
         >
           {{ tag.name }}
         </Tag>
@@ -21,7 +21,6 @@
     </slot>
     <slot name="input" v-bind="{ addTag, removeTag, mode: input }">
       <input
-        type="tags"
         v-model="input"
         ref="inputRef"
         @keydown.enter="addTag"
@@ -29,7 +28,7 @@
         @keydown.passive="$event.code === 'Comma' && addTag()"
         @focus="focused = true"
         @blur="focused = false"
-        class="text-brand-gray-900 outline-none mr-1 mb-1"
+        class="text-brand-gray-900 outline-none ml-1"
       />
     </slot>
   </div>
