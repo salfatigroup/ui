@@ -53,7 +53,7 @@ type TagProps = {
 
 const props = defineProps({
   modelValue: {
-    type: Array as PropType<TagProps['modelValue']>,
+    type: Array as PropType<InputProps['modelValue']>,
     default: [],
   },
 })
