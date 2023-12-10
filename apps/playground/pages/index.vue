@@ -114,6 +114,8 @@ import KModal from '../../../packages/ui/src/runtime/components/modal.vue'
 import KSlideOver from '../../../packages/ui/src/runtime/components/slide-over.vue'
 import KSpinner from '../../../packages/ui/src/runtime/components/spinner.vue'
 import KNumberInput from '../../../packages/ui/src/runtime/components/number-input.vue'
+import KTag from '../../../packages/ui/src/runtime/components/tag.vue'
+import KTagsInput from '../../../packages/ui/src/runtime/components/tags-input.vue'
 
 import { items } from '../mocks/radio_mocks'
 import { people } from '../mocks/options_mocks'
@@ -366,6 +368,22 @@ const components = ref(
       props: { modelValue: 10 },
       slots: [],
       codeExample: `<k-number-input />`,
+    },
+    {
+      title: 'Tag',
+      to: '/tag',
+      element: shallowRef(KTag),
+      props: { label: 'Tag' },
+      slots: [{ content: 'Tag' }],
+      codeExample: `<k-tag />`,
+    },
+    {
+      title: 'Tags Input',
+      to: '/tags-input',
+      element: shallowRef(KTagsInput),
+      props: { modelValue: ['Tag 1', 'Tag 2'] },
+      slots: [],
+      codeExample: `<k-tags-input />`,
     },
   ].sort((a, b) => a.title.localeCompare(b.title)),
 )
