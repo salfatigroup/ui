@@ -24,15 +24,22 @@
         aria-hidden="true"
         v-if="option?.online !== undefined"
       />
+      <span
+        :class="[
+          selected ? 'font-semibold' : 'font-normal',
+          'ml-3 block truncate',
+        ]"
+      >
+        {{ option?.label }}
+        <span class="sr-only" v-if="option?.online !== undefined">
+          is {{ option?.online ? 'online' : 'offline' }}
+        </span>
+      </span>
     </div>
     <span
-      :class="[
-        option?.online !== undefined || option?.avatar || option?.icon
-          ? 'ml-3'
-          : '',
-        selected ? 'font-semibold' : 'font-normal',
-        'block truncate text-left',
-      ]"
+      v-else
+      class="text-left"
+      :class="[selected ? 'font-semibold' : 'font-normal', 'block truncate']"
     >
       {{ option?.label }}
     </span>

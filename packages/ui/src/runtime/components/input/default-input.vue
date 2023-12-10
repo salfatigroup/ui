@@ -2,9 +2,9 @@
   <div class="w-full">
     <div class="flex justify-between">
       <label :for="current?.id" :class="labelClasses">{{ label }}</label>
-      <span class="text-sm leading-6 text-brand-gray-500" id="email-optional">
-        {{ cornerHint }}
-      </span>
+      <span class="text-sm leading-6 text-brand-gray-500" id="email-optional">{{
+        cornerHint
+      }}</span>
     </div>
 
     <div :class="inputWrapperClasses">
