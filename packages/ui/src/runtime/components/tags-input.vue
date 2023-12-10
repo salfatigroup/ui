@@ -21,10 +21,9 @@
   color: transparent;
   width: 100%;
   pointer-events: all;
-}
-
-.v3ti-remove-tag:hover {
-  color: transparent !important;
+  &:hover {
+    color: transparent !important;
+  }
 }
 
 .v3ti .v3ti-tag .v3ti-remove-tag:hover {
