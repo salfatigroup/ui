@@ -28,7 +28,10 @@
         @keydown.delete="removeTag()"
         @keydown.passive="$event.code === 'Comma' && addTag()"
         @focus="focused = true"
-        @blur="focused = false"
+        @blur="
+          addTag()
+          focused = false
+        "
         class="text-brand-gray-900 outline-none mr-1 mb-1"
       />
     </slot>
