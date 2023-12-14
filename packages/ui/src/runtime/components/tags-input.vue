@@ -28,10 +28,7 @@
         @keydown.delete="removeTag()"
         @keydown.passive="$event.code === 'Comma' && addTag()"
         @focus="focused = true"
-        @blur="
-          addTag()
-          focused = false
-        "
+        @blur="handleBlur"
         class="text-brand-gray-900 outline-none mr-1 mb-1"
       />
     </slot>
@@ -98,5 +95,10 @@ const removeTag = (index?: number) => {
     model.value.pop()
   }
   model.value = [...model.value]
+}
+
+const handleBlur = () => {
+  addTag()
+  focused.value = false
 }
 </script>
