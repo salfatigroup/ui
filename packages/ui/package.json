@@ -1,6 +1,6 @@
 {
   "name": "@salfatigroup/ui",
-  "version": "0.1.74",
+  "version": "0.1.75",
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
@@ -35,7 +35,7 @@
     "@shimyshack/uid": "^0.1.9"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
+    "@nuxt/devtools": "^1.0.4",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/module-builder": "^0.4.0",
     "@nuxt/schema": "^3.6.2",

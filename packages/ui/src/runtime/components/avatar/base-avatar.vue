@@ -81,6 +81,8 @@ const props = defineProps({
 })
 
 const classes = computed(() => ({
+  'h-3.5 w-3.5': props.size === '3xs',
+  'h-4.5 w-4.5': props.size === '2xs',
   'h-6 w-6': props.size === 'xs',
   'h-8 w-8': props.size === 'sm',
   'h-10 w-10': props.size === 'md',
