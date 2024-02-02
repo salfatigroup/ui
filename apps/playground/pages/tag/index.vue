@@ -1,5 +1,5 @@
 <template>
-  <ComponentCodeWrapper :code="`<k-spinner />`">
+  <ComponentCodeWrapper :code="`<k-tag />`">
     <k-tag success>Success tag</k-tag>
     <k-tag danger>Error tag</k-tag>
     <k-tag warning>Warning tag</k-tag>

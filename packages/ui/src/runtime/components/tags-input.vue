@@ -3,6 +3,9 @@
     :class="[
       'flex shrink-0 items-center border-0 pl-1 pt-1 shadow-sm ring-inset rounded-md flex-wrap cursor-text',
       focused ? 'ring-brand-600 ring-2' : 'ring-brand-gray-300 ring-1',
+      disabled
+        ? 'bg-brand-gray-100 text-brand-gray-500'
+        : 'bg-white text-brand-gray-900',
     ]"
     @click="inputRef?.focus()"
   >
@@ -11,9 +14,11 @@
         <Tag
           brand
           removable
+          :key="tag.index"
+          :disabled="disabled"
           v-bind="tag.attrs"
           @click="removeTag(i)"
-          class="shrink-0 mr-1 mb-1"
+          :class="['shrink-0 mr-1 mb-1', disabled ? 'pointer-events-none' : '']"
         >
           {{ tag.name }}
         </Tag>
@@ -30,6 +35,7 @@
         @focus="focused = true"
         @blur="handleBlur"
         class="text-brand-gray-900 outline-none mr-1 mb-1"
+        :disabled="disabled"
       />
     </slot>
   </div>
@@ -49,12 +55,17 @@ type TagType = {
 }
 type TagProps = {
   modelValue: TagType[]
+  disabled?: boolean
 }
 
 const props = defineProps({
   modelValue: {
     type: Array as PropType<TagProps['modelValue']>,
     default: [],
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 })
 
