@@ -85,6 +85,8 @@
       }
     "
   />
+  <k-toast :show="toastOpen" />
+
   <k-slide-over :open="slideOverOpen" @close="slideOverOpen = false">
     <div>This is a slide over</div>
   </k-slide-over>
@@ -385,9 +387,22 @@ const components = ref(
       slots: [],
       codeExample: `<k-tags-input />`,
     },
+    {
+      title: 'Toast',
+      to: '/toast',
+      element: shallowRef(KButton),
+      slots: [{ name: 'default', content: 'Toggle toast' }],
+      codeExample: `<k-toast :show="toastOpen" />`,
+      events: {
+        click() {
+          toastOpen.value = !toastOpen.value
+        },
+      },
+    },
   ].sort((a, b) => a.title.localeCompare(b.title)),
 )
 
 const modalOpen = ref(false)
 const slideOverOpen = ref(false)
+const toastOpen = ref(false)
 </script>

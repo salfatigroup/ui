@@ -68,11 +68,12 @@ type ButtonProps = {
   label: string
 }
 type Props = {
-  variant?: 'info' | 'success' | 'warn' | 'danger'
+  variant?: 'info' | 'success' | 'warn' | 'danger' | 'brand'
   title?: string
   description?: string
   buttons?: ButtonProps[]
   accent?: boolean
+  withBorder?: boolean
   onClose?: () => void
   onLearnMore?: () => void
   learnMoreText?: string
@@ -99,6 +100,10 @@ const props: Props = defineProps({
     type: Boolean,
     default: false,
   },
+  withBorder: {
+    type: Boolean,
+    default: false,
+  },
   onClose: {
     type: Function as PropType<Props['onClose']>,
     default: undefined,
@@ -115,6 +120,8 @@ const props: Props = defineProps({
 
 const iconComponent = computed(() => {
   switch (props.variant) {
+    case 'brand':
+      return shallowRef(IInfo)
     case 'info':
       return shallowRef(IInfo)
     case 'success':
@@ -129,6 +136,7 @@ const iconProps = computed(() => {
   return {
     class: {
       'h-5 w-5': true,
+      'text-brand-500': props.variant === 'brand',
       'text-brand-info-400': props.variant === 'info',
       'text-brand-success-400': props.variant === 'success',
       'text-brand-warn-400': props.variant === 'warn',
@@ -141,22 +149,31 @@ const iconProps = computed(() => {
 const wrapperClasses = computed(() => {
   return {
     'p-4 w-full': true,
+    'bg-brand-50': props.variant === 'brand',
     'bg-brand-info-50': props.variant === 'info',
     'bg-brand-success-50': props.variant === 'success',
     'bg-brand-warn-50': props.variant === 'warn',
     'bg-brand-danger-50': props.variant === 'danger',
     'rounded-md': !props.accent,
     'border-l-4': props.accent,
-    'border-brand-info-400': props.variant === 'info' && props.accent,
-    'border-brand-success-400': props.variant === 'success' && props.accent,
-    'border-brand-warn-400': props.variant === 'warn' && props.accent,
-    'border-brand-danger-400': props.variant === 'danger' && props.accent,
+    'border ': props.withBorder,
+    'border-brand-400':
+      props.variant === 'brand' && (props.accent || props.withBorder),
+    'border-brand-info-400':
+      props.variant === 'info' && (props.accent || props.withBorder),
+    'border-brand-success-400':
+      props.variant === 'success' && (props.accent || props.withBorder),
+    'border-brand-warn-400':
+      props.variant === 'warn' && (props.accent || props.withBorder),
+    'border-brand-danger-400':
+      props.variant === 'danger' && (props.accent || props.withBorder),
   }
 })
 
 const titleClasses = computed(() => {
   return {
     'text-sm font-medium': true,
+    'text-brand-800': props.variant === 'brand',
     'text-brand-info-800': props.variant === 'info',
     'text-brand-success-800': props.variant === 'success',
     'text-brand-warn-800': props.variant === 'warn',
@@ -168,6 +185,7 @@ const descriptionClasses = computed(() => {
   return {
     'mt-2': props.title,
     'text-sm': true,
+    'text-brand-700': props.variant === 'brand',
     'text-brand-info-700': props.variant === 'info',
     'text-brand-success-700': props.variant === 'success',
     'text-brand-warn-700': props.variant === 'warn',
@@ -179,6 +197,8 @@ const buttonClasses = computed(() => {
   return {
     'rounded-md px-2 py-1.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 ':
       true,
+    'text-brand-800 bg-brand-100 hover:bg-brand-200 focus:ring-brand-500 focus:ring-offset-brand-50':
+      props.variant === 'brand',
     'bg-brand-success-50 text-brand-success-800 hover:bg-brand-success-100 focus:ring-brand-success-600 focus:ring-offset-brand-success-50':
       props.variant === 'success',
     'bg-brand-warn-50 text-brand-warn-800 hover:bg-brand-warn-100 focus:ring-brand-warn-600 focus:ring-offset-brand-warn-50':
@@ -194,6 +214,8 @@ const closeIconClasses = computed(() => {
   return {
     'inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 ':
       true,
+    'text-brand-500 bg-brand-100 hover:bg-brand-200 focus:ring-brand-500 focus:ring-offset-brand-50':
+      props.variant === 'brand',
     'bg-brand-info-50 text-brand-info-500 hover:bg-brand-info-100 focus:ring-brand-info-600 focus:ring-offset-brand-info-50':
       props.variant === 'info',
     'bg-brand-success-50 text-brand-success-500 hover:bg-brand-success-100 focus:ring-brand-success-600 focus:ring-offset-brand-success-50':
@@ -208,6 +230,7 @@ const closeIconClasses = computed(() => {
 const learnMoreClasses = computed(() => {
   return {
     'whitespace-nowrap font-medium': true,
+    'text-brand-600 hover:text-brand-500': props.variant === 'brand',
     'text-brand-info-700 hover:text-brand-info-600': props.variant === 'info',
     'text-brand-success-700 hover:text-brand-success-600':
       props.variant === 'success',
