@@ -1,10 +1,14 @@
 <template>
-  <span :class="badgeClasses">
+  <span :class="badgeClasses" v-if="showBadge">
     <svg :class="dotClasses" viewBox="0 0 6 6" aria-hidden="true">
       <circle cx="3" cy="3" r="3" />
     </svg>
     <slot></slot>
-    <button type="button" :class="buttonClasses">
+    <button
+      type="button"
+      :class="buttonClasses"
+      @click.stop.prevent="handleRemoveBadge"
+    >
       <span class="sr-only">Remove</span>
       <svg viewBox="0 0 14 14" :class="buttonIconClasses">
         <path d="M4 4l6 6m0-6l-6 6" />
@@ -15,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 export type Props = {
   variant?: 'primary' | 'secondary' | 'info' | 'warn' | 'danger' | 'success'
   size?: 'sm' | 'md'
@@ -24,6 +28,10 @@ export type Props = {
   flat?: boolean
   pill?: boolean
 }
+
+const emit = defineEmits<{
+  (event: 'remove:badge'): void
+}>()
 
 const props = defineProps({
   variant: {
@@ -154,4 +162,11 @@ const buttonIconClasses = computed(() => ({
   'stroke-brand-success-600/50 group-hover:stroke-brand-success-600/75':
     props.variant === 'success',
 }))
+
+const showBadge = ref(true)
+
+const handleRemoveBadge = () => {
+  showBadge.value = false
+  emit('remove:badge')
+}
 </script>
