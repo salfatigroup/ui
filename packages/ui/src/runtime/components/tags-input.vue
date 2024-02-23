@@ -31,7 +31,7 @@
         ref="inputRef"
         @keydown.enter="addTag"
         @keydown.delete="removeTag()"
-        @keydown.passive="$event.code === 'Comma' && addTag()"
+        @keydown.passive="onKeyDown"
         @focus="focused = true"
         @blur="handleBlur"
         class="text-brand-gray-900 outline-none mr-1 mb-1"
@@ -111,5 +111,11 @@ const removeTag = (index?: number) => {
 const handleBlur = () => {
   addTag()
   focused.value = false
+}
+
+const onKeyDown = (event: KeyboardEvent) => {
+  if (['Comma', 'Period', 'Semicolon'].includes(event.code)) {
+    addTag()
+  }
 }
 </script>
