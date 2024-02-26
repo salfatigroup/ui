@@ -7,15 +7,13 @@
             {{ title }}
           </slot>
           <template v-if="!preventChevron">
-            <IChevronDown
-              v-if="
-                (direction === 'down' && !open) || (direction === 'up' && open)
-              "
+            <IChevronUp
+              v-if="open"
               class="-mr-1 h-5 w-5 text-brand-gray-400"
               aria-hidden="true"
               variant="line"
             />
-            <IChevronUp
+            <IChevronDown
               v-else
               class="-mr-1 h-5 w-5 text-brand-gray-400"
               aria-hidden="true"
@@ -102,7 +100,7 @@ export type Props = {
   size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   preventChevron: boolean
   disabled?: boolean
-  direction: 'up' | 'down'
+  direction: 'up' | 'down' | 'up-left' | 'up-right' | 'down-left' | 'down-right'
 }
 
 const props = defineProps({
@@ -151,5 +149,9 @@ const menuItemsClasses = computed(() => ({
     true,
   'top-full mt-2': props.direction === 'down',
   'bottom-full mb-2': props.direction === 'up',
+  'left-full ml-1 top-0': props.direction === 'down-right',
+  'left-full ml-1 bottom-0': props.direction === 'up-right',
+  'right-full mr-1 top-0': props.direction === 'down-left',
+  'right-full mr-1 bottom-0': props.direction === 'up-left',
 }))
 </script>

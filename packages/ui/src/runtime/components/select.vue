@@ -43,15 +43,13 @@
             v-if="!pill"
             class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
           >
-            <IChevronDown
-              v-if="
-                (direction === 'down' && !open) || (direction === 'up' && open)
-              "
+            <IChevronUp
+              v-if="open"
               class="h-5 w-5 text-brand-gray-400"
               aria-hidden="true"
               variant="line"
             />
-            <IChevronUp
+            <IChevronDown
               v-else
               class="h-5 w-5 text-brand-gray-400"
               aria-hidden="true"
@@ -128,7 +126,7 @@ type Props = {
   label: string
   pill: boolean
   disabled: boolean | string
-  direction: 'up' | 'down'
+  direction: 'up' | 'down' | 'up-left' | 'up-right' | 'down-left' | 'down-right'
   errorText?: string
 }
 
@@ -200,6 +198,10 @@ const listboxOptionsClasses = computed(() => ({
     true,
   'top-full mt-1': props.direction === 'down',
   'bottom-full mb-1': props.direction === 'up',
+  'left-full ml-1 top-0': props.direction === 'down-right',
+  'left-full ml-1 bottom-0': props.direction === 'up-right',
+  'right-full mr-1 top-0': props.direction === 'down-left',
+  'right-full mr-1 bottom-0': props.direction === 'up-left',
 }))
 
 const bottomTextClasses = computed(() => ({

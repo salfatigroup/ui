@@ -39,15 +39,13 @@
           :disabled="disabled"
           class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none disabled:cursor-not-allowed"
         >
-          <IChevronDown
-            v-if="
-              (direction === 'down' && !open) || (direction === 'up' && open)
-            "
+          <IChevronUp
+            v-if="open"
             class="h-5 w-5 text-brand-gray-400"
             aria-hidden="true"
             variant="line"
           />
-          <IChevronUp
+          <IChevronDown
             v-else
             class="h-5 w-5 text-brand-gray-400"
             aria-hidden="true"
@@ -101,7 +99,13 @@ type Props = {
   options: OptionType[]
   label: string
   disabled?: boolean
-  direction?: 'up' | 'down'
+  direction?:
+    | 'up'
+    | 'down'
+    | 'up-left'
+    | 'up-right'
+    | 'down-left'
+    | 'down-right'
 }
 
 const props = defineProps({
@@ -152,9 +156,13 @@ const emit = defineEmits<{
 }>()
 
 const comboboxOptionsClasses = computed(() => ({
-  'absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm':
+  'absolute z-10 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm':
     true,
   'top-full mt-1': props.direction === 'down',
   'bottom-full mb-1': props.direction === 'up',
+  'left-full ml-1 top-0': props.direction === 'down-right',
+  'left-full ml-1 bottom-0': props.direction === 'up-right',
+  'right-full mr-1 top-0': props.direction === 'down-left',
+  'right-full mr-1 bottom-0': props.direction === 'up-left',
 }))
 </script>

@@ -19,11 +19,11 @@
 
     <ComponentCodeWrapper :code="example3">
       <k-combobox
-        label="Assigned to (multiple)"
+        label="Assigned to (multiple) up right"
         :options="people"
         v-model="selectedValues"
         multiple
-        direction="up"
+        direction="up-right"
       />
     </ComponentCodeWrapper>
     <ComponentCodeWrapper :code="script" />
@@ -84,6 +84,7 @@ const example3 = `
   :options="people"
   v-model="selectedValues"
   multiple
+  direction="up-right"
 />
 `
 </script>
