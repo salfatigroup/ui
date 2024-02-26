@@ -7,6 +7,7 @@
     :multiple="multiple"
     :disabled="disabled"
     class="w-full"
+    v-slot="{ open }"
   >
     <slot name="label">
       <ComboboxLabel
@@ -39,6 +40,15 @@
           class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none disabled:cursor-not-allowed"
         >
           <IChevronDown
+            v-if="
+              (direction === 'down' && !open) || (direction === 'up' && open)
+            "
+            class="h-5 w-5 text-brand-gray-400"
+            aria-hidden="true"
+            variant="line"
+          />
+          <IChevronUp
+            v-else
             class="h-5 w-5 text-brand-gray-400"
             aria-hidden="true"
             variant="line"
@@ -50,7 +60,7 @@
         <ComboboxOptions
           v-if="filteredOptions.length > 0"
           :disabled="disabled"
-          class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+          :class="comboboxOptionsClasses"
         >
           <ComboboxOption
             v-for="option in filteredOptions"
@@ -76,7 +86,7 @@
 
 <script setup lang="ts">
 import { computed, ref, PropType, watch } from 'vue'
-import { ICheck, IChevronDown } from './icon'
+import { ICheck, IChevronDown, IChevronUp } from './icon'
 import Option, { OptionType } from './select/option.vue'
 import {
   Combobox,
@@ -91,6 +101,7 @@ type Props = {
   options: OptionType[]
   label: string
   disabled?: boolean
+  direction?: 'up' | 'down'
 }
 
 const props = defineProps({
@@ -116,6 +127,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  direction: {
+    type: String as PropType<Props['direction']>,
+    default: 'down',
+  },
 })
 
 const query = ref('')
@@ -135,4 +150,11 @@ const filteredOptions = computed(() => {
 const emit = defineEmits<{
   'update:modelValue': [value: OptionType | OptionType[]]
 }>()
+
+const comboboxOptionsClasses = computed(() => ({
+  'absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm':
+    true,
+  'top-full mt-1': props.direction === 'down',
+  'bottom-full mb-1': props.direction === 'up',
+}))
 </script>

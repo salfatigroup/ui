@@ -1,16 +1,27 @@
 <template>
-  <Menu as="div" class="relative inline-block text-left">
+  <Menu as="div" class="relative inline-block text-left" v-slot="{ open }">
     <div>
       <slot name="button">
         <MenuButton :class="buttonClasses" :disabled="disabled" v-bind="$attrs">
           <slot>
             {{ title }}
           </slot>
-          <IChevronDown
-            v-if="!preventChevron"
-            class="-mr-1 w-5 h-5 text-brand-gray-400"
-            aria-hidden="true"
-          />
+          <template v-if="!preventChevron">
+            <IChevronDown
+              v-if="
+                (direction === 'down' && !open) || (direction === 'up' && open)
+              "
+              class="-mr-1 h-5 w-5 text-brand-gray-400"
+              aria-hidden="true"
+              variant="line"
+            />
+            <IChevronUp
+              v-else
+              class="-mr-1 h-5 w-5 text-brand-gray-400"
+              aria-hidden="true"
+              variant="line"
+            />
+          </template>
         </MenuButton>
       </slot>
     </div>
@@ -75,7 +86,7 @@
 <script setup lang="ts">
 import { PropType, computed } from 'vue'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { IChevronDown, IRefreshCw } from './icon'
+import { IChevronDown, IChevronUp, IRefreshCw } from './icon'
 
 export type MenuItemType = {
   label: string

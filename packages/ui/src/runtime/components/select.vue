@@ -9,6 +9,7 @@
       "
       :multiple="multiple"
       :disabled="disabled === true || disabled === 'true'"
+      v-slot="{ open }"
     >
       <slot name="label">
         <ListboxLabel
@@ -43,9 +44,18 @@
             class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
           >
             <IChevronDown
-              variant="line"
+              v-if="
+                (direction === 'down' && !open) || (direction === 'up' && open)
+              "
               class="h-5 w-5 text-brand-gray-400"
               aria-hidden="true"
+              variant="line"
+            />
+            <IChevronUp
+              v-else
+              class="h-5 w-5 text-brand-gray-400"
+              aria-hidden="true"
+              variant="line"
             />
           </span>
         </ListboxButton>
@@ -98,7 +108,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed, watch } from 'vue'
+import { PropType, computed } from 'vue'
 import {
   Listbox,
   ListboxButton,
@@ -106,7 +116,7 @@ import {
   ListboxOption,
   ListboxOptions,
 } from '@headlessui/vue'
-import { IChevronDown } from './icon'
+import { IChevronDown, IChevronUp } from './icon'
 import Option, { OptionType } from './select/option.vue'
 import { DISABLED_INPUT_CLASSES } from './common/classes'
 

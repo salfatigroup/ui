@@ -23,6 +23,7 @@
         :options="people"
         v-model="selectedValues"
         multiple
+        direction="up"
       />
     </ComponentCodeWrapper>
     <ComponentCodeWrapper :code="script" />
