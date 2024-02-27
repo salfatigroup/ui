@@ -73,7 +73,18 @@
                 active ? 'bg-brand-600 text-white' : 'text-brand-gray-900',
               ]"
             >
-              <Option :active="active" :selected="selected" :option="option" />
+              <slot
+                name="option"
+                :option="option"
+                :active="active"
+                :selected="selected"
+              >
+                <Option
+                  :active="active"
+                  :selected="selected"
+                  :option="option"
+                />
+              </slot>
             </li>
           </ComboboxOption>
         </ComboboxOptions>
