@@ -48,6 +48,17 @@
       />
     </ComponentCodeWrapper>
 
+    <ComponentCodeWrapper :code="exmaple8">
+      <k-text-input softInput>
+        <template #label>
+          <KIconSearch
+            class="h-5 w-5 text-brand-gray-400 cursor-pointer"
+            aria-hidden="true"
+          />
+        </template>
+      </k-text-input>
+    </ComponentCodeWrapper>
+
     <ComponentCodeWrapper :code="exmaple7">
       <k-text-input label="Pill" placeholder="Placeholder" pill />
     </ComponentCodeWrapper>
@@ -84,4 +95,10 @@ const exmaple6 = `<k-text-input
   placeholder="Placeholder"
 />`
 const exmaple7 = `<k-text-input label="Pill" placeholder="Placeholder" pill />`
+
+const exmaple8 = `<k-text-input softInput placeholder="Placeholder">
+  <template #label>
+    <KIconSearch class="h-5 w-5 text-brand-gray-400" aria-hidden="true" />
+  </template>
+</k-text-input>`
 </script>
