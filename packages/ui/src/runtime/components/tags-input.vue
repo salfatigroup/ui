@@ -1,44 +1,54 @@
 <template>
-  <div
-    :class="[
-      'flex shrink-0 items-center border-0 pl-1 pt-1 shadow-sm ring-inset rounded-md flex-wrap cursor-text',
-      focused ? 'ring-brand-600 ring-2' : 'ring-brand-gray-300 ring-1',
-      disabled
-        ? 'bg-brand-gray-100 text-brand-gray-500'
-        : 'bg-white text-brand-gray-900',
-    ]"
-    @click="inputRef?.focus()"
-  >
-    <slot name="tags">
-      <slot v-for="(tag, i) in model" name="tag">
-        <Tag
-          brand
-          removable
-          :key="tag.index"
-          :disabled="disabled"
-          v-bind="tag.attrs"
-          @click="removeTag(i)"
-          :class="['shrink-0 mr-1 mb-1', disabled ? 'pointer-events-none' : '']"
-        >
-          {{ tag.name }}
-        </Tag>
+  <span class="flex flex-col text-brand-gray-900 text-sm font-medium space-y-2">
+    <label v-if="label" :for="inputRef?.id">
+      <slot name="label">{{ label }}</slot>
+    </label>
+
+    <div
+      :class="[
+        'flex shrink-0 items-center border-0 pl-1 pt-1 shadow-sm ring-inset rounded-md flex-wrap cursor-text',
+        focused ? 'ring-brand-600 ring-2' : 'ring-brand-gray-300 ring-1',
+        disabled
+          ? 'bg-brand-gray-100 text-brand-gray-500'
+          : 'bg-white text-brand-gray-900',
+      ]"
+      @click="inputRef?.focus()"
+    >
+      <slot name="tags">
+        <slot v-for="(tag, i) in model" name="tag">
+          <Tag
+            brand
+            removable
+            :key="tag.index"
+            :disabled="disabled"
+            v-bind="tag.attrs"
+            @click="removeTag(i)"
+            :class="[
+              'shrink-0 mr-1 mb-1',
+              disabled ? 'pointer-events-none' : '',
+            ]"
+          >
+            {{ tag.name }}
+          </Tag>
+        </slot>
       </slot>
-    </slot>
-    <slot name="input" v-bind="{ addTag, removeTag, mode: input }">
-      <input
-        type="tags"
-        v-model="input"
-        ref="inputRef"
-        @keydown.enter="addTag"
-        @keydown.delete="removeTag()"
-        @keydown.passive="onKeyDown"
-        @focus="focused = true"
-        @blur="handleBlur"
-        class="text-brand-gray-900 outline-none mr-1 mb-1"
-        :disabled="disabled"
-      />
-    </slot>
-  </div>
+      <slot name="input" v-bind="{ addTag, removeTag, mode: input }">
+        <input
+          type="tags"
+          v-model="input"
+          v-uid
+          ref="inputRef"
+          @keydown.enter="addTag"
+          @keydown.delete="removeTag()"
+          @keydown.passive="onKeyDown"
+          @focus="focused = true"
+          @blur="handleBlur"
+          class="text-brand-gray-900 outline-none mr-1 mb-1"
+          :disabled="disabled"
+        />
+      </slot>
+    </div>
+  </span>
 </template>
 
 <script setup lang="ts">
@@ -66,6 +76,9 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false,
+  },
+  label: {
+    type: String,
   },
 })
 

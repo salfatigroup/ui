@@ -3,6 +3,7 @@
     <ComponentCodeWrapper :code="code1">
       <k-tags-input
         success
+        label="Label"
         v-model="model"
         class="focus:ring-brand-600 focus:ring-2 focus:ring-inset"
       />
@@ -45,6 +46,7 @@ const model = computed({
 const code1 = `
 <k-tags-input
   success
+  label="Label"
   v-model="model"
   class="focus:ring-brand-600 focus:ring-2 focus:ring-inset"
 />
