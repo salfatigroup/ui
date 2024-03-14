@@ -58,7 +58,7 @@
                   </div>
                 </div>
                 <div
-                  class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse space-x-3 sm:space-x-reverse"
+                  class="mt-5 sm:mt-4 flex flex-row-reverse space-x-3 space-x-reverse"
                 >
                   <slot name="buttons">
                     <ModalButtons :buttons="buttons" />
