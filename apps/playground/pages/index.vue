@@ -118,6 +118,7 @@ import KSpinner from '../../../packages/ui/src/runtime/components/spinner.vue'
 import KNumberInput from '../../../packages/ui/src/runtime/components/number-input.vue'
 import KTag from '../../../packages/ui/src/runtime/components/tag.vue'
 import KTagsInput from '../../../packages/ui/src/runtime/components/tags-input.vue'
+import KSlider from '../../../packages/ui/src/runtime/components/slider.vue'
 
 import { items } from '../mocks/radio_mocks'
 import { people } from '../mocks/options_mocks'
@@ -398,6 +399,13 @@ const components = ref(
           toastOpen.value = !toastOpen.value
         },
       },
+    },
+    {
+      title: 'Slider',
+      to: '/slider',
+      element: shallowRef(KSlider),
+      codeExample: `<k-slider v-model="num" />`,
+      props: { modelValue: 50, min: 0, max: 100 },
     },
   ].sort((a, b) => a.title.localeCompare(b.title)),
 )
