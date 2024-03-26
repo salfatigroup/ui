@@ -5,11 +5,11 @@
     @click="onBarClick"
   >
     <div
-      class="absolute bg-brand-info-500 h-full border-r borderbrand--gray-200 rounded"
+      class="absolute bg-brand-500/60 h-full border-r border-brand-gray-200 rounded"
       :style="{ width: `${percentage}%` }"
     ></div>
     <div
-      class="absolute -top-1 -ml-2 w-4 h-4 bg-brand-info-500 rounded-full"
+      class="absolute -top-1 -ml-2 w-4 h-4 bg-brand-500 rounded-full"
       :style="{ left: `${percentage}%` }"
       @mousedown="onMouseDown"
     ></div>
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps({
   modelValue: {
