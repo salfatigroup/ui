@@ -1,7 +1,9 @@
 <template>
   <div
     ref="sliderRef"
-    class="relative h-2 bg-brand-gray-200 rounded cursor-pointer w-full"
+    tabindex="0"
+    class="relative h-2 bg-brand-gray-200 rounded cursor-pointer w-full focus:outline-brand-gray-200"
+    v-bind="$attrs"
     @click="onBarClick"
   >
     <div
@@ -96,5 +98,26 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('mousemove', onMouseMove)
   window.removeEventListener('mouseup', onMouseUp)
+})
+
+const onKeyDown = (e: KeyboardEvent) => {
+  if (e.key === 'ArrowRight') {
+    emit(
+      'update:modelValue',
+      Math.min(props.modelValue + props.step, props.max),
+    )
+  } else if (e.key === 'ArrowLeft') {
+    emit(
+      'update:modelValue',
+      Math.max(props.modelValue - props.step, props.min),
+    )
+  }
+}
+onMounted(() => {
+  sliderRef.value?.addEventListener('keydown', onKeyDown)
+})
+
+onBeforeUnmount(() => {
+  sliderRef.value?.removeEventListener('keydown', onKeyDown)
 })
 </script>
