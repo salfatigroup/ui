@@ -1,13 +1,13 @@
 <template>
   <div class="flex">
     <div
-      class="flex items-center text-left"
+      class="flex items-center text-left shrink-0"
       v-if="option?.online !== undefined || option?.avatar || option?.icon"
     >
       <component
         v-if="option?.icon"
         :is="option?.icon"
-        :class="'w-4 h-4'"
+        :class="'w-4 h-4 shrink-0'"
         v-bind="option?.iconProps"
       ></component>
       <img
