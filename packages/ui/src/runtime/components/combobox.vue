@@ -148,11 +148,21 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits<{
+  'update:modelValue': [value: OptionType | OptionType[]]
+  'update:query': [value: string]
+}>()
+
 const query = ref('')
 
-watch(query, (value) => {
-  props.onTextChange?.(value)
-})
+watch(
+  () => query.value,
+  (value) => {
+    props.onTextChange?.(value)
+    emit('update:query', value)
+  },
+  { immediate: true },
+)
 const filteredOptions = computed(() => {
   if (props.onTextChange || query.value === '') {
     return props.options
@@ -161,10 +171,6 @@ const filteredOptions = computed(() => {
     return option?.label?.toLowerCase?.().includes(query.value.toLowerCase())
   })
 })
-
-const emit = defineEmits<{
-  'update:modelValue': [value: OptionType | OptionType[]]
-}>()
 
 const comboboxOptionsClasses = computed(() => ({
   'absolute z-10 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm':

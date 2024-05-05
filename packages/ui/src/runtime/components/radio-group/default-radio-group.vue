@@ -1,8 +1,8 @@
 <template>
   <div>
-    <label class="text-base font-semibold text-brand-gray-900">{{
-      title
-    }}</label>
+    <label class="text-base font-semibold text-brand-gray-900">
+      {{ title }}
+    </label>
     <p class="text-sm text-brand-gray-500">
       {{ description }}
     </p>

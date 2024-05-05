@@ -28,10 +28,12 @@
       </slot>
     </span>
     <span v-if="notificationProps" :class="notificationClasses">
-      <span
-        v-if="variant === 'rounded'"
-        :class="notificationChildClasses"
-      ></span>
+      <slot name="notifications">
+        <span
+          v-if="variant === 'rounded'"
+          :class="notificationChildClasses"
+        ></span>
+      </slot>
     </span>
   </span>
 </template>
