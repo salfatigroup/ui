@@ -91,6 +91,11 @@
       </slot>
     </div>
   </Combobox>
+  <slot name="error">
+    <span v-if="props.errorText" class="text-sm text-brand-danger-500">
+      {{ props.errorText }}
+    </span>
+  </slot>
 </template>
 
 <script setup lang="ts">
@@ -145,6 +150,10 @@ const props = defineProps({
   direction: {
     type: String as PropType<Props['direction']>,
     default: 'down',
+  },
+  errorText: {
+    type: String,
+    default: '',
   },
 })
 

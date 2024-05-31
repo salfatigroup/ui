@@ -24,6 +24,7 @@
         v-model="selectedValues"
         multiple
         direction="up-right"
+        errorText="This is an error message"
       />
     </ComponentCodeWrapper>
     <ComponentCodeWrapper :code="script" />
@@ -85,6 +86,7 @@ const example3 = `
   v-model="selectedValues"
   multiple
   direction="up-right"
+  errorText="This is an error message"
 />
 `
 </script>
