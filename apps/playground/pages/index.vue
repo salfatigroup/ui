@@ -119,6 +119,7 @@ import KNumberInput from '../../../packages/ui/src/runtime/components/number-inp
 import KTag from '../../../packages/ui/src/runtime/components/tag.vue'
 import KTagsInput from '../../../packages/ui/src/runtime/components/tags-input.vue'
 import KSlider from '../../../packages/ui/src/runtime/components/slider.vue'
+import KFilters from '../../../packages/ui/src/runtime/components/filters.vue'
 
 import { items } from '../mocks/radio_mocks'
 import { people } from '../mocks/options_mocks'
@@ -406,6 +407,12 @@ const components = ref(
       element: shallowRef(KSlider),
       codeExample: `<k-slider v-model="num" />`,
       props: { modelValue: 50, min: 0, max: 100 },
+    },
+    {
+      title: 'Filters',
+      to: '/filters',
+      element: shallowRef(KFilters),
+      codeExample: `<k-filters />`,
     },
   ].sort((a, b) => a.title.localeCompare(b.title)),
 )
