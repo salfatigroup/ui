@@ -250,7 +250,7 @@
       </div>
 
       <!-- Active filters -->
-      <div class="bg-brand-gray-100" v-if="activeFilters.length > 0">
+      <div class="bg-brand-gray-100" v-if="activeFilters?.length > 0">
         <div
           class="mx-auto max-w-7xl px-4 py-3 sm:flex sm:items-center sm:px-6 lg:px-8"
         >
@@ -354,7 +354,7 @@ const emit = defineEmits<{
 const open = ref(false)
 
 function isFilterOptionChecked(option: FilterOption) {
-  return props.activeFilters.some((filter) => filter.value === option.value)
+  return props.activeFilters?.some((filter) => filter.value === option.value)
 }
 
 function countActiveFilters(section: Filters[number]) {
@@ -366,7 +366,9 @@ function countActiveFilters(section: Filters[number]) {
 function removeFilter(activeFilter: { value: string; label: string }) {
   emit(
     'update:activeFilters',
-    props.activeFilters.filter((filter) => filter.value !== activeFilter.value),
+    props.activeFilters?.filter(
+      (filter) => filter.value !== activeFilter.value,
+    ),
   )
 }
 
