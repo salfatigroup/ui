@@ -25,7 +25,9 @@
       </div>
       <div class="mx-3 text-sm leading-6">
         <label :for="current?.id" class="font-medium text-brand-gray-900">
-          {{ label }}
+          <slot name="label">
+            {{ label }}
+          </slot>
         </label>
 
         <template v-if="inlineDescription">
@@ -36,7 +38,9 @@
           </span>
         </template>
         <p class="text-brand-gray-500" v-else>
-          {{ description }}
+          <slot name="description">
+            {{ description }}
+          </slot>
         </p>
       </div>
     </div>
